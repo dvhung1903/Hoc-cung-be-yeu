@@ -81,6 +81,70 @@
     transform: translateX(-3px);
   }
 
+  /* ── Nút bật/tắt nhạc ── */
+  .music-btn {
+    position: fixed;
+    top: 1.2rem; right: 1.2rem;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: white;
+    border: 1.5px solid #EEE;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .music-btn:hover {
+    border-color: var(--primary);
+    transform: scale(1.1);
+  }
+  .music-btn.muted { opacity: 0.5; }
+
+  /* ── Overlay "Chạm để bắt đầu" – chỉ hiện trên mobile lần đầu ── */
+  .tap-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(253,252,248,0.92);
+    z-index: 100;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+  }
+  .tap-overlay.show { display: flex; }
+  .tap-overlay .tap-icon { font-size: 4rem; animation: bounce 1s infinite; }
+  .tap-overlay p {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .tap-overlay span {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    font-weight: 600;
+  }
+  .tap-start-btn {
+    margin-top: 8px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 32px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 16px #FF6B6B44;
+    transition: transform 0.15s;
+  }
+  .tap-start-btn:active { transform: scale(0.96); }
+
   .header {
     text-align: center;
     margin-bottom: 2.5rem;
@@ -108,9 +172,7 @@
     line-height: 1.1;
   }
 
-  .header h1 span {
-    color: var(--primary);
-  }
+  .header h1 span { color: var(--primary); }
 
   .header p {
     margin-top: 0.6rem;
@@ -141,45 +203,17 @@
     animation: fadeUp 0.5s ease both;
   }
 
-  .menu-item.age3 {
-    animation-delay: 0.1s;
-    background: var(--age3-light);
-    border-color: #FFE0B2;
-  }
-  .menu-item.age4 {
-    animation-delay: 0.2s;
-    background: var(--age4-light);
-    border-color: #FFCACA;
-  }
-  .menu-item.age5 {
-    animation-delay: 0.3s;
-    background: var(--age5-light);
-    border-color: #D5D0FF;
-  }
+  .menu-item.age3 { animation-delay: 0.1s; background: var(--age3-light); border-color: #FFE0B2; }
+  .menu-item.age4 { animation-delay: 0.2s; background: var(--age4-light); border-color: #FFCACA; }
+  .menu-item.age5 { animation-delay: 0.3s; background: var(--age5-light); border-color: #D5D0FF; }
 
-  .menu-item:hover {
-    transform: translateX(8px) scale(1.02);
-  }
-  .menu-item.age3:hover {
-    border-color: var(--age3);
-    box-shadow: 0 8px 30px #FFB34722;
-  }
-  .menu-item.age4:hover {
-    border-color: var(--age4);
-    box-shadow: 0 8px 30px #FF6B6B22;
-  }
-  .menu-item.age5:hover {
-    border-color: var(--age5);
-    box-shadow: 0 8px 30px #7C6FF722;
-  }
+  .menu-item:hover { transform: translateX(8px) scale(1.02); }
+  .menu-item.age3:hover { border-color: var(--age3); box-shadow: 0 8px 30px #FFB34722; }
+  .menu-item.age4:hover { border-color: var(--age4); box-shadow: 0 8px 30px #FF6B6B22; }
+  .menu-item.age5:hover { border-color: var(--age5); box-shadow: 0 8px 30px #7C6FF722; }
   .menu-item:active { transform: translateX(4px) scale(0.99); }
 
-  /* Coming soon style */
-  .menu-item.coming-soon {
-    opacity: 0.65;
-    cursor: default;
-    pointer-events: none;
-  }
+  .menu-item.coming-soon { opacity: 0.65; cursor: default; pointer-events: none; }
 
   .icon-wrap {
     width: 60px; height: 60px;
@@ -193,48 +227,17 @@
   .age5 .icon-wrap { background: var(--age5); }
 
   .info { flex: 1; }
-
-  .info .title {
-    font-family: 'Baloo 2', cursive;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.2;
-  }
-
-  .info .sub {
-    font-size: 0.82rem;
-    font-weight: 600;
-    margin-top: 3px;
-  }
+  .info .title { font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .info .sub { font-size: 0.82rem; font-weight: 600; margin-top: 3px; }
   .age3 .sub { color: var(--age3-dark); }
   .age4 .sub { color: var(--age4-dark); }
   .age5 .sub { color: var(--age5-dark); }
 
-  .tag {
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 50px;
-    flex-shrink: 0;
-  }
-  .tag.soon {
-    background: #F1EFEA;
-    color: #999;
-    border: 1px solid #E0DDD8;
-  }
-  .tag.ready {
-    background: #E8F8F5;
-    color: #1A9B93;
-    border: 1px solid #B2ECEA;
-  }
+  .tag { font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; flex-shrink: 0; }
+  .tag.soon { background: #F1EFEA; color: #999; border: 1px solid #E0DDD8; }
+  .tag.ready { background: #E8F8F5; color: #1A9B93; border: 1px solid #B2ECEA; }
 
-  .arrow {
-    font-size: 1.3rem;
-    opacity: 0.4;
-    transition: opacity 0.18s, transform 0.18s;
-    margin-left: 4px;
-  }
+  .arrow { font-size: 1.3rem; opacity: 0.4; transition: opacity 0.18s, transform 0.18s; margin-left: 4px; }
   .menu-item:hover .arrow { opacity: 1; transform: translateX(4px); }
 
   .footer {
@@ -247,14 +250,10 @@
     animation: fadeUp 0.5s 0.35s ease both;
   }
 
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px);  } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes bounce   { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
   @media (max-width: 400px) {
     .icon-wrap { width: 50px; height: 50px; font-size: 1.6rem; border-radius: 12px; }
@@ -265,7 +264,25 @@
 </head>
 <body>
 
+<!-- ── Audio element – loop nhạc nền ── -->
+<!--
+  Đặt file bg-music.wav cùng thư mục với index.html.
+  Nếu dùng tên khác, đổi src bên dưới cho khớp.
+-->
+<audio id="bgMusic" src="bg-music.wav" loop preload="auto"></audio>
+
+<!-- Overlay "Chạm để bắt đầu" (mobile autoplay policy) -->
+<div class="tap-overlay" id="tapOverlay">
+  <div class="tap-icon">🎵</div>
+  <p>Chào bé yêu! 👋</p>
+  <span>Chạm vào nút bên dưới để bắt đầu</span>
+  <button class="tap-start-btn" id="tapStartBtn">✨ Bắt đầu học nào!</button>
+</div>
+
 <a class="back-btn" href="../index.html">‹ Quay lại</a>
+
+<!-- Nút bật/tắt nhạc -->
+<button class="music-btn" id="musicBtn" title="Bật/tắt nhạc">🎵</button>
 
 <div class="header">
   <div class="badge">🔢 Học toán cùng bé</div>
@@ -309,5 +326,104 @@
 
 <div class="footer">🌟 Học mà chơi, chơi mà học!</div>
 
+<script>
+  /* ─────────────────────────────────────────
+     QUẢN LÝ NHẠC NỀN
+     Mobile (iOS/Android) bắt buộc phải có
+     user-gesture trước khi phát audio.
+     ───────────────────────────────────────── */
+  const audio      = document.getElementById('bgMusic');
+  const musicBtn   = document.getElementById('musicBtn');
+  const tapOverlay = document.getElementById('tapOverlay');
+  const tapStartBtn= document.getElementById('tapStartBtn');
+
+  let musicStarted = false;
+  let isMuted      = false;
+
+  audio.volume = 0.45; // âm lượng mặc định (0–1)
+
+  // Kiểm tra xem có phải thiết bị cảm ứng không
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+  function startMusic() {
+    if (musicStarted) return;
+    audio.play().then(() => {
+      musicStarted = true;
+    }).catch(err => {
+      console.warn('Không thể phát nhạc:', err);
+    });
+  }
+
+  // ── Desktop: tự phát khi trang load ──
+  if (!isTouchDevice) {
+    window.addEventListener('load', () => {
+      audio.play().then(() => { musicStarted = true; }).catch(() => {
+        // Nếu desktop cũng chặn autoplay thì dùng click
+        document.addEventListener('click', function once() {
+          startMusic();
+          document.removeEventListener('click', once);
+        });
+      });
+    });
+  } else {
+    // ── Mobile: hiện overlay "Chạm để bắt đầu" ──
+    tapOverlay.classList.add('show');
+  }
+
+  // Khi bé bấm nút bắt đầu trên overlay
+  tapStartBtn.addEventListener('click', () => {
+    tapOverlay.classList.remove('show');
+    startMusic();
+  });
+
+  // ── Nút bật / tắt nhạc ──
+  musicBtn.addEventListener('click', () => {
+    if (!musicStarted) { startMusic(); return; }
+
+    isMuted = !isMuted;
+    audio.muted = isMuted;
+    musicBtn.textContent = isMuted ? '🔇' : '🎵';
+    musicBtn.classList.toggle('muted', isMuted);
+  });
+
+  /* ─────────────────────────────────────────
+     SỬA LỖI LINK BÀI HỌC
+     Bắt sự kiện click, kiểm tra file có tồn
+     tại không. Nếu lỗi 404 thì báo thân thiện.
+     ───────────────────────────────────────── */
+  document.querySelectorAll('.menu-item[href]').forEach(link => {
+    link.addEventListener('click', async function(e) {
+      const href = this.getAttribute('href');
+      if (!href || href.startsWith('#')) return;
+
+      // Thử fetch để kiểm tra file tồn tại
+      try {
+        const res = await fetch(href, { method: 'HEAD' });
+        if (!res.ok) {
+          e.preventDefault();
+          showNotFound(this.querySelector('.title')?.textContent || 'Bài học');
+        }
+        // Nếu ok thì để trình duyệt điều hướng bình thường
+      } catch {
+        // Nếu là file:// protocol thì fetch không hoạt động → cho phép điều hướng
+        // (không preventDefault)
+      }
+    });
+  });
+
+  function showNotFound(lessonName) {
+    const msg = document.createElement('div');
+    msg.style.cssText = `
+      position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+      background:#2D2A26; color:white; border-radius:14px;
+      padding:12px 22px; font-family:'Nunito',sans-serif; font-size:0.9rem;
+      font-weight:700; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease;
+    `;
+    msg.textContent = `⚠️ Chưa tìm thấy file "${lessonName}" – kiểm tra lại thư mục nhé!`;
+    document.body.appendChild(msg);
+    setTimeout(() => msg.remove(), 3500);
+  }
+</script>
 </body>
 </html>
