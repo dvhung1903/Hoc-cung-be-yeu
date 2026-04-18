@@ -140,14 +140,15 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 /* CARD SLIDE */
 @keyframes slideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .slide-in{animation:slideIn .25s ease both;}
-#audio-unlock{position:fixed;inset:0;background:rgba(24,18,40,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:9999;padding:24px}
-#audio-unlock.show{display:flex}
-#audio-unlock-btn{border:none;border-radius:18px;padding:16px 20px;background:#fff;color:#2f214f;font:800 18px/1.2 'Baloo 2',sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.22);cursor:pointer}
 </style>
 </head>
 <body>
-<div id="audio-unlock"><button id="audio-unlock-btn" type="button">Cham de bat nhac</button></div>
 
+<div id="audio-unlock" style="display:none;position:fixed;inset:0;background:rgba(24,18,40,.82);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <button id="audio-unlock-btn" style="border:none;border-radius:20px;padding:20px 32px;background:#fff;color:#3d2c5e;font:800 20px/1.3 'Baloo 2',sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.3);cursor:pointer;">
+    🎵 Chạm để bắt đầu & bật nhạc!
+  </button>
+</div>
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
 <div class="blob blob3"></div>
@@ -237,11 +238,12 @@ const AC=new (window.AudioContext||window.webkitAudioContext)();
 let musicOn=true,bgTimer=null,melIdx=0;
 const MELODY=[523,587,659,698,784,659,587,523,659,784,880,784,659,523,587,659];
 const BASS=[262,262,349,349,392,392,349,349];
+// ── File nhạc nền bg-music.wav ──
 const bgMusic = new Audio('../bg-music.wav');
 bgMusic.loop = true;
 bgMusic.preload = 'auto';
 bgMusic.playsInline = true;
-bgMusic.volume = 0.65;
+bgMusic.volume = 0.55;
 
 function tone(f,type,dur,vol,delay=0){
   if(!musicOn)return;
@@ -262,44 +264,12 @@ function bgTick(){
   melIdx++;bgTimer=setTimeout(bgTick,ms);
 }
 function startMusic(){
-  if(bgMusic.paused){ bgMusic.currentTime = 0; bgMusic.play().catch(()=>{}); }
+  if(bgMusic.paused){ bgMusic.currentTime=0; bgMusic.play().catch(()=>{}); }
   if(!bgTimer){melIdx=0;bgTick();}
 }
 function stopMusic(){
-  bgMusic.pause();
-  bgMusic.currentTime = 0;
+  bgMusic.pause(); bgMusic.currentTime=0;
   if(bgTimer){clearTimeout(bgTimer);bgTimer=null;}
-}
-function unmuteIOSAudio(){
-  if(window.__iosAudioUnlocked) return;
-  window.__iosAudioUnlocked = true;
-  const sampleRate = 8000;
-  const samples = Math.floor(sampleRate * 0.12);
-  const buffer = new ArrayBuffer(44 + samples * 2);
-  const view = new DataView(buffer);
-  const write = (offset, text) => { for(let i=0;i<text.length;i++) view.setUint8(offset+i, text.charCodeAt(i)); };
-  write(0,'RIFF');
-  view.setUint32(4, 36 + samples * 2, true);
-  write(8,'WAVE');
-  write(12,'fmt ');
-  view.setUint32(16, 16, true);
-  view.setUint16(20, 1, true);
-  view.setUint16(22, 1, true);
-  view.setUint32(24, sampleRate, true);
-  view.setUint32(28, sampleRate * 2, true);
-  view.setUint16(32, 2, true);
-  view.setUint16(34, 16, true);
-  write(36,'data');
-  view.setUint32(40, samples * 2, true);
-  const blob = new Blob([buffer], { type: 'audio/wav' });
-  const url = URL.createObjectURL(blob);
-  const audio = new Audio();
-  audio.preload = 'auto';
-  audio.playsInline = true;
-  audio.src = url;
-  const done = () => setTimeout(() => URL.revokeObjectURL(url), 1000);
-  const p = audio.play();
-  if(p && p.finally) p.finally(done); else done();
 }
 function toggleMusic(){
   musicOn=!musicOn;
@@ -312,18 +282,6 @@ document.addEventListener('click',e=>{
     tone(600,'sine',0.08,0.12);
   }
 },true);
- initAudioUnlock(){
-  const overlay=document.getElementById('audio-unlock');
-  const btn=document.getElementById('audio-unlock-btn');
-  if(!overlay||!btn) return;
-  const needsUnlock=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if(!needsUnlock) return;
-  overlay.classList.add('show');
-  const startAudio = ()=>{.classList.remove('show');
-  };
-  overlay.addEventListener('click', startAudio, {once:true});
-  btn.addEventListener('click',(e)=>{ e.stopPropagation(); startAudio(); },{once:true});
-}
 const snd={
   correct:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,'sine',0.18,0.18,i*0.07));},
   wrong:()=>{tone(200,'sawtooth',0.25,0.18);tone(160,'sawtooth',0.2,0.14,0.1);},
@@ -333,6 +291,7 @@ const snd={
 
 // ══════ SCREENS ══════
 function showScreen(id){
+  try{ if(AC.state==='suspended')AC.resume(); if(bgMusic.paused&&musicOn)bgMusic.play().catch(()=>{}); }catch(e){}
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
@@ -596,8 +555,33 @@ function speak(text){
   window.speechSynthesis.speak(u);
 }
 
-startMusic();
 
+// ── Mở khóa audio trên mobile (iOS/Android bắt buộc cần user gesture) ──
+function initAudioUnlock(){
+  const overlay = document.getElementById('audio-unlock');
+  const btn = document.getElementById('audio-unlock-btn');
+  if(!overlay||!btn) return;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if(isMobile){ overlay.style.display='flex'; }
+  const unlock = ()=>{
+    overlay.style.display='none';
+    if(AC.state==='suspended') AC.resume();
+    startMusic();
+  };
+  btn.addEventListener('click', unlock, {once:true});
+  overlay.addEventListener('click', unlock, {once:true});
+}
+
+// ── Tự resume nhạc khi quay lại app ──
+document.addEventListener('visibilitychange', ()=>{
+  if(document.hidden) return;
+  try{
+    if(AC.state==='suspended') AC.resume();
+    if(musicOn && bgMusic.paused) bgMusic.play().catch(()=>{});
+  }catch(e){}
+});
+
+startMusic();
 initAudioUnlock();
 </script>
 </body>
