@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Cùng Bé Học Toán</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous">
+</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
@@ -263,9 +264,13 @@ input.name-input:focus{border-color:#7c4dff;}
   width:100%;padding:10px;border:none;background:none;
   color:#9080b0;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px;
 }
+#audio-unlock{position:fixed;inset:0;background:rgba(24,18,40,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:9999;padding:24px}
+#audio-unlock.show{display:flex}
+#audio-unlock-btn{border:none;border-radius:18px;padding:16px 20px;background:#fff;color:#2f214f;font:800 18px/1.2 'Baloo 2',sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.22);cursor:pointer}
 </style>
 </head>
 <body>
+<div id="audio-unlock"><button id="audio-unlock-btn" type="button">Cham de bat nhac</button></div>
 
 <!-- ══ STICKY HEADER ══ -->
 <div id="app-header">
@@ -577,6 +582,21 @@ function playNoise(dur,vol){
   src.start(); src.stop(AC.currentTime+dur+0.05);
 }
 
+function initAudioUnlock(){
+  const overlay=document.getElementById('audio-unlock');
+  const btn=document.getElementById('audio-unlock-btn');
+  if(!overlay||!btn) return;
+  const needsUnlock=window.matchMedia('(pointer: coarse)').matches||('ontouchstart' in window);
+  if(!needsUnlock) return;
+  overlay.classList.add('show');
+  btn.addEventListener('click',()=>{
+    try{ if(AC.state==='suspended') AC.resume(); }catch(e){}
+    if(musicOn) startBgMusic();
+    playTone(880,'triangle',0.12,0.16);
+    setTimeout(()=>playTone(1320,'triangle',0.14,0.12),90);
+    overlay.classList.remove('show');
+  },{once:true});
+}
 // Sound effects
 const snd={
   click: ()=>{ playTone(600,'sine',0.08,0.15); playNoise(0.06,0.08); },
@@ -1418,6 +1438,9 @@ function pmShowResult(){
   startBgMusic();
   showScreen('screen-menu');
 })();
+
+
+initAudioUnlock();
 </script>
 </body>
 </html>
