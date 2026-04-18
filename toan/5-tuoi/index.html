@@ -1,20 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>CÃ¹ng BÃ© Há»c ToÃ¡n</title>
+<title>Cùng Bé Học Toán</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 body{display:flex;flex-direction:column;align-items:center;padding:0 0 32px}
 
-/* â”€â”€ SCREEN SYSTEM â”€â”€ */
+/* ── SCREEN SYSTEM ── */
 .screen{display:none;flex-direction:column;align-items:center;width:100%;max-width:480px;padding:16px;}
 .screen.active{display:flex;}
 
-/* â”€â”€ HEADER â”€â”€ */
+/* ── HEADER ── */
 #app-header{
   width:100%;max-width:480px;
   background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);
@@ -27,7 +27,7 @@ body{display:flex;flex-direction:column;align-items:center;padding:0 0 32px}
 .hbtn{border:none;background:rgba(255,255,255,0.2);color:#fff;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:700;cursor:pointer;}
 .hbtn:active{background:rgba(255,255,255,0.35);}
 
-/* â”€â”€ CARDS â”€â”€ */
+/* ── CARDS ── */
 .card{
   background:#fff;border-radius:24px;padding:24px 20px;
   width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.18);margin-bottom:16px;
@@ -35,10 +35,10 @@ body{display:flex;flex-direction:column;align-items:center;padding:0 0 32px}
 .card-title{font-size:18px;font-weight:800;color:#4a3a7a;margin-bottom:6px;text-align:center;}
 .card-sub{font-size:12px;color:#9080b0;text-align:center;margin-bottom:16px;}
 
-/* â”€â”€ AD BANNER â”€â”€ */
+/* ── AD BANNER ── */
 .ad-banner{width:100%;max-width:480px;min-height:60px;margin:8px 0;text-align:center;}
 
-/* â”€â”€ INTERSTITIAL â”€â”€ */
+/* ── INTERSTITIAL ── */
 #interstitial{
   display:none;position:fixed;inset:0;z-index:99999;
   background:rgba(10,6,28,0.97);
@@ -62,7 +62,7 @@ body{display:flex;flex-direction:column;align-items:center;padding:0 0 32px}
 #inter-content{min-height:260px;display:flex;align-items:center;justify-content:center;}
 #inter-footer{padding:8px;text-align:center;font-size:10px;color:#3a2860;}
 
-/* â”€â”€ LOGIN / REGISTER â”€â”€ */
+/* ── LOGIN / REGISTER ── */
 .big-emoji{font-size:64px;text-align:center;margin-bottom:8px;}
 input.name-input{
   width:100%;padding:14px;border-radius:14px;
@@ -82,7 +82,7 @@ input.name-input:focus{border-color:#7c4dff;}
 .btn-primary:disabled{background:#b0a0d0;box-shadow:none;cursor:not-allowed;}
 .link-btn{background:none;border:none;color:#7c4dff;font-size:13px;font-weight:700;cursor:pointer;margin-top:10px;}
 
-/* â”€â”€ MENU â”€â”€ */
+/* ── MENU ── */
 .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;}
 .menu-card{
   background:linear-gradient(135deg,#f093fb,#f5576c);
@@ -117,7 +117,7 @@ input.name-input:focus{border-color:#7c4dff;}
 }
 .daily-progress strong{color:#5a3a9a;}
 
-/* â”€â”€ GAME SCREEN â”€â”€ */
+/* ── GAME SCREEN ── */
 #game-header{
   display:flex;justify-content:space-between;align-items:center;
   width:100%;margin-bottom:12px;
@@ -170,11 +170,11 @@ input.name-input:focus{border-color:#7c4dff;}
 .btn-next.enabled{opacity:1;pointer-events:all;}
 .btn-next.enabled:active{transform:scale(.97);}
 
-/* â”€â”€ BREAK / RESULT â”€â”€ */
+/* ── BREAK / RESULT ── */
 .break-emoji{font-size:80px;text-align:center;margin:20px 0 12px;}
 .result-score{font-size:48px;font-weight:800;color:#7c4dff;text-align:center;margin:8px 0;}
 
-/* â”€â”€ LEADERBOARD â”€â”€ */
+/* ── LEADERBOARD ── */
 .lb-row{
   display:grid;grid-template-columns:32px 1fr auto;gap:8px;
   align-items:center;padding:10px 12px;border-radius:12px;margin-bottom:6px;
@@ -188,7 +188,7 @@ input.name-input:focus{border-color:#7c4dff;}
 .lb-name{font-size:14px;font-weight:700;color:#3a2a6a;}
 .lb-score{font-size:15px;font-weight:800;color:#7c4dff;}
 
-/* â”€â”€ PAGE SCREENS (about/privacy) â”€â”€ */
+/* ── PAGE SCREENS (about/privacy) ── */
 .page-screen{
   display:none;width:100%;max-width:480px;
   padding:16px;flex-direction:column;
@@ -214,7 +214,7 @@ input.name-input:focus{border-color:#7c4dff;}
 #tt-grid .menu-card{padding:10px 4px;border-radius:14px;}
 #tt-header{background:rgba(255,255,255,0.1);border-radius:14px;padding:8px 12px;}
 
-/* â”€â”€ AVATAR PICKER MODAL â”€â”€ */
+/* ── AVATAR PICKER MODAL ── */
 #avatar-modal{
   display:none;position:fixed;inset:0;z-index:50000;
   background:rgba(10,6,28,0.92);
@@ -267,17 +267,17 @@ input.name-input:focus{border-color:#7c4dff;}
 </head>
 <body>
 
-<!-- â•â• STICKY HEADER â•â• -->
+<!-- ══ STICKY HEADER ══ -->
 <div id="app-header">
-  <h1>ðŸ§® CÃ¹ng BÃ© Há»c ToÃ¡n</h1>
-  <div id="header-score" style="display:none">â­ <span id="hs-score">0</span></div>
+  <h1>🧮 Cùng Bé Học Toán</h1>
+  <div id="header-score" style="display:none">⭐ <span id="hs-score">0</span></div>
   <div id="header-btns">
-    <button class="hbtn" id="music-btn" onclick="toggleMusic()">ðŸŽµ</button>
-    <button class="hbtn" onclick="history.back()">â† Quay láº¡i</button>
+    <button class="hbtn" id="music-btn" onclick="toggleMusic()">🎵</button>
+    <button class="hbtn" onclick="history.back()">← Quay lại</button>
   </div>
 </div>
 
-<!-- â•â• TOP BANNER AD â•â• -->
+<!-- ══ TOP BANNER AD ══ -->
 <div class="ad-banner" id="ad-top" style="display:none;">
   <ins class="adsbygoogle"
        style="display:block;width:100%;min-height:60px;"
@@ -287,7 +287,7 @@ input.name-input:focus{border-color:#7c4dff;}
        data-full-width-responsive="true"></ins>
 </div>
 
-<!-- â•â• SCREEN: MENU â•â• -->
+<!-- ══ SCREEN: MENU ══ -->
 <div id="screen-menu" class="screen active">
   <!-- Menu banner ad -->
   <div id="ad-menu">
@@ -300,67 +300,67 @@ input.name-input:focus{border-color:#7c4dff;}
   </div>
   <div class="player-badge" onclick="showAvatarPicker()" style="cursor:pointer;">
     <div style="position:relative;flex-shrink:0;">
-      <div id="menu-avatar" style="width:48px;height:48px;border-radius:50%;background:#ede7ff;display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden;border:2px solid #7c4dff;">ðŸ‘¦</div>
-      <div style="position:absolute;bottom:-2px;right:-2px;background:#7c4dff;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;">âœï¸</div>
+      <div id="menu-avatar" style="width:48px;height:48px;border-radius:50%;background:#ede7ff;display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden;border:2px solid #7c4dff;">👦</div>
+      <div style="position:absolute;bottom:-2px;right:-2px;background:#7c4dff;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;">✏️</div>
     </div>
     <div>
-      <div class="pb-name" id="menu-player-name">BÃ©</div>
+      <div class="pb-name" id="menu-player-name">Bé</div>
     </div>
-    <div class="pb-score">â­ <span id="menu-player-score">0</span></div>
+    <div class="pb-score">⭐ <span id="menu-player-score">0</span></div>
   </div>
-  <div class="daily-progress" id="daily-info">ðŸ“… HÃ´m nay: cá»™ng trá»« <strong id="dp-add">0</strong>/30 Â· nhÃ¢n <strong id="dp-mul">0</strong>/30</div>
+  <div class="daily-progress" id="daily-info">📅 Hôm nay: cộng trừ <strong id="dp-add">0</strong>/30 · nhân <strong id="dp-mul">0</strong>/30</div>
   <div class="card" style="padding:16px">
-    <div class="card-title" style="font-size:15px;margin-bottom:12px">Chá»n bÃ i há»c</div>
+    <div class="card-title" style="font-size:15px;margin-bottom:12px">Chọn bài học</div>
     <div class="menu-grid">
       <button class="menu-card" onclick="startLesson('add')">
-        <div class="mc-icon">âž•</div>
-        <div class="mc-title">BÃ i 1</div>
-        <div class="mc-desc">Cá»™ng & Trá»« 0â€“10</div>
+        <div class="mc-icon">➕</div>
+        <div class="mc-title">Bài 1</div>
+        <div class="mc-desc">Cộng & Trừ 0–10</div>
       </button>
       <button class="menu-card" onclick="showTimesTableMenu()">
-        <div class="mc-icon">ðŸ“–</div>
-        <div class="mc-title">BÃ i 2</div>
-        <div class="mc-desc">Há»c báº£ng cá»­u chÆ°Æ¡ng</div>
+        <div class="mc-icon">📖</div>
+        <div class="mc-title">Bài 2</div>
+        <div class="mc-desc">Học bảng cửu chương</div>
       </button>
       <button class="menu-card" onclick="startLesson('mul')">
-        <div class="mc-icon">âœ–ï¸</div>
-        <div class="mc-title">BÃ i 3</div>
-        <div class="mc-desc">Kiá»ƒm tra phÃ©p nhÃ¢n</div>
+        <div class="mc-icon">✖️</div>
+        <div class="mc-title">Bài 3</div>
+        <div class="mc-desc">Kiểm tra phép nhân</div>
       </button>
       <button class="menu-card" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);" onclick="startPictureMath()">
-        <div class="mc-icon">ðŸ–¼ï¸</div>
-        <div class="mc-title">BÃ i 4</div>
-        <div class="mc-desc">ToÃ¡n hÃ¬nh áº£nh (4â€“5 tuá»•i)</div>
+        <div class="mc-icon">🖼️</div>
+        <div class="mc-title">Bài 4</div>
+        <div class="mc-desc">Toán hình ảnh (4–5 tuổi)</div>
       </button>
     </div>
   </div>
 </div>
 
-<!-- â•â• SCREEN: GAME â•â• -->
+<!-- ══ SCREEN: GAME ══ -->
 <div id="screen-game" class="screen">
   <div id="game-header">
-    <div class="game-info" id="gi-lesson">BÃ i 1</div>
+    <div class="game-info" id="gi-lesson">Bài 1</div>
     <div class="game-info" id="gi-progress">1/10</div>
-    <div class="game-info" id="gi-score">â­ 0</div>
-    <button class="game-info" style="cursor:pointer;border:none;background:rgba(255,255,255,0.25);color:#fff;font-size:13px;font-weight:700;" onclick="confirmGoMenu()">ðŸ </button>
+    <div class="game-info" id="gi-score">⭐ 0</div>
+    <button class="game-info" style="cursor:pointer;border:none;background:rgba(255,255,255,0.25);color:#fff;font-size:13px;font-weight:700;" onclick="confirmGoMenu()">🏠</button>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
   <div class="question-card">
-    <div class="question-label">PHÃ‰P TÃNH</div>
+    <div class="question-label">PHÉP TÍNH</div>
     <div class="question-text" id="question-text">? + ? = ?</div>
     <div class="score-change" id="score-change"></div>
   </div>
   <div class="answers-grid" id="answers-grid"></div>
-  <button class="btn-next" id="btn-next" onclick="nextQuestion()">CÃ¢u tiáº¿p theo â†’</button>
+  <button class="btn-next" id="btn-next" onclick="nextQuestion()">Câu tiếp theo →</button>
 </div>
 
-<!-- â•â• SCREEN: BREAK â•â• -->
+<!-- ══ SCREEN: BREAK ══ -->
 <div id="screen-break" class="screen">
-  <div class="break-emoji">â˜•</div>
+  <div class="break-emoji">☕</div>
   <div class="card">
-    <div class="card-title">Nghá»‰ giáº£i lao nÃ o!</div>
-    <div class="card-sub">BÃ© Ä‘Ã£ lÃ m xong 10 cÃ¢u rá»“i ðŸŽ‰</div>
-    <div class="result-score" id="break-score">0 Ä‘iá»ƒm</div>
+    <div class="card-title">Nghỉ giải lao nào!</div>
+    <div class="card-sub">Bé đã làm xong 10 câu rồi 🎉</div>
+    <div class="result-score" id="break-score">0 điểm</div>
     <div style="font-size:13px;color:#9080b0;text-align:center;margin-bottom:8px" id="break-remaining"></div>
     <!-- Break banner ad -->
     <div id="ad-break">
@@ -371,20 +371,20 @@ input.name-input:focus{border-color:#7c4dff;}
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     </div>
-    <button class="btn-primary" id="break-continue" onclick="continueLesson()">â–¶ Tiáº¿p tá»¥c!</button>
-    <button class="btn-primary" style="background:linear-gradient(135deg,#43e97b,#38f9d7);margin-top:10px" onclick="goMenu()">ðŸ  Vá» menu</button>
+    <button class="btn-primary" id="break-continue" onclick="continueLesson()">▶ Tiếp tục!</button>
+    <button class="btn-primary" style="background:linear-gradient(135deg,#43e97b,#38f9d7);margin-top:10px" onclick="goMenu()">🏠 Về menu</button>
   </div>
 </div>
 
-<!-- â•â• SCREEN: RESULT â•â• -->
+<!-- ══ SCREEN: RESULT ══ -->
 <div id="screen-result" class="screen">
-  <div class="break-emoji" id="result-emoji">ðŸŽŠ</div>
+  <div class="break-emoji" id="result-emoji">🎊</div>
   <div class="card">
-    <div class="card-title">HoÃ n thÃ nh bÃ i há»c!</div>
+    <div class="card-title">Hoàn thành bài học!</div>
     <div id="result-encourage" style="font-size:22px;font-weight:800;text-align:center;margin:8px 0 4px;color:#7c4dff"></div>
     <div id="result-msg" style="font-size:14px;text-align:center;color:#9080b0;margin-bottom:8px"></div>
-    <div class="result-score" id="result-score">0 Ä‘iá»ƒm</div>
-    <div style="font-size:13px;color:#9080b0;text-align:center;margin-bottom:16px">ðŸ“… HÃ´m nay bÃ© Ä‘Ã£ dÃ¹ng háº¿t lÆ°á»£t rá»“i, ngÃ y mai tiáº¿p tá»¥c nhÃ©!</div>
+    <div class="result-score" id="result-score">0 điểm</div>
+    <div style="font-size:13px;color:#9080b0;text-align:center;margin-bottom:16px">📅 Hôm nay bé đã dùng hết lượt rồi, ngày mai tiếp tục nhé!</div>
 
     <!-- Banner ad in result -->
     <div class="ad-banner" style="margin:12px 0">
@@ -395,106 +395,106 @@ input.name-input:focus{border-color:#7c4dff;}
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     </div>
-    <button class="btn-primary" onclick="goMenu()">ðŸ  Vá» menu</button>
+    <button class="btn-primary" onclick="goMenu()">🏠 Về menu</button>
   </div>
 </div>
 
-<!-- â•â• SCREEN: TIMES TABLE MENU (BÃ i 3) â•â• -->
+<!-- ══ SCREEN: TIMES TABLE MENU (Bài 3) ══ -->
 <div id="screen-tt-menu" class="screen">
   <div style="width:100%;display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-    <button class="page-back-btn" style="margin-bottom:0" onclick="goMenu()">â† Menu</button>
-    <span style="font-size:16px;font-weight:800;color:#fff;">ðŸ“– BÃ i 2 â€” Há»c Báº£ng Cá»­u ChÆ°Æ¡ng</span>
+    <button class="page-back-btn" style="margin-bottom:0" onclick="goMenu()">← Menu</button>
+    <span style="font-size:16px;font-weight:800;color:#fff;">📖 Bài 2 — Học Bảng Cửu Chương</span>
   </div>
   <div class="card" style="padding:16px">
-    <div class="card-sub" style="margin-bottom:12px">Chá»n báº£ng cá»­u chÆ°Æ¡ng bÃ© muá»‘n há»c</div>
+    <div class="card-sub" style="margin-bottom:12px">Chọn bảng cửu chương bé muốn học</div>
     <div id="tt-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;"></div>
   </div>
 </div>
 
-<!-- â•â• SCREEN: TIMES TABLE STUDY â•â• -->
+<!-- ══ SCREEN: TIMES TABLE STUDY ══ -->
 <div id="screen-tt" class="screen">
   <div id="tt-header" style="display:flex;align-items:center;gap:8px;width:100%;margin-bottom:12px;">
-    <button class="page-back-btn" style="margin-bottom:0;flex-shrink:0" onclick="exitTimesTable()">â† Quay láº¡i</button>
+    <button class="page-back-btn" style="margin-bottom:0;flex-shrink:0" onclick="exitTimesTable()">← Quay lại</button>
     <span id="tt-title" style="font-size:15px;font-weight:800;color:#fff;"></span>
     <span id="tt-progress" style="font-size:13px;color:rgba(255,255,255,0.7);margin-left:auto;"></span>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="tt-progress-fill" style="width:0%"></div></div>
   <div class="question-card" style="margin-bottom:12px;">
-    <div class="question-label">BÃ‰ CHá»ŒN Káº¾T QUáº¢ ÄÃšNG</div>
-    <div class="question-text" id="tt-question">2 Ã— 1 = ?</div>
+    <div class="question-label">BÉ CHỌN KẾT QUẢ ĐÚNG</div>
+    <div class="question-text" id="tt-question">2 × 1 = ?</div>
     <div class="score-change" id="tt-feedback" style="min-height:28px;font-size:18px;font-weight:800;text-align:center;margin-top:4px;"></div>
   </div>
   <div class="answers-grid" id="tt-answers"></div>
-  <button class="btn-next" id="tt-next" onclick="ttNext()">CÃ¢u tiáº¿p theo â†’</button>
+  <button class="btn-next" id="tt-next" onclick="ttNext()">Câu tiếp theo →</button>
 </div>
 
-<!-- â•â• SCREEN: PICTURE MATH (4â€“5 tuá»•i) â•â• -->
+<!-- ══ SCREEN: PICTURE MATH (4–5 tuổi) ══ -->
 <div id="screen-picture" class="screen">
   <div id="pm-game-header" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:12px;">
-    <div class="game-info" id="pm-label">ðŸ–¼ï¸ ToÃ¡n hÃ¬nh áº£nh</div>
+    <div class="game-info" id="pm-label">🖼️ Toán hình ảnh</div>
     <div class="game-info" id="pm-progress">1/8</div>
-    <div class="game-info" id="pm-stars">â­ 0</div>
-    <button class="game-info" style="cursor:pointer;border:none;background:rgba(255,255,255,0.25);color:#fff;font-size:13px;font-weight:700;" onclick="goMenu()">ðŸ </button>
+    <div class="game-info" id="pm-stars">⭐ 0</div>
+    <button class="game-info" style="cursor:pointer;border:none;background:rgba(255,255,255,0.25);color:#fff;font-size:13px;font-weight:700;" onclick="goMenu()">🏠</button>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="pm-progress-fill" style="width:0%"></div></div>
   <div class="question-card" style="padding:24px 20px 18px;">
     <div style="display:flex;flex-wrap:wrap;gap:6px;min-height:52px;justify-content:center;align-items:center;margin-bottom:10px;" id="pm-before"></div>
-    <div style="font-size:28px;font-weight:800;text-align:center;color:#9080b0;margin:2px 0;" id="pm-op-icon">âž•</div>
+    <div style="font-size:28px;font-weight:800;text-align:center;color:#9080b0;margin:2px 0;" id="pm-op-icon">➕</div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;min-height:52px;justify-content:center;align-items:center;margin-bottom:10px;" id="pm-after"></div>
-    <div style="font-size:15px;font-weight:800;color:#4a3a7a;text-align:center;margin:6px 0 4px;" id="pm-question-text">Táº¥t cáº£ cÃ³ máº¥y?</div>
+    <div style="font-size:15px;font-weight:800;color:#4a3a7a;text-align:center;margin:6px 0 4px;" id="pm-question-text">Tất cả có mấy?</div>
     <div class="score-change" id="pm-feedback" style="min-height:26px;font-size:17px;"></div>
   </div>
   <div class="answers-grid" id="pm-answers" style="margin-bottom:14px;"></div>
-  <button class="btn-next" id="pm-next" onclick="pmNext()">CÃ¢u tiáº¿p theo â†’</button>
+  <button class="btn-next" id="pm-next" onclick="pmNext()">Câu tiếp theo →</button>
 </div>
 
-<!-- â•â• SCREEN: PICTURE MATH RESULT â•â• -->
+<!-- ══ SCREEN: PICTURE MATH RESULT ══ -->
 <div id="screen-picture-result" class="screen">
-  <div class="break-emoji" id="pm-result-emoji">ðŸŽŠ</div>
+  <div class="break-emoji" id="pm-result-emoji">🎊</div>
   <div class="card">
-    <div class="card-title">Xong rá»“i! ðŸŽ‰</div>
+    <div class="card-title">Xong rồi! 🎉</div>
     <div id="pm-result-msg" style="font-size:15px;text-align:center;color:#9080b0;margin-bottom:10px;"></div>
-    <div class="result-score" id="pm-result-score">0 â­</div>
-    <button class="btn-primary" style="margin-top:16px;" onclick="startPictureMath()">ðŸ”„ LÃ m láº¡i</button>
-    <button class="btn-primary" style="background:linear-gradient(135deg,#43e97b,#38f9d7);margin-top:10px;" onclick="goMenu()">ðŸ  Vá» menu</button>
+    <div class="result-score" id="pm-result-score">0 ⭐</div>
+    <button class="btn-primary" style="margin-top:16px;" onclick="startPictureMath()">🔄 Làm lại</button>
+    <button class="btn-primary" style="background:linear-gradient(135deg,#43e97b,#38f9d7);margin-top:10px;" onclick="goMenu()">🏠 Về menu</button>
   </div>
 </div>
 
-<!-- â•â• AVATAR PICKER MODAL â•â• -->
+<!-- ══ AVATAR PICKER MODAL ══ -->
 <div id="avatar-modal">
   <div id="avatar-box">
-    <h3>ðŸŽ¨ Äá»•i áº£nh Ä‘áº¡i diá»‡n</h3>
-    <div class="sub">Chá»n emoji hoáº·c táº£i áº£nh tá»« mÃ¡y</div>
+    <h3>🎨 Đổi ảnh đại diện</h3>
+    <div class="sub">Chọn emoji hoặc tải ảnh từ máy</div>
 
     <!-- Upload from phone -->
     <label class="upload-btn" for="avatar-file-input">
-      ðŸ“· Chá»n áº£nh tá»« Ä‘iá»‡n thoáº¡i
+      📷 Chọn ảnh từ điện thoại
     </label>
     <input type="file" id="avatar-file-input" accept="image/*" style="display:none" onchange="handleAvatarUpload(event)"/>
-    <img id="avatar-preview" alt="áº¢nh Ä‘Ã£ chá»n"/>
+    <img id="avatar-preview" alt="Ảnh đã chọn"/>
 
     <!-- Emoji library -->
-    <div class="avatar-section-title">BÃ‰ TRAI</div>
+    <div class="avatar-section-title">BÉ TRAI</div>
     <div class="avatar-emoji-grid" id="av-grid-boy"></div>
-    <div class="avatar-section-title">BÃ‰ GÃI</div>
+    <div class="avatar-section-title">BÉ GÁI</div>
     <div class="avatar-emoji-grid" id="av-grid-girl"></div>
-    <div class="avatar-section-title">CON Váº¬T CUTE</div>
+    <div class="avatar-section-title">CON VẬT CUTE</div>
     <div class="avatar-emoji-grid" id="av-grid-animal"></div>
-    <div class="avatar-section-title">SIÃŠU NHÃ‚N & PHÃ‰P THUáº¬T</div>
+    <div class="avatar-section-title">SIÊU NHÂN & PHÉP THUẬT</div>
     <div class="avatar-emoji-grid" id="av-grid-hero"></div>
 
-    <button id="av-save" onclick="saveAvatar()">âœ… LÆ°u áº£nh Ä‘áº¡i diá»‡n</button>
-    <button id="av-cancel" onclick="closeAvatarPicker()">Há»§y</button>
+    <button id="av-save" onclick="saveAvatar()">✅ Lưu ảnh đại diện</button>
+    <button id="av-cancel" onclick="closeAvatarPicker()">Hủy</button>
   </div>
 </div>
 
-<!-- â•â• INTERSTITIAL AD â•â• -->
+<!-- ══ INTERSTITIAL AD ══ -->
 <div id="interstitial">
   <div id="inter-box">
     <div id="inter-top">
-      <span>Quáº£ng cÃ¡o Â· tá»± Ä‘Ã³ng sau</span>
+      <span>Quảng cáo · tự đóng sau</span>
       <span id="inter-cd" style="font-size:18px;font-weight:800;color:#c8b0f0;min-width:32px;text-align:center">5</span>
-      <span style="font-size:11px">giÃ¢y</span>
+      <span style="font-size:11px">giây</span>
     </div>
     <div id="inter-content">
       <ins class="adsbygoogle"
@@ -504,29 +504,29 @@ input.name-input:focus{border-color:#7c4dff;}
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     </div>
-    <div id="inter-footer">Cáº£m Æ¡n bÃ© Ä‘Ã£ á»§ng há»™ ðŸ’œ</div>
+    <div id="inter-footer">Cảm ơn bé đã ủng hộ 💜</div>
   </div>
 </div>
 
 
 
 <script>
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // CONFIG
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 const API = '/api/math';
 const PLAYER_KEY = 'mathgame_player_v1';
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // STATE
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 let player = { name:'', weekScore:0, dailyAddDone:0, dailyMulDone:0, gender:'boy' };
 let selectedGender = 'boy';
 let lessonMode = 'add';
 let questions = [];
 let qIndex = 0;
 let sessionScore = 0;
-let sessionMaxScore = 0; // Ä‘iá»ƒm tá»‘i Ä‘a cÃ³ thá»ƒ Ä‘áº¡t trong batch nÃ y
+let sessionMaxScore = 0; // điểm tối đa có thể đạt trong batch này
 let answered = false;
 let earnedThisQ = false;
 let wrongCount = 0;
@@ -537,44 +537,25 @@ let _interCb = null;
 let _bannerTopLoaded = false;
 let _bannerResultLoaded = false;
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// AUDIO ENGINE (Web Audio API â€” no files needed)
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-let AC = null;
-function ensureAC(){
-  if(!AC) AC = new (window.AudioContext||window.webkitAudioContext)();
-  return AC;
-}
+// ═══════════════════════════════════════════
+// AUDIO ENGINE (Web Audio API — no files needed)
+// ═══════════════════════════════════════════
+const AC = new (window.AudioContext||window.webkitAudioContext)();
 let musicOn = true;
 let bgNodes = []; // oscillators for bg music
 let bgScheduler = null;
 let bgBeat = 0;
-let audioUnlocked = false;
 
-function resumeAC(){ const ac=ensureAC(); if(ac.state==='suspended') ac.resume(); }
-
-function updateMusicButton(){
-  const btn=document.getElementById('music-btn');
-  if(btn) btn.textContent=musicOn?'ðŸŽµ':'ðŸ”‡';
-}
-
-function unlockAudio(){
-  if(audioUnlocked) return;
-  audioUnlocked = true;
-  resumeAC();
-  if(musicOn) startBgMusic();
-  updateMusicButton();
-}
+function resumeAC(){ if(AC.state==='suspended') AC.resume(); }
 
 // Play a short tone
 function playTone(freq, type, dur, vol, delay=0){
   if(!musicOn) return;
-  const ac=ensureAC();
-  if(ac.state==='suspended') ac.resume();
-  const o=ac.createOscillator(), g=ac.createGain();
-  o.connect(g); g.connect(ac.destination);
+  resumeAC();
+  const o=AC.createOscillator(), g=AC.createGain();
+  o.connect(g); g.connect(AC.destination);
   o.type=type; o.frequency.value=freq;
-  const t=ac.currentTime+delay;
+  const t=AC.currentTime+delay;
   g.gain.setValueAtTime(0,t);
   g.gain.linearRampToValueAtTime(vol,t+0.01);
   g.gain.exponentialRampToValueAtTime(0.001,t+dur);
@@ -585,16 +566,15 @@ function playTone(freq, type, dur, vol, delay=0){
 function playNoise(dur,vol){
   if(!musicOn) return;
   resumeAC();
-  const ac=ensureAC();
-  const buf=ac.createBuffer(1,ac.sampleRate*dur,ac.sampleRate);
+  const buf=AC.createBuffer(1,AC.sampleRate*dur,AC.sampleRate);
   const d=buf.getChannelData(0);
   for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1;
-  const src=ac.createBufferSource(), g=ac.createGain();
+  const src=AC.createBufferSource(), g=AC.createGain();
   const f=AC.createBiquadFilter(); f.type='bandpass'; f.frequency.value=800;
-  src.buffer=buf; src.connect(f); f.connect(g); g.connect(ac.destination);
-  g.gain.setValueAtTime(vol,ac.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur);
-  src.start(); src.stop(ac.currentTime+dur+0.05);
+  src.buffer=buf; src.connect(f); f.connect(g); g.connect(AC.destination);
+  g.gain.setValueAtTime(vol,AC.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001,AC.currentTime+dur);
+  src.start(); src.stop(AC.currentTime+dur+0.05);
 }
 
 // Sound effects
@@ -628,7 +608,7 @@ const snd={
   },
 };
 
-// â”€â”€ Background Music â”€â”€
+// ── Background Music ──
 // Happy children tune: C-E-G-E-F-A-G pattern
 const MELODY_NOTES=[
   523,587,659,587,  // C D E D
@@ -644,17 +624,17 @@ function bgTick(){
   resumeAC();
   const bpm=80, ms=60000/bpm*0.5; // slower, gentler
 
-  // Soft melody â€” triangle wave, very low volume
+  // Soft melody — triangle wave, very low volume
   const mf=MELODY_NOTES[melodyIdx%MELODY_NOTES.length];
-  playTone(mf,'triangle',0.35,0.1);
+  playTone(mf,'triangle',0.35,0.04); // vol 0.04 = very soft
 
   // Bass every 4 beats only
   if(melodyIdx%4===0){
     const bf=BASS_NOTES[Math.floor(melodyIdx/4)%BASS_NOTES.length];
-    playTone(bf,'sine',0.5,0.065);
+    playTone(bf,'sine',0.5,0.025); // very soft bass
   }
 
-  // No percussion â€” cleaner, less distracting for kids
+  // No percussion — cleaner, less distracting for kids
 
   melodyIdx++;
   bgScheduler=setTimeout(bgTick, ms);
@@ -670,13 +650,11 @@ function stopBgMusic(){
 }
 function toggleMusic(){
   musicOn=!musicOn;
-  if(musicOn) unlockAudio();
-  updateMusicButton();
+  const btn=document.getElementById('music-btn');
+  if(btn) btn.textContent=musicOn?'🎵':'🔇';
   if(musicOn){ startBgMusic(); }
   else { stopBgMusic(); }
 }
-document.addEventListener('pointerdown',unlockAudio,{capture:true,once:true});
-document.addEventListener('touchstart',unlockAudio,{capture:true,once:true});
 
 // Add click sound to all buttons automatically
 document.addEventListener('click', e=>{
@@ -684,9 +662,9 @@ document.addEventListener('click', e=>{
     snd.click();
   }
 }, true);
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // SCREEN MANAGEMENT
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.page-screen').forEach(s=>s.classList.remove('active'));
@@ -717,9 +695,9 @@ function goMenu(){
   refreshMenuUI();
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // ADS
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 function initBanners(){
   try{
     if(!_bannerTopLoaded){
@@ -739,7 +717,7 @@ function initBreakBanner(){
 }
 
 function confirmGoMenu(){
-  if(confirm('Vá» menu? Tiáº¿n Ä‘á»™ bÃ i nÃ y sáº½ khÃ´ng Ä‘Æ°á»£c lÆ°u.')) goMenu();
+  if(confirm('Về menu? Tiến độ bài này sẽ không được lưu.')) goMenu();
 }
 
 function initResultBanner(){
@@ -751,7 +729,7 @@ function initResultBanner(){
   } catch(e){}
 }
 
-// Interstitial â€” no skip, strictly 5s countdown then auto-close
+// Interstitial — no skip, strictly 5s countdown then auto-close
 function maybeInterstitial(cb){
   deathCount++;
   if(deathCount % 3 !== 0){ cb(); return; }
@@ -781,23 +759,23 @@ function closeInter(){
 }
 
 // Gender helpers
-function genderIcon(g){ return g==='girl'?'ðŸ‘§':'ðŸ‘¦'; }
+function genderIcon(g){ return g==='girl'?'👧':'👦'; }
 function selectGender(g){
   selectedGender=g;
   document.getElementById('gender-boy').classList.toggle('selected', g==='boy');
   document.getElementById('gender-girl').classList.toggle('selected', g==='girl');
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // AVATAR SYSTEM
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 const AVATAR_KEY = 'mathgame_avatar_v1';
 
 // Avatar emoji collections
-const AV_BOY   = ['ðŸ‘¦','ðŸ§’','ðŸ‘¶','ðŸ§‘','ðŸ‘±','ðŸ§”','ðŸ§‘â€ðŸ’»','ðŸ§‘â€ðŸŽ¨','ðŸ§‘â€ðŸš€','ðŸ§‘â€ðŸŽ¤','ðŸ¤´','ðŸ§‘â€ðŸ«'];
-const AV_GIRL  = ['ðŸ‘§','ðŸ§’','ðŸ‘¶','ðŸ‘©','ðŸ‘±â€â™€ï¸','ðŸ§‘â€ðŸŽ¨','ðŸ‘©â€ðŸ’»','ðŸ‘©â€ðŸŽ¤','ðŸ‘¸','ðŸ§‘â€ðŸ«','ðŸ§•','ðŸ’â€â™€ï¸'];
-const AV_ANIMAL= ['ðŸ¶','ðŸ±','ðŸ»','ðŸ¼','ðŸ¨','ðŸ¯','ðŸ¦Š','ðŸ¸','ðŸ§','ðŸ¦„','ðŸ™','ðŸ¦‹'];
-const AV_HERO  = ['ðŸ¦¸','ðŸ¦¸â€â™€ï¸','ðŸ§™','ðŸ§','ðŸ§œ','ðŸ§š','ðŸ¤–','ðŸ‘¾','ðŸŽƒ','â­','ðŸŒŸ','ðŸ’«'];
+const AV_BOY   = ['👦','🧒','👶','🧑','👱','🧔','🧑‍💻','🧑‍🎨','🧑‍🚀','🧑‍🎤','🤴','🧑‍🏫'];
+const AV_GIRL  = ['👧','🧒','👶','👩','👱‍♀️','🧑‍🎨','👩‍💻','👩‍🎤','👸','🧑‍🏫','🧕','💁‍♀️'];
+const AV_ANIMAL= ['🐶','🐱','🐻','🐼','🐨','🐯','🦊','🐸','🐧','🦄','🐙','🦋'];
+const AV_HERO  = ['🦸','🦸‍♀️','🧙','🧝','🧜','🧚','🤖','👾','🎃','⭐','🌟','💫'];
 
 let pendingAvatar = null; // emoji string or base64 image data
 
@@ -865,7 +843,7 @@ function handleAvatarUpload(e){
   const file=e.target.files[0];
   if(!file) return;
   if(file.size > 2*1024*1024){
-    alert('áº¢nh quÃ¡ lá»›n! Vui lÃ²ng chá»n áº£nh nhá» hÆ¡n 2MB.');
+    alert('Ảnh quá lớn! Vui lòng chọn ảnh nhỏ hơn 2MB.');
     return;
   }
   const reader=new FileReader();
@@ -903,9 +881,9 @@ function saveAvatar(){
   snd.cheer();
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // API CALLS
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 async function apiPost(action, body){
   try{
     const r=await fetch(`${API}?action=${action}`,{
@@ -913,7 +891,7 @@ async function apiPost(action, body){
       body:JSON.stringify(body)
     });
     return await r.json();
-  } catch(e){ return {ok:false,error:'Máº¥t káº¿t ná»‘i'}; }
+  } catch(e){ return {ok:false,error:'Mất kết nối'}; }
 }
 async function apiGet(action){
   try{
@@ -922,9 +900,9 @@ async function apiGet(action){
   } catch(e){ return {ok:false}; }
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // MENU REFRESH
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 function refreshMenuUI(){
   document.getElementById('menu-player-name').textContent=player.name;
   document.getElementById('menu-player-score').textContent=player.weekScore;
@@ -936,9 +914,9 @@ function refreshMenuUI(){
   renderAvatarEl(document.getElementById('menu-avatar'), savedAv || genderIcon(player.gender));
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// QUESTION GENERATION â€” no repeat within session
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
+// QUESTION GENERATION — no repeat within session
+// ═══════════════════════════════════════════
 let usedQKeys = new Set(); // tracks "a|op|b|hidden" to avoid repeats
 
 function qKey(q){ return `${q.a}|${q.op}|${q.b}|${q.hidden}`; }
@@ -970,18 +948,18 @@ function genMulQuestion(){
     const x=Math.floor(Math.random()*9)+1;
     const y=Math.floor(Math.random()*9)+1;
     const hidden=Math.random()<.5?'a':'result';
-    q={a:x,b:y,op:'Ã—',result:x*y,hidden,mode:'mul'};
+    q={a:x,b:y,op:'×',result:x*y,hidden,mode:'mul'};
     tries++;
   } while(usedQKeys.has(qKey(q)) && tries<30);
   usedQKeys.add(qKey(q));
   return q;
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// TIMES TABLE (BÃ i 3) â€” no scoring, must select correct to next
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
+// TIMES TABLE (Bài 3) — no scoring, must select correct to next
+// ═══════════════════════════════════════════
 let ttTable = 1;   // which times table (1-10)
-let ttIndex = 0;   // current question index (0-8 â†’ 1Ã—t to 9Ã—t)
+let ttIndex = 0;   // current question index (0-8 → 1×t to 9×t)
 let ttAnswered = false;
 
 function showTimesTableMenu(){
@@ -991,7 +969,7 @@ function showTimesTableMenu(){
     const btn = document.createElement('button');
     btn.className = 'menu-card';
     btn.style.cssText='padding:12px 6px;border-radius:14px;';
-    btn.innerHTML=`<div style="font-size:22px;font-weight:800;">Ã—${i}</div><div style="font-size:11px;color:rgba(255,255,255,0.85)">Báº£ng ${i}</div>`;
+    btn.innerHTML=`<div style="font-size:22px;font-weight:800;">×${i}</div><div style="font-size:11px;color:rgba(255,255,255,0.85)">Bảng ${i}</div>`;
     btn.onclick=()=>startTimesTable(i);
     grid.appendChild(btn);
   }
@@ -1000,7 +978,7 @@ function showTimesTableMenu(){
 
 function startTimesTable(table){
   ttTable=table; ttIndex=0; ttAnswered=false;
-  document.getElementById('tt-title').textContent=`Báº£ng nhÃ¢n ${table}`;
+  document.getElementById('tt-title').textContent=`Bảng nhân ${table}`;
   showTTQuestion();
   showScreen('screen-tt');
 }
@@ -1009,7 +987,7 @@ function showTTQuestion(){
   const n = ttIndex+1; // 1 to 9 (then 10)
   const result = ttTable * n;
   document.getElementById('tt-question').innerHTML=
-    `${ttTable} Ã— ${n} = <span class="question-blank">?</span>`;
+    `${ttTable} × ${n} = <span class="question-blank">?</span>`;
   document.getElementById('tt-progress').textContent=`${ttIndex+1}/9`;
   document.getElementById('tt-progress-fill').style.width=((ttIndex/9)*100)+'%';
   document.getElementById('tt-feedback').textContent='';
@@ -1043,7 +1021,7 @@ function selectTTAnswer(btn,chosen,correct){
     document.querySelectorAll('#tt-answers .ans-btn').forEach(b=>b.disabled=true);
     ttAnswered=true;
     document.getElementById('tt-feedback').innerHTML=
-      `<span style="color:#00c853">âœ… ${ttTable} Ã— ${ttIndex+1} = ${correct}</span>`;
+      `<span style="color:#00c853">✅ ${ttTable} × ${ttIndex+1} = ${correct}</span>`;
     snd.correct();
     document.getElementById('tt-next').classList.add('enabled');
   } else {
@@ -1051,7 +1029,7 @@ function selectTTAnswer(btn,chosen,correct){
     btn.disabled=true;
     snd.wrong();
     document.getElementById('tt-feedback').innerHTML=
-      `<span style="color:#e53935">âŒ Sai rá»“i, thá»­ láº¡i nhÃ©!</span>`;
+      `<span style="color:#e53935">❌ Sai rồi, thử lại nhé!</span>`;
   }
 }
 
@@ -1061,14 +1039,14 @@ function ttNext(){
     // Done with this table
     snd.cheer();
     document.getElementById('tt-question').innerHTML=
-      `<span style="font-size:28px">ðŸŽ‰</span>`;
+      `<span style="font-size:28px">🎉</span>`;
     document.getElementById('tt-feedback').innerHTML=
-      `<span style="color:#7c4dff;font-size:16px;font-weight:800;">BÃ© Ä‘Ã£ há»c xong báº£ng nhÃ¢n ${ttTable}!</span>`;
+      `<span style="color:#7c4dff;font-size:16px;font-weight:800;">Bé đã học xong bảng nhân ${ttTable}!</span>`;
     document.getElementById('tt-answers').innerHTML='';
     document.getElementById('tt-progress-fill').style.width='100%';
     document.getElementById('tt-progress').textContent='9/9';
     const nextBtn=document.getElementById('tt-next');
-    nextBtn.textContent='â† Chá»n báº£ng khÃ¡c';
+    nextBtn.textContent='← Chọn bảng khác';
     nextBtn.classList.add('enabled');
     nextBtn.onclick=()=>showTimesTableMenu();
   } else {
@@ -1090,12 +1068,12 @@ function getAnswer(q){
 function genWrongAnswers(correct, q){
   const wrongs=[];
   if(q.hidden==='op'){
-    // LuÃ´n dÃ¹ng 3 toÃ¡n tá»­ cÃ²n láº¡i
-    const allOps=['+','-','Ã—','Ã·'];
+    // Luôn dùng 3 toán tử còn lại
+    const allOps=['+','-','×','÷'];
     const others=allOps.filter(o=>o!==correct);
     return others.slice(0,3);
   }
-  // Sá»‘: sinh 3 sá»‘ sai khÃ¡c nhau vÃ  khÃ¡c correct
+  // Số: sinh 3 số sai khác nhau và khác correct
   const used=new Set([correct]);
   while(wrongs.length<3){
     const delta=Math.floor(Math.random()*6)+1;
@@ -1116,12 +1094,12 @@ function renderQuestion(q){
   document.getElementById('question-text').innerHTML=txt;
 }
 
-// LÆ°u correct answer á»Ÿ module level â€” cÃ³ thá»ƒ lÃ  string hoáº·c array (dualOp)
+// Lưu correct answer ở module level — có thể là string hoặc array (dualOp)
 let currentCorrect = null;
 
 function renderAnswers(q){
   const correct = getAnswer(q);
-  // dualOp: cáº£ + vÃ  - Ä‘á»u Ä‘Ãºng
+  // dualOp: cả + và - đều đúng
   if(q.dualOp){
     currentCorrect = ['+', '-'];
   } else {
@@ -1140,13 +1118,13 @@ function renderAnswers(q){
   });
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // LESSON FLOW
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 function startLesson(mode){
   const daily=mode==='add'?player.dailyAddDone:player.dailyMulDone;
   if(daily>=30){
-    alert('HÃ´m nay bÃ© Ä‘Ã£ lÃ m Ä‘á»§ 30 cÃ¢u '+( mode==='add'?'cá»™ng trá»«':'nhÃ¢n')+' rá»“i! NgÃ y mai tiáº¿p tá»¥c nhÃ© ðŸ˜Š');
+    alert('Hôm nay bé đã làm đủ 30 câu '+( mode==='add'?'cộng trừ':'nhân')+' rồi! Ngày mai tiếp tục nhé 😊');
     return;
   }
   lessonMode=mode;
@@ -1156,14 +1134,14 @@ function startLesson(mode){
   questions=[];
   for(let i=0;i<count;i++) questions.push(mode==='add'?genAddQuestion():genMulQuestion());
   qIndex=0; sessionScore=0; answered=false; earnedThisQ=false; wrongCount=0;
-  // TÃ­nh Ä‘iá»ƒm tá»‘i Ä‘a cÃ³ thá»ƒ Ä‘áº¡t: add=1/cÃ¢u, mul=2 hoáº·c 4/cÃ¢u
+  // Tính điểm tối đa có thể đạt: add=1/câu, mul=2 hoặc 4/câu
   sessionMaxScore = questions.reduce((sum,q)=>{
     if(q.mode==='add') return sum+1;
     return sum+((q.a<6||q.b<6)?2:4);
   }, 0);
   startBgMusic();
-  document.getElementById('gi-lesson').textContent=mode==='add'?'BÃ i 1: Cá»™ng Trá»«':'BÃ i 2: NhÃ¢n';
-  document.getElementById('gi-score').textContent='â­ '+player.weekScore;
+  document.getElementById('gi-lesson').textContent=mode==='add'?'Bài 1: Cộng Trừ':'Bài 2: Nhân';
+  document.getElementById('gi-score').textContent='⭐ '+player.weekScore;
   document.getElementById('score-change').textContent='';
   showQuestion();
   showScreen('screen-game');
@@ -1184,13 +1162,13 @@ async function selectAnswer(btn, q){
   if(earnedThisQ) return;
 
   const chosen = btn.textContent.trim();
-  // Kiá»ƒm tra Ä‘Ãºng: currentCorrect cÃ³ thá»ƒ lÃ  string hoáº·c array (dualOp)
+  // Kiểm tra đúng: currentCorrect có thể là string hoặc array (dualOp)
   const isCorrect = Array.isArray(currentCorrect)
     ? currentCorrect.includes(chosen)
     : chosen === currentCorrect;
 
   if(isCorrect){
-    // âœ… ÄÃºng
+    // ✅ Đúng
     btn.classList.add('correct');
     snd.correct();
     if(Array.isArray(currentCorrect)){
@@ -1210,13 +1188,13 @@ async function selectAnswer(btn, q){
     player.weekScore += pts;
     sessionScore += pts;
     showScoreChange('+'+pts, 'plus');
-    document.getElementById('gi-score').textContent = 'â­ '+player.weekScore;
+    document.getElementById('gi-score').textContent = '⭐ '+player.weekScore;
     document.getElementById('hs-score').textContent = player.weekScore;
     localStorage.setItem(PLAYER_KEY+'_score', player.weekScore);
     document.getElementById('btn-next').classList.add('enabled');
 
   } else {
-    // âŒ Sai
+    // ❌ Sai
     btn.classList.add('wrong');
     btn.disabled = true;
     snd.wrong();
@@ -1224,7 +1202,7 @@ async function selectAnswer(btn, q){
     if(player.weekScore > 0){
       player.weekScore = Math.max(0, player.weekScore-1);
       showScoreChange('-1', 'minus');
-      document.getElementById('gi-score').textContent = 'â­ '+player.weekScore;
+      document.getElementById('gi-score').textContent = '⭐ '+player.weekScore;
       document.getElementById('hs-score').textContent = player.weekScore;
       localStorage.setItem(PLAYER_KEY+'_score', player.weekScore);
     }
@@ -1261,13 +1239,13 @@ async function nextQuestion(){
     // Batch done
     const daily=lessonMode==='add'?player.dailyAddDone:player.dailyMulDone;
     if(daily>=30){
-      // All done for the day â€” show result
+      // All done for the day — show result
       maybeInterstitial(()=>showResult());
     } else {
       // Break time
-      document.getElementById('break-score').textContent=player.weekScore+' Ä‘iá»ƒm';
+      document.getElementById('break-score').textContent=player.weekScore+' điểm';
       const rem=30-daily;
-      document.getElementById('break-remaining').textContent='CÃ²n '+rem+' cÃ¢u ná»¯a hÃ´m nay';
+      document.getElementById('break-remaining').textContent='Còn '+rem+' câu nữa hôm nay';
       document.getElementById('break-continue').style.display=rem>0?'block':'none';
       initBreakBanner();
       showScreen('screen-break');
@@ -1282,46 +1260,46 @@ function continueLesson(){
 }
 
 async function showResult(){
-  // TÃ­nh % Ä‘iá»ƒm Ä‘áº¡t Ä‘Æ°á»£c trong session nÃ y
+  // Tính % điểm đạt được trong session này
   const pct = sessionMaxScore > 0 ? Math.round(sessionScore/sessionMaxScore*100) : 0;
-  let emoji='ðŸŽŠ', encourage='', msg='';
+  let emoji='🎊', encourage='', msg='';
   if(pct===100){
-    emoji='ðŸ†'; encourage='Xuáº¥t sáº¯c! ðŸŒŸ';
-    msg='BÃ© giá»i quÃ¡! LÃ m Ä‘Ãºng táº¥t cáº£ rá»“i! BÃ© tháº­t tuyá»‡t vá»i!';
+    emoji='🏆'; encourage='Xuất sắc! 🌟';
+    msg='Bé giỏi quá! Làm đúng tất cả rồi! Bé thật tuyệt vời!';
     snd.excellent();
   } else if(pct>=90){
-    emoji='ðŸŽ‰'; encourage='Ráº¥t tá»‘t! ðŸ‘';
-    msg='BÃ© há»c giá»i láº¯m! Chá»‰ cÃ²n má»™t chÃºt ná»¯a lÃ  hoÃ n háº£o rá»“i!';
+    emoji='🎉'; encourage='Rất tốt! 👏';
+    msg='Bé học giỏi lắm! Chỉ còn một chút nữa là hoàn hảo rồi!';
     snd.encourageGreat();
   } else if(pct>=70){
-    emoji='ðŸ˜Š'; encourage='KhÃ¡ giá»i! ðŸ‘';
-    msg='BÃ© lÃ m tá»‘t láº¯m! Cá»‘ gáº¯ng thÃªm má»™t chÃºt ná»¯a nhÃ©!';
+    emoji='😊'; encourage='Khá giỏi! 👍';
+    msg='Bé làm tốt lắm! Cố gắng thêm một chút nữa nhé!';
     snd.encourageGood();
   } else {
-    emoji='ðŸ’ª'; encourage='Cá»‘ gáº¯ng lÃªn! ðŸŒˆ';
-    msg='KhÃ´ng sao, láº§n sau bÃ© sáº½ lÃ m tá»‘t hÆ¡n! Tiáº¿p tá»¥c cá»‘ gáº¯ng nhÃ©!';
+    emoji='💪'; encourage='Cố gắng lên! 🌈';
+    msg='Không sao, lần sau bé sẽ làm tốt hơn! Tiếp tục cố gắng nhé!';
     snd.encourageLight();
   }
   document.getElementById('result-emoji').textContent=emoji;
   document.getElementById('result-encourage').textContent=encourage;
   document.getElementById('result-msg').textContent=msg;
-  document.getElementById('result-score').textContent=player.weekScore+' Ä‘iá»ƒm';
+  document.getElementById('result-score').textContent=player.weekScore+' điểm';
   showScreen('screen-result');
   initResultBanner();
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-// PICTURE MATH (BÃ i 4 â€” 4â€“5 tuá»•i)
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
+// PICTURE MATH (Bài 4 — 4–5 tuổi)
+// ═══════════════════════════════════════════
 const PM_QUESTIONS = [
-  { emoji:'ðŸŽ', before:3, op:'+', add:2, answer:5, label:'quáº£ tÃ¡o' },
-  { emoji:'ðŸ¥', before:5, op:'-', add:2, answer:3, label:'con gÃ ' },
-  { emoji:'ðŸŒ¸', before:2, op:'+', add:4, answer:6, label:'bÃ´ng hoa' },
-  { emoji:'ðŸŸ', before:6, op:'-', add:3, answer:3, label:'con cÃ¡' },
-  { emoji:'â­', before:4, op:'+', add:3, answer:7, label:'ngÃ´i sao' },
-  { emoji:'ðŸ­', before:8, op:'-', add:4, answer:4, label:'cÃ¡i káº¹o' },
-  { emoji:'ðŸ¸', before:3, op:'+', add:5, answer:8, label:'con áº¿ch' },
-  { emoji:'ðŸŽˆ', before:9, op:'-', add:2, answer:7, label:'quáº£ bÃ³ng' },
+  { emoji:'🍎', before:3, op:'+', add:2, answer:5, label:'quả táo' },
+  { emoji:'🐥', before:5, op:'-', add:2, answer:3, label:'con gà' },
+  { emoji:'🌸', before:2, op:'+', add:4, answer:6, label:'bông hoa' },
+  { emoji:'🐟', before:6, op:'-', add:3, answer:3, label:'con cá' },
+  { emoji:'⭐', before:4, op:'+', add:3, answer:7, label:'ngôi sao' },
+  { emoji:'🍭', before:8, op:'-', add:4, answer:4, label:'cái kẹo' },
+  { emoji:'🐸', before:3, op:'+', add:5, answer:8, label:'con ếch' },
+  { emoji:'🎈', before:9, op:'-', add:2, answer:7, label:'quả bóng' },
 ];
 let pmIndex = 0;
 let pmStars = 0;
@@ -1347,7 +1325,7 @@ function pmShowQuestion(){
   const q = PM_QUESTIONS[pmIndex];
   const total = PM_QUESTIONS.length;
   document.getElementById('pm-progress').textContent = (pmIndex+1)+'/'+total;
-  document.getElementById('pm-stars').textContent = 'â­ '+pmStars;
+  document.getElementById('pm-stars').textContent = '⭐ '+pmStars;
   document.getElementById('pm-progress-fill').style.width = (pmIndex/total*100)+'%';
   document.getElementById('pm-feedback').textContent = '';
   document.getElementById('pm-next').classList.remove('enabled');
@@ -1355,11 +1333,11 @@ function pmShowQuestion(){
   // Build emoji rows
   document.getElementById('pm-before').innerHTML = Array(q.before).fill(
     `<span style="font-size:36px;line-height:1;">${q.emoji}</span>`).join('');
-  document.getElementById('pm-op-icon').textContent = q.op === '+' ? 'âž•' : 'âž–';
+  document.getElementById('pm-op-icon').textContent = q.op === '+' ? '➕' : '➖';
   document.getElementById('pm-after').innerHTML = Array(q.add).fill(
     `<span style="font-size:36px;line-height:1;">${q.emoji}</span>`).join('');
 
-  const actionWord = q.op === '+' ? 'Táº¥t cáº£ cÃ³ máº¥y ' : 'CÃ²n láº¡i máº¥y ';
+  const actionWord = q.op === '+' ? 'Tất cả có mấy ' : 'Còn lại mấy ';
   document.getElementById('pm-question-text').textContent = actionWord + q.label + '?';
 
   // Build answer buttons
@@ -1376,17 +1354,17 @@ function pmChoose(btn, val, answer){
   const fb = document.getElementById('pm-feedback');
   if(val === answer){
     btn.classList.add('correct');
-    fb.textContent = 'ðŸŒŸ ÄÃºng rá»“i! Giá»i láº¯m!';
+    fb.textContent = '🌟 Đúng rồi! Giỏi lắm!';
     fb.style.color = '#00c853';
     pmStars++;
-    document.getElementById('pm-stars').textContent = 'â­ '+pmStars;
+    document.getElementById('pm-stars').textContent = '⭐ '+pmStars;
     snd.correct();
   } else {
     btn.classList.add('wrong');
     document.querySelectorAll('#pm-answers .ans-btn').forEach(b=>{
       if(parseInt(b.textContent)===answer) b.classList.add('correct');
     });
-    fb.textContent = 'ðŸ’™ ChÆ°a Ä‘Ãºng, Ä‘Ã¡p Ã¡n lÃ  '+answer;
+    fb.textContent = '💙 Chưa đúng, đáp án là '+answer;
     fb.style.color = '#e53935';
     snd.wrong();
   }
@@ -1405,20 +1383,20 @@ function pmNext(){
 
 function pmShowResult(){
   const total = PM_QUESTIONS.length;
-  let emoji='ðŸ’ª', msg='Cá»‘ gáº¯ng lÃªn! Luyá»‡n táº­p thÃªm nhÃ©!';
-  if(pmStars===total){ emoji='ðŸ†'; msg='Xuáº¥t sáº¯c! BÃ© tháº­t thÃ´ng minh! ðŸŒŸ'; snd.excellent(); }
-  else if(pmStars>=total*0.75){ emoji='ðŸŽ‰'; msg='Giá»i láº¯m! Cá»‘ thÃªm má»™t chÃºt ná»¯a nhÃ©!'; snd.encourageGreat(); }
-  else if(pmStars>=total*0.5){ emoji='ðŸ˜Š'; msg='LÃ m tá»‘t láº¯m! Tiáº¿p tá»¥c nhÃ© bÃ©!'; snd.encourageGood(); }
+  let emoji='💪', msg='Cố gắng lên! Luyện tập thêm nhé!';
+  if(pmStars===total){ emoji='🏆'; msg='Xuất sắc! Bé thật thông minh! 🌟'; snd.excellent(); }
+  else if(pmStars>=total*0.75){ emoji='🎉'; msg='Giỏi lắm! Cố thêm một chút nữa nhé!'; snd.encourageGreat(); }
+  else if(pmStars>=total*0.5){ emoji='😊'; msg='Làm tốt lắm! Tiếp tục nhé bé!'; snd.encourageGood(); }
   else { snd.encourageLight(); }
   document.getElementById('pm-result-emoji').textContent = emoji;
   document.getElementById('pm-result-msg').textContent = msg;
-  document.getElementById('pm-result-score').textContent = pmStars+' / '+total+' â­';
+  document.getElementById('pm-result-score').textContent = pmStars+' / '+total+' ⭐';
   showScreen('screen-picture-result');
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 // BOOT
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ═══════════════════════════════════════════
 (async function boot(){
   initBanners();
   // Load saved score from localStorage
@@ -1432,20 +1410,14 @@ function pmShowResult(){
   const dailyAddDone = savedDate===today ? savedAdd : 0;
   const dailyMulDone = savedDate===today ? savedMul : 0;
   if(savedDate!==today) localStorage.setItem(PLAYER_KEY+'_date', today);
-  player = { name:'BÃ©', weekScore: savedScore, dailyAddDone, dailyMulDone, gender: savedGender };
+  player = { name:'Bé', weekScore: savedScore, dailyAddDone, dailyMulDone, gender: savedGender };
   document.getElementById('header-score').style.display='flex';
   document.getElementById('hs-score').textContent = player.weekScore;
   refreshMenuUI();
   initMenuBanner();
-  updateMusicButton();
+  startBgMusic();
   showScreen('screen-menu');
 })();
 </script>
 </body>
 </html>
-
-
-
-
-
-
