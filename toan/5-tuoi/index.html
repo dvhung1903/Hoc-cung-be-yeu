@@ -540,7 +540,7 @@ let _bannerResultLoaded = false;
 // ═══════════════════════════════════════════
 // AUDIO ENGINE (Web Audio API — no files needed)
 // ═══════════════════════════════════════════
-const AC = new (window.AudioContext||window.webkitAudioContext)();
+var AC; try { AC = new (window.AudioContext||window.webkitAudioContext)(); } catch(e) { AC = null; }
 let musicOn = true;
 let bgNodes = []; // oscillators for bg music
 let bgScheduler = null;
@@ -550,8 +550,8 @@ function resumeAC(){ if(AC.state==='suspended') AC.resume(); }
 
 // Play a short tone
 function playTone(freq, type, dur, vol, delay=0){
-  if(!musicOn) return;
-  resumeAC();
+  if(!musicOn||!AC) return;
+  try{resumeAC();}catch(e){return;}
   const o=AC.createOscillator(), g=AC.createGain();
   o.connect(g); g.connect(AC.destination);
   o.type=type; o.frequency.value=freq;
@@ -620,11 +620,7 @@ const BASS_NOTES=[131,165,196,165, 175,196,175,165, 131,165,196,165, 175,196,220
 let melodyIdx=0;
 
 // ── File nhạc nền bg-music.wav ──
-const bgMusic = new Audio('../bg-music.wav');
-bgMusic.loop = true;
-bgMusic.preload = 'auto';
-bgMusic.playsInline = true;
-bgMusic.volume = 0.55;
+var bgMusic; try { bgMusic = new Audio('../bg-music.wav'); bgMusic.loop=true; bgMusic.preload='auto'; bgMusic.playsInline=true; bgMusic.volume=0.4; } catch(e) { bgMusic = null; }
 
 function bgTick(){
   if(!musicOn) return;
@@ -648,7 +644,7 @@ function bgTick(){
 }
 
 function startBgMusic(){
-  if(bgMusic.paused){ bgMusic.play().catch(function(){}); }
+  if(bgMusic.paused){ bgMusic.currentTime=0; bgMusic.play().catch(()=>{}); }
   if(bgScheduler) return;
   melodyIdx=0;
   bgTick();
@@ -1437,17 +1433,17 @@ document.addEventListener('visibilitychange', ()=>{
   }catch(e){}
 });
 
-  startBgMusic();
-  initAudioUnlock();
   showScreen('screen-menu');
 })();
-// Phat nhac khi nguoi dung cham man hinh lan dau
-['touchstart','click'].forEach(function(evt){
-  document.addEventListener(evt, function play(){
-    bgMusic.play().catch(function(){});
-    document.removeEventListener(evt, play);
-  }, {once:true});
-});
+// Bat nhac khi nguoi dung cham lan dau (tuong thich moi thiet bi)
+if(bgMusic) {
+  ['touchstart','click'].forEach(function(evt){
+    document.addEventListener(evt, function play(){
+      if(bgMusic) bgMusic.play().catch(function(){});
+      document.removeEventListener(evt, play);
+    }, {once:true});
+  });
+}
 
 </script>
 </body>

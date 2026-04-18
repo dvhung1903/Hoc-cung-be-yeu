@@ -240,7 +240,7 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 // ══════════════════════════════════
 // AUDIO
 // ══════════════════════════════════
-const AC = new (window.AudioContext||window.webkitAudioContext)();
+var AC; try { AC = new (window.AudioContext||window.webkitAudioContext)(); } catch(e) { AC = null; }
 let musicOn = true;
 let bgTimer = null;
 let melIdx = 0;
@@ -248,15 +248,11 @@ const MELODY = [523,587,659,698,784,659,587,523,659,784,880,784,659,523,587,659]
 const BASS   = [262,262,349,349,392,392,349,349];
 
 // ── File nhạc nền bg-music.wav ──
-const bgMusic = new Audio('../bg-music.wav');
-bgMusic.loop = true;
-bgMusic.preload = 'auto';
-bgMusic.playsInline = true;
-bgMusic.volume = 0.55;
+var bgMusic; try { bgMusic = new Audio('../bg-music.wav'); bgMusic.loop=true; bgMusic.preload='auto'; bgMusic.playsInline=true; bgMusic.volume=0.4; } catch(e) { bgMusic = null; }
 
 function tone(f,type,dur,vol,delay=0){
-  if(!musicOn)return;
-  if(AC.state==='suspended')AC.resume();
+  if(!musicOn||!AC)return;
+  try{if(AC.state==='suspended')AC.resume();}catch(e){return;}
   const o=AC.createOscillator(),g=AC.createGain();
   o.connect(g);g.connect(AC.destination);
   o.type=type;o.frequency.value=f;
@@ -274,7 +270,7 @@ function bgTick(){
   bgTimer=setTimeout(bgTick,ms);
 }
 function startMusic(){
-  if(bgMusic.paused){ bgMusic.play().catch(function(){}); }
+  if(bgMusic.paused){ bgMusic.currentTime=0; bgMusic.play().catch(()=>{}); }
   if(!bgTimer){melIdx=0;bgTick();}
 }
 function stopMusic(){
@@ -698,13 +694,15 @@ document.addEventListener('visibilitychange', ()=>{
   }catch(e){}
 });
 
-// Phat nhac khi nguoi dung cham man hinh lan dau
-['touchstart','click'].forEach(function(evt){
-  document.addEventListener(evt, function play(){
-    bgMusic.play().catch(function(){});
-    document.removeEventListener(evt, play);
-  }, {once:true});
-});
+// Bat nhac khi nguoi dung cham lan dau (tuong thich moi thiet bi)
+if(bgMusic) {
+  ['touchstart','click'].forEach(function(evt){
+    document.addEventListener(evt, function play(){
+      if(bgMusic) bgMusic.play().catch(function(){});
+      document.removeEventListener(evt, play);
+    }, {once:true});
+  });
+}
 
 </script>
 </body>
