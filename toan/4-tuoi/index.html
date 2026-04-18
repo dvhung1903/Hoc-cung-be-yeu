@@ -556,33 +556,39 @@ function speak(text){
 }
 
 
-// ── Mở khóa audio trên mobile (iOS/Android bắt buộc cần user gesture) ──
 function initAudioUnlock(){
   var overlay = document.getElementById('audio-unlock');
-  var btn = document.getElementById('audio-unlock-btn');
-  if(!overlay||!btn) return;
+  var btn     = document.getElementById('audio-unlock-btn');
+  if(!overlay || !btn) return;
   var isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent)
-               || ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-  if(!isMobile){ bgMusic.play().catch(function(){}); return; }
-  overlay.style.display = 'flex';
-  function unlock(){
-    overlay.style.display = 'none';
-    if(typeof AC !== 'undefined' && AC.state === 'suspended') AC.resume();
-    bgMusic.play().catch(function(){});
+               || ('ontouchstart' in window)
+               || navigator.maxTouchPoints > 0;
+  if(!isMobile){
+    // Desktop: thu autoplay luon
+    bgMusic.play().catch(function(){
+      // Neu bi chan thi cho click dau tien
+      document.addEventListener('click', function h(){
+        bgMusic.play().catch(function(){});
+        document.removeEventListener('click', h);
+      });
+    });
+    return;
   }
-  btn.addEventListener('click', unlock, {once:true});
-  overlay.addEventListener('click', unlock, {once:true});
+  // Mobile: hien overlay, doi user cham
+  overlay.style.display = 'flex';
+  btn.addEventListener('click', function(){
+    overlay.style.display = 'none';
+    if(AC.state === 'suspended') AC.resume();
+    bgMusic.play().catch(function(){});
+  }, {once: true});
 }
 
-// ── Tự resume nhạc khi quay lại app ──
 // Resume nhac khi quay lai app
 document.addEventListener('visibilitychange', function(){
   if(document.hidden) return;
-  if(typeof AC !== 'undefined' && AC.state === 'suspended') AC.resume();
-  if(typeof musicOn !== 'undefined' && musicOn && bgMusic.paused)
-    bgMusic.play().catch(function(){});
+  if(AC.state === 'suspended') AC.resume();
+  if(musicOn && bgMusic.paused) bgMusic.play().catch(function(){});
 });
-
 
 initAudioUnlock();
 </script>
