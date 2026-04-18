@@ -260,6 +260,15 @@ bgMusic.preload = 'auto';
 bgMusic.playsInline = true;
 bgMusic.volume = 0.55;
 
+// Tự resume nếu audio bị dừng đột ngột
+bgMusic.addEventListener('pause', () => {
+  if(musicOn) setTimeout(()=>{ if(bgMusic.paused && musicOn) bgMusic.play().catch(()=>{}); }, 300);
+});
+bgMusic.addEventListener('ended', () => {
+  bgMusic.currentTime = 0;
+  if(musicOn) bgMusic.play().catch(()=>{});
+});
+
 function tone(f,type,dur,vol,delay=0){
   if(!musicOn)return;
   if(AC.state==='suspended')AC.resume();
@@ -280,7 +289,7 @@ function bgTick(){
   bgTimer=setTimeout(bgTick,ms);
 }
 function startMusic(){
-  if(bgMusic.paused){ bgMusic.currentTime=0; bgMusic.play().catch(()=>{}); }
+  if(bgMusic.paused){ bgMusic.play().catch(()=>{}); }
   if(!bgTimer){melIdx=0;bgTick();}
 }
 function stopMusic(){
@@ -696,10 +705,39 @@ function launchConfetti(){
 // ── Mở khóa audio trên mobile (iOS/Android bắt buộc cần user gesture) ──
 function initAudioUnlock(){
   const overlay = document.getElementById('audio-unlock');
-  const btn = document.getElementById('audio-unlock-btn');
-  if(!overlay||!btn) return;
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if(isMobile){ overlay.style.display='flex'; }
+  const btn     = document.getElementById('audio-unlock-btn');
+  if(!overlay || !btn) return;
+
+  // Detect mobile bằng 3 cách để chắc chắn
+  const isMobile = /iPhone|iPad|iPod|Android|Mobile|Tablet/i.test(navigator.userAgent)
+                   || ('ontouchstart' in window)
+                   || navigator.maxTouchPoints > 0;
+
+  if(!isMobile) {
+    // Desktop: thử autoplay ngay
+    bgMusic.play().catch(()=>{});
+    if(typeof AC !== 'undefined' && AC.state === 'suspended') AC.resume();
+    return;
+  }
+
+  // Mobile: phải có user-gesture → hiện overlay
+  overlay.style.display = 'flex';
+
+  const unlock = (e) => {
+    e && e.stopPropagation();
+    overlay.style.display = 'none';
+    // Gọi play() TRỰC TIẾP trong gesture handler — iOS yêu cầu điều này
+    bgMusic.play().catch(()=>{});
+    if(typeof AC !== 'undefined') {
+      AC.resume().then(()=>{
+        if(!bgTimer && !bgScheduler) { melodyIdx=0; melIdx=0; bgTick(); }
+      }).catch(()=>{});
+    }
+  };
+
+  btn.addEventListener('click',    unlock, {once:true});
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) unlock(e); }, {once:true});
+}
   const unlock = ()=>{
     overlay.style.display='none';
     if(AC.state==='suspended') AC.resume();
@@ -710,16 +748,20 @@ function initAudioUnlock(){
 }
 
 // ── Tự resume nhạc khi quay lại app ──
-document.addEventListener('visibilitychange', ()=>{
+document.addEventListener('visibilitychange', () => {
   if(document.hidden) return;
   try{
-    if(AC.state==='suspended') AC.resume();
+    if(typeof AC!=='undefined' && AC.state==='suspended') AC.resume();
     if(musicOn && bgMusic.paused) bgMusic.play().catch(()=>{});
   }catch(e){}
 });
+  }catch(e){}
+});
 
-startMusic();
-initAudioUnlock();
+// Khởi động oscillator (không cần gesture)
+if(typeof bgTimer!=="undefined"&&!bgTimer){melIdx=0;bgTick();}
+if(typeof bgScheduler!=="undefined"&&!bgScheduler){melodyIdx=0;bgTick();}
+initAudioUnlock(); // WAV sẽ được phát sau user-gesture
 </script>
 </body>
 </html>
