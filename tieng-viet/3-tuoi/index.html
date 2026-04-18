@@ -3,527 +3,350 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bé học tiếng Việt - 3 tuổi 🌟</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Bé học tiếng Việt - 3 tuổi 🌈</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sky: #87CEEB;
-    --sun: #FFD700;
-    --grass: #7DC95E;
-    --pink: #FF85A1;
-    --orange: #FF9F43;
-    --purple: #A29BFE;
-    --white: #FFFDF7;
-    --card-bg: #FFFAEF;
-    --shadow: 0 8px 32px rgba(0,0,0,0.12);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Baloo 2', cursive;
-    background: linear-gradient(180deg, #87CEEB 0%, #B0E0FF 40%, #C8F7A0 100%);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Floating clouds */
-  .cloud {
-    position: fixed;
-    background: white;
-    border-radius: 50px;
-    opacity: 0.85;
-    animation: floatCloud linear infinite;
-    pointer-events: none;
-  }
-  .cloud::before, .cloud::after {
-    content:''; position:absolute; background:white; border-radius:50%;
-  }
-  .cloud-1 { width:120px;height:40px;top:8%;animation-duration:30s;animation-delay:-5s; }
-  .cloud-1::before { width:60px;height:60px;top:-30px;left:15px; }
-  .cloud-1::after { width:40px;height:40px;top:-20px;left:55px; }
-  .cloud-2 { width:80px;height:28px;top:20%;animation-duration:40s;animation-delay:-15s; }
-  .cloud-2::before { width:40px;height:40px;top:-20px;left:10px; }
-  .cloud-2::after { width:28px;height:28px;top:-12px;left:40px; }
-  @keyframes floatCloud {
-    from { left: -200px; }
-    to { left: 110vw; }
-  }
-
-  header {
-    text-align: center;
-    padding: 28px 20px 16px;
-    position: relative;
-    z-index: 10;
-  }
-  header h1 {
-    font-size: 2.4rem;
-    font-weight: 800;
-    color: white;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 2px 0 rgba(255,200,0,0.5);
-    letter-spacing: 1px;
-  }
-  header p { color: #fff; font-size: 1.1rem; margin-top: 6px; text-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-
-  /* Lesson selector */
-  #lesson-screen {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 16px 20px 40px;
-    position: relative; z-index: 10;
-  }
-  .lesson-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 16px;
-    margin-top: 10px;
-  }
-  .lesson-card {
-    background: var(--card-bg);
-    border-radius: 24px;
-    padding: 20px 12px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1), 0 2px 0 rgba(255,255,255,0.8) inset;
-    transition: transform .2s, box-shadow .2s;
-    border: 3px solid white;
-  }
-  .lesson-card:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 14px 32px rgba(0,0,0,0.15); }
-  .lesson-card .icon { font-size: 2.8rem; display:block; margin-bottom: 8px; }
-  .lesson-card .name { font-size: 1rem; font-weight: 700; color: #444; }
-
-  /* Learning screen */
-  #learn-screen { display: none; max-width: 500px; margin: 0 auto; padding: 10px 20px 40px; position:relative;z-index:10; }
-
-  .top-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 18px;
-  }
-  .btn-back {
-    background: white; border: none; border-radius: 50px;
-    padding: 8px 18px; font-family:'Baloo 2',cursive; font-size:1rem; font-weight:700;
-    color:#555; cursor:pointer; box-shadow: var(--shadow);
-    transition: transform .15s;
-  }
-  .btn-back:hover { transform: scale(1.05); }
-  .progress-bar-wrap {
-    flex: 1; margin: 0 14px; height: 14px;
-    background: rgba(255,255,255,0.6); border-radius: 10px; overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%; background: linear-gradient(90deg, #FFD700, #FF9F43);
-    border-radius: 10px; transition: width .5s ease;
-  }
-  .progress-text { font-size: .95rem; font-weight:700; color:white; text-shadow:0 1px 4px rgba(0,0,0,0.2); }
-
-  .card-wrap {
-    background: var(--card-bg);
-    border-radius: 32px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.14), 0 3px 0 rgba(255,255,255,0.9) inset;
-    padding: 30px 24px 28px;
-    text-align: center;
-    border: 4px solid white;
-    animation: popIn .4s cubic-bezier(.3,1.4,.5,1);
-  }
-  @keyframes popIn {
-    from { transform: scale(0.7); opacity:0; }
-    to { transform: scale(1); opacity:1; }
-  }
-  .card-emoji {
-    font-size: 6rem;
-    display: block;
-    margin-bottom: 14px;
-    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
-    animation: bounce 2s ease-in-out infinite;
-  }
-  @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-  .card-word {
-    font-size: 3rem; font-weight: 800; color: #333;
-    letter-spacing: 2px; margin-bottom: 6px;
-  }
-  .card-sub { font-size: 1.1rem; color: #888; font-weight: 600; }
-
-  .speak-btn {
-    margin-top: 22px;
-    background: linear-gradient(135deg, #FF85A1, #FF9F43);
-    border: none; border-radius: 50px;
-    padding: 14px 40px; font-family:'Baloo 2',cursive;
-    font-size: 1.2rem; font-weight: 800; color: white;
-    cursor: pointer; box-shadow: 0 6px 20px rgba(255,133,161,.4);
-    transition: transform .15s, box-shadow .15s;
-    display: flex; align-items: center; gap: 8px; margin-left:auto;margin-right:auto;
-  }
-  .speak-btn:hover { transform: scale(1.07); box-shadow: 0 10px 28px rgba(255,133,161,.5); }
-  .speak-btn.speaking { animation: pulse .5s ease-in-out infinite alternate; }
-  @keyframes pulse { to { transform: scale(1.1); } }
-
-  .next-btn {
-    margin-top: 18px;
-    background: linear-gradient(135deg, #A29BFE, #6C5CE7);
-    border: none; border-radius: 50px;
-    padding: 12px 36px; font-family:'Baloo 2',cursive;
-    font-size: 1.1rem; font-weight: 700; color: white;
-    cursor: pointer; box-shadow: 0 6px 16px rgba(108,92,231,.35);
-    transition: transform .15s; display:block; margin-left:auto;margin-right:auto;
-  }
-  .next-btn:hover { transform: scale(1.05); }
-
-  /* Completion */
-  #done-screen {
-    display:none; text-align:center; max-width:400px; margin:0 auto;
-    padding: 30px 20px; position:relative;z-index:10;
-  }
-  .done-box {
-    background: var(--card-bg); border-radius: 32px; padding: 40px 30px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.14); border: 4px solid white;
-  }
-  .done-box .star { font-size: 4rem; animation: spin 2s linear infinite; display:inline-block; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .done-box h2 { font-size: 2rem; font-weight: 800; color: #FF9F43; margin: 14px 0 8px; }
-  .done-box p { font-size: 1.1rem; color: #666; }
-  .replay-btn {
-    margin-top: 22px;
-    background: linear-gradient(135deg, #7DC95E, #5CB85C);
-    border:none;border-radius:50px;padding:12px 36px;
-    font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:700;color:white;
-    cursor:pointer;box-shadow:0 6px 16px rgba(92,184,92,.35);transition:transform .15s;
-  }
-  .replay-btn:hover { transform:scale(1.05); }
-
-  /* Stars decoration */
-  .star-deco {
-    position: fixed; pointer-events:none; font-size:1.4rem;
-    animation: twinkle 2s ease-in-out infinite;
-  }
-  @keyframes twinkle { 0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.3)} }
+:root{--cream:#FFFDF5;--shadow:0 8px 32px rgba(0,0,0,0.13);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Baloo 2',cursive;background:linear-gradient(170deg,#b8e8ff 0%,#d6f5ff 35%,#ccf5a0 100%);min-height:100vh;overflow-x:hidden;}
+.cloud{position:fixed;background:white;border-radius:50px;opacity:.8;pointer-events:none;animation:floatCloud linear infinite;}
+.cloud::before,.cloud::after{content:'';position:absolute;background:white;border-radius:50%;}
+.c1{width:130px;height:44px;top:7%;animation-duration:28s;}
+.c1::before{width:65px;height:65px;top:-32px;left:18px;}
+.c1::after{width:42px;height:42px;top:-22px;left:62px;}
+.c2{width:90px;height:30px;top:22%;animation-duration:38s;animation-delay:-12s;}
+.c2::before{width:45px;height:45px;top:-22px;left:12px;}
+.c2::after{width:30px;height:30px;top:-14px;left:44px;}
+@keyframes floatCloud{from{left:-220px}to{left:110vw}}
+header{text-align:center;padding:26px 20px 14px;position:relative;z-index:10;}
+header h1{font-size:2.3rem;font-weight:900;color:#fff;text-shadow:0 4px 14px rgba(0,100,180,.25);}
+header p{color:#fff;font-size:1rem;margin-top:5px;}
+#lesson-screen{max-width:700px;margin:0 auto;padding:14px 18px 40px;position:relative;z-index:10;}
+.lesson-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin-top:8px;}
+.lesson-card{background:var(--cream);border-radius:22px;cursor:pointer;box-shadow:var(--shadow);border:3px solid white;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.lesson-card:hover{transform:translateY(-6px) scale(1.04);box-shadow:0 16px 36px rgba(0,0,0,.16);}
+.lesson-thumb{width:100%;height:90px;object-fit:cover;display:block;background:#e0e0e0;}
+.lesson-card-body{padding:10px 10px 12px;text-align:center;}
+.lesson-card .icon{font-size:1.4rem;}
+.lesson-card .name{font-size:.92rem;font-weight:800;color:#444;margin-top:2px;}
+#learn-screen{display:none;max-width:480px;margin:0 auto;padding:10px 18px 40px;position:relative;z-index:10;}
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.btn-back{background:white;border:none;border-radius:50px;padding:8px 18px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:700;color:#555;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s;}
+.btn-back:hover{transform:scale(1.05);}
+.prog-wrap{flex:1;margin:0 12px;height:14px;background:rgba(255,255,255,.6);border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#FFD700,#FF9F43);border-radius:10px;transition:width .5s;}
+.prog-text{font-size:.95rem;font-weight:800;color:white;}
+.card-wrap{background:var(--cream);border-radius:28px;box-shadow:0 14px 40px rgba(0,0,0,.14);border:4px solid white;overflow:hidden;animation:popIn .4s cubic-bezier(.3,1.4,.5,1);}
+@keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.card-photo-wrap{position:relative;width:100%;height:260px;background:#ddd;overflow:hidden;}
+.card-photo{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .4s;}
+.photo-spinner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:#f5f5f5;transition:opacity .3s;}
+.card-body{padding:20px 20px 22px;text-align:center;}
+.card-word{font-size:3rem;font-weight:900;color:#333;letter-spacing:2px;margin-bottom:4px;}
+.card-sub{font-size:1.05rem;color:#999;font-weight:600;}
+.speak-btn{margin-top:18px;background:linear-gradient(135deg,#FF85A1,#FF9F43);border:none;border-radius:50px;padding:13px 36px;font-family:'Baloo 2',cursive;font-size:1.15rem;font-weight:800;color:white;cursor:pointer;box-shadow:0 6px 18px rgba(255,133,161,.4);display:flex;align-items:center;gap:8px;margin-left:auto;margin-right:auto;transition:transform .15s;}
+.speak-btn:hover{transform:scale(1.07);}
+.speak-btn.speaking{animation:pulse .5s ease-in-out infinite alternate;}
+@keyframes pulse{to{transform:scale(1.1);}}
+.next-btn{margin-top:14px;background:linear-gradient(135deg,#a29bfe,#6c5ce7);border:none;border-radius:50px;padding:12px 34px;font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:700;color:white;cursor:pointer;transition:transform .15s;display:block;margin-left:auto;margin-right:auto;}
+.next-btn:hover{transform:scale(1.05);}
+#done-screen{display:none;text-align:center;max-width:400px;margin:0 auto;padding:30px 18px;position:relative;z-index:10;}
+.done-box{background:var(--cream);border-radius:28px;padding:36px 26px;box-shadow:var(--shadow);border:4px solid white;}
+.done-star{font-size:4rem;animation:spin 2.5s linear infinite;display:inline-block;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.done-box h2{font-size:1.9rem;font-weight:900;color:#FF9F43;margin:12px 0 6px;}
+.done-box p{font-size:1rem;color:#777;}
+.done-actions{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.done-actions button{border:none;border-radius:50px;padding:12px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:white;cursor:pointer;transition:transform .15s;}
+.done-actions button:hover{transform:scale(1.04);}
+.btn-replay{background:linear-gradient(135deg,#7dc95e,#5cb85c);}
+.btn-home{background:linear-gradient(135deg,#FF85A1,#FF9F43);}
+.star-deco{position:fixed;pointer-events:none;font-size:1.3rem;animation:twinkle 2s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
 </style>
 </head>
 <body>
-
-<div class="cloud cloud-1"></div>
-<div class="cloud cloud-2" style="top:30%"></div>
-
-<span class="star-deco" style="top:5%;left:5%;animation-delay:.3s">⭐</span>
-<span class="star-deco" style="top:12%;right:8%;animation-delay:.8s">🌟</span>
-<span class="star-deco" style="top:60%;left:3%;animation-delay:1.2s">✨</span>
-<span class="star-deco" style="top:70%;right:5%;animation-delay:.5s">⭐</span>
-
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<span class="star-deco" style="top:5%;left:4%;animation-delay:.3s">⭐</span>
+<span class="star-deco" style="top:12%;right:7%;animation-delay:.8s">🌟</span>
 <header>
   <h1>🌈 Bé Học Tiếng Việt</h1>
   <p>Dành cho bé 3 tuổi yêu thương 💛</p>
 </header>
-
-<!-- LESSON SELECTOR -->
 <div id="lesson-screen">
   <div class="lesson-grid" id="lessonGrid"></div>
 </div>
-
-<!-- LEARNING SCREEN -->
 <div id="learn-screen">
   <div class="top-bar">
     <button class="btn-back" onclick="goBack()">← Quay lại</button>
-    <div class="progress-bar-wrap">
-      <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
-    </div>
-    <span class="progress-text" id="progressText">1/8</span>
+    <div class="prog-wrap"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <span class="prog-text" id="progText">1/8</span>
   </div>
   <div class="card-wrap" id="cardWrap">
-    <span class="card-emoji" id="cardEmoji">🏠</span>
-    <div class="card-word" id="cardWord">Ba</div>
-    <div class="card-sub" id="cardSub"></div>
-    <button class="speak-btn" id="speakBtn" onclick="speak()">🔊 Nghe lại</button>
-    <button class="next-btn" id="nextBtn" onclick="nextCard()">Tiếp theo →</button>
+    <div class="card-photo-wrap">
+      <div class="photo-spinner" id="photoSpinner">⏳</div>
+      <img class="card-photo" id="cardPhoto" src="" alt="" style="opacity:0"
+           onload="this.style.opacity='1';document.getElementById('photoSpinner').style.opacity='0'"
+           onerror="document.getElementById('photoSpinner').textContent='🖼️'">
+    </div>
+    <div class="card-body">
+      <div class="card-word" id="cardWord"></div>
+      <div class="card-sub" id="cardSub"></div>
+      <button class="speak-btn" id="speakBtn" onclick="speak()">🔊 Nghe lại</button>
+      <button class="next-btn" onclick="nextCard()">Tiếp theo →</button>
+    </div>
   </div>
 </div>
-
-<!-- DONE SCREEN -->
 <div id="done-screen">
   <div class="done-box">
-    <span class="star">🌟</span>
+    <span class="done-star">🌟</span>
     <h2>Giỏi lắm! 🎉</h2>
     <p>Bé đã hoàn thành bài học rồi!</p>
-    <br>
-    <button class="replay-btn" onclick="replay()">🔄 Học lại</button>
-    <button class="replay-btn" style="background:linear-gradient(135deg,#FF85A1,#FF9F43);margin-top:10px;" onclick="goBack()">📚 Chọn bài khác</button>
+    <div class="done-actions">
+      <button class="btn-replay" onclick="replay()">🔄 Học lại</button>
+      <button class="btn-home" onclick="goBack()">📚 Chọn bài khác</button>
+    </div>
   </div>
 </div>
-
 <script>
-const lessons = [
-  {
-    id:'giadinh', name:'Gia đình', icon:'👨‍👩‍👧‍👦',
-    items:[
-      {word:'Bố', emoji:'👨', sub:'Bố của bé'},
-      {word:'Mẹ', emoji:'👩', sub:'Mẹ của bé'},
-      {word:'Ông', emoji:'👴', sub:'Ông nội / ông ngoại'},
-      {word:'Bà', emoji:'👵', sub:'Bà nội / bà ngoại'},
-      {word:'Anh', emoji:'👦', sub:'Anh trai'},
-      {word:'Chị', emoji:'👧', sub:'Chị gái'},
-      {word:'Em bé', emoji:'👶', sub:'Em bé nhỏ xinh'},
-      {word:'Cô', emoji:'👩‍🦱', sub:'Cô của bé'},
-      {word:'Chú', emoji:'🧔', sub:'Chú của bé'},
-      {word:'Bác', emoji:'🧓', sub:'Bác của bé'},
-      {word:'Dì', emoji:'👩', sub:'Dì của bé'},
-      {word:'Cậu', emoji:'👨', sub:'Cậu của bé'},
-      {word:'Gia đình', emoji:'🏠', sub:'Cả nhà yêu thương'},
-      {word:'Con', emoji:'🧒', sub:'Con của bố mẹ'},
-      {word:'Bố mẹ', emoji:'👫', sub:'Bố và mẹ'},
-      {word:'Anh chị', emoji:'👫', sub:'Anh và chị'},
-      {word:'Ông bà', emoji:'👴👵', sub:'Ông và bà'},
-      {word:'Họ hàng', emoji:'👨‍👩‍👧‍👦', sub:'Cả họ hàng'},
-      {word:'Yêu thương', emoji:'❤️', sub:'Bé yêu gia đình'},
-      {word:'Vui vẻ', emoji:'😊', sub:'Gia đình vui vẻ'},
-    ]
-  },
-  {
-    id:'traicay', name:'Trái cây', icon:'🍎',
-    items:[
-      {word:'Táo', emoji:'🍎', sub:'Quả táo đỏ'},
-      {word:'Chuối', emoji:'🍌', sub:'Quả chuối vàng'},
-      {word:'Cam', emoji:'🍊', sub:'Quả cam tròn'},
-      {word:'Dưa hấu', emoji:'🍉', sub:'Dưa hấu mát lạnh'},
-      {word:'Nho', emoji:'🍇', sub:'Chùm nho tím'},
-      {word:'Xoài', emoji:'🥭', sub:'Xoài vàng ngọt'},
-      {word:'Dứa', emoji:'🍍', sub:'Quả dứa gai'},
-      {word:'Ổi', emoji:'🍈', sub:'Quả ổi thơm'},
-      {word:'Dâu', emoji:'🍓', sub:'Quả dâu đỏ'},
-      {word:'Lê', emoji:'🍐', sub:'Quả lê xanh'},
-      {word:'Đào', emoji:'🍑', sub:'Quả đào hồng'},
-      {word:'Việt quất', emoji:'🫐', sub:'Quả việt quất nhỏ'},
-      {word:'Chanh', emoji:'🍋', sub:'Quả chanh vàng'},
-      {word:'Bưởi', emoji:'🍊', sub:'Quả bưởi to'},
-      {word:'Mít', emoji:'🌟', sub:'Quả mít thơm'},
-      {word:'Chôm chôm', emoji:'🌺', sub:'Chôm chôm đỏ'},
-      {word:'Nhãn', emoji:'⚪', sub:'Quả nhãn ngọt'},
-      {word:'Vải', emoji:'❤️', sub:'Quả vải đỏ'},
-      {word:'Thanh long', emoji:'🔴', sub:'Quả thanh long'},
-      {word:'Bơ', emoji:'🥑', sub:'Quả bơ xanh'},
-    ]
-  },
-  {
-    id:'conVat', name:'Con vật', icon:'🐶',
-    items:[
-      {word:'Chó', emoji:'🐶', sub:'Con chó sủa gâu gâu'},
-      {word:'Mèo', emoji:'🐱', sub:'Con mèo kêu meo meo'},
-      {word:'Gà', emoji:'🐔', sub:'Con gà gáy ò ó o'},
-      {word:'Vịt', emoji:'🦆', sub:'Con vịt kêu cạc cạc'},
-      {word:'Bò', emoji:'🐄', sub:'Con bò kêu moo'},
-      {word:'Lợn', emoji:'🐷', sub:'Con lợn kêu ụt ịt'},
-      {word:'Thỏ', emoji:'🐰', sub:'Con thỏ tai dài'},
-      {word:'Cá', emoji:'🐟', sub:'Con cá bơi lội'},
-      {word:'Chim', emoji:'🐦', sub:'Con chim hót hay'},
-      {word:'Bướm', emoji:'🦋', sub:'Con bướm xinh đẹp'},
-      {word:'Kiến', emoji:'🐜', sub:'Con kiến chăm chỉ'},
-      {word:'Ong', emoji:'🐝', sub:'Con ong làm mật'},
-      {word:'Rùa', emoji:'🐢', sub:'Con rùa chậm chạp'},
-      {word:'Ếch', emoji:'🐸', sub:'Con ếch nhảy nhót'},
-      {word:'Cua', emoji:'🦀', sub:'Con cua đi ngang'},
-      {word:'Tôm', emoji:'🦐', sub:'Con tôm đỏ'},
-      {word:'Sên', emoji:'🐌', sub:'Con sên chậm chạp'},
-      {word:'Nhện', emoji:'🕷️', sub:'Con nhện giăng tơ'},
-      {word:'Dê', emoji:'🐐', sub:'Con dê kêu be be'},
-      {word:'Ngựa', emoji:'🐴', sub:'Con ngựa phi nhanh'},
-    ]
-  },
-  {
-    id:'mausac', name:'Màu sắc', icon:'🎨',
-    items:[
-      {word:'Đỏ', emoji:'🔴', sub:'Màu đỏ như quả táo'},
-      {word:'Vàng', emoji:'🟡', sub:'Màu vàng như mặt trời'},
-      {word:'Xanh lá', emoji:'🟢', sub:'Màu xanh như cây cỏ'},
-      {word:'Xanh dương', emoji:'🔵', sub:'Màu xanh như bầu trời'},
-      {word:'Hồng', emoji:'🩷', sub:'Màu hồng xinh xắn'},
-      {word:'Cam', emoji:'🟠', sub:'Màu cam như quả cam'},
-      {word:'Tím', emoji:'🟣', sub:'Màu tím đẹp'},
-      {word:'Trắng', emoji:'⚪', sub:'Màu trắng như mây'},
-      {word:'Đen', emoji:'⚫', sub:'Màu đen như bầu trời đêm'},
-      {word:'Nâu', emoji:'🟤', sub:'Màu nâu như đất'},
-      {word:'Xanh ngọc', emoji:'💎', sub:'Màu xanh ngọc biển'},
-      {word:'Bạc', emoji:'⚪', sub:'Màu bạc sáng bóng'},
-      {word:'Vàng kim', emoji:'⭐', sub:'Màu vàng rực rỡ'},
-      {word:'Hồng đậm', emoji:'🌸', sub:'Màu hồng đậm đẹp'},
-      {word:'Xanh nhạt', emoji:'🩵', sub:'Màu xanh nhạt nhẹ'},
-      {word:'Đỏ đậm', emoji:'❤️', sub:'Màu đỏ đậm'},
-      {word:'Xanh rêu', emoji:'🌿', sub:'Màu xanh rêu'},
-      {word:'Be', emoji:'🌾', sub:'Màu be nhạt'},
-      {word:'Xám', emoji:'🩶', sub:'Màu xám nhạt'},
-      {word:'Vàng chanh', emoji:'🍋', sub:'Màu vàng chanh tươi'},
-    ]
-  },
-  {
-    id:'cotheso', name:'Cơ thể', icon:'👃',
-    items:[
-      {word:'Đầu', emoji:'🗣️', sub:'Cái đầu của bé'},
-      {word:'Mắt', emoji:'👁️', sub:'Đôi mắt sáng'},
-      {word:'Mũi', emoji:'👃', sub:'Cái mũi nhỏ'},
-      {word:'Miệng', emoji:'👄', sub:'Cái miệng xinh'},
-      {word:'Tai', emoji:'👂', sub:'Đôi tai nghe'},
-      {word:'Tóc', emoji:'💇', sub:'Mái tóc mềm mại'},
-      {word:'Tay', emoji:'🤚', sub:'Đôi bàn tay'},
-      {word:'Chân', emoji:'🦵', sub:'Đôi chân khỏe'},
-      {word:'Ngón tay', emoji:'☝️', sub:'Những ngón tay nhỏ'},
-      {word:'Bụng', emoji:'🫃', sub:'Cái bụng no tròn'},
-      {word:'Lưng', emoji:'🔙', sub:'Cái lưng thẳng'},
-      {word:'Vai', emoji:'🤷', sub:'Đôi vai rộng'},
-      {word:'Đầu gối', emoji:'🦵', sub:'Đầu gối bé'},
-      {word:'Cánh tay', emoji:'💪', sub:'Cánh tay khỏe'},
-      {word:'Ngón chân', emoji:'🦶', sub:'Những ngón chân'},
-      {word:'Răng', emoji:'🦷', sub:'Hàm răng trắng'},
-      {word:'Lưỡi', emoji:'👅', sub:'Cái lưỡi đỏ'},
-      {word:'Cổ', emoji:'🧣', sub:'Cái cổ thon'},
-      {word:'Trán', emoji:'😊', sub:'Cái trán rộng'},
-      {word:'Má', emoji:'😊', sub:'Đôi má phúng phính'},
-    ]
-  },
-  {
-    id:'doVat', name:'Đồ vật', icon:'🧸',
-    items:[
-      {word:'Gấu bông', emoji:'🧸', sub:'Con gấu bông mềm'},
-      {word:'Bóng', emoji:'⚽', sub:'Quả bóng tròn'},
-      {word:'Xe đồ chơi', emoji:'🚗', sub:'Xe ô tô đồ chơi'},
-      {word:'Búp bê', emoji:'🪆', sub:'Con búp bê xinh'},
-      {word:'Xếp hình', emoji:'🧩', sub:'Trò chơi xếp hình'},
-      {word:'Sách', emoji:'📚', sub:'Quyển sách đẹp'},
-      {word:'Bút', emoji:'✏️', sub:'Cây bút màu'},
-      {word:'Ghế', emoji:'🪑', sub:'Cái ghế ngồi'},
-      {word:'Bàn', emoji:'🪵', sub:'Cái bàn học'},
-      {word:'Giường', emoji:'🛏️', sub:'Cái giường ngủ'},
-      {word:'Gối', emoji:'🛏️', sub:'Cái gối mềm'},
-      {word:'Chăn', emoji:'🛌', sub:'Cái chăn ấm'},
-      {word:'Cốc', emoji:'🥤', sub:'Cái cốc nước'},
-      {word:'Bát', emoji:'🍜', sub:'Cái bát ăn cơm'},
-      {word:'Thìa', emoji:'🥄', sub:'Cái thìa ăn'},
-      {word:'Đèn', emoji:'💡', sub:'Cái đèn sáng'},
-      {word:'Điện thoại', emoji:'📱', sub:'Cái điện thoại'},
-      {word:'Ti vi', emoji:'📺', sub:'Cái ti vi'},
-      {word:'Tủ lạnh', emoji:'🧊', sub:'Tủ lạnh mát'},
-      {word:'Máy giặt', emoji:'🫧', sub:'Máy giặt quần áo'},
-    ]
-  },
-  {
-    id:'thoitiet', name:'Thời tiết', icon:'🌤️',
-    items:[
-      {word:'Nắng', emoji:'☀️', sub:'Trời nắng sáng'},
-      {word:'Mưa', emoji:'🌧️', sub:'Trời mưa ướt'},
-      {word:'Gió', emoji:'💨', sub:'Gió thổi mát'},
-      {word:'Mây', emoji:'☁️', sub:'Đám mây trắng'},
-      {word:'Sấm', emoji:'⛈️', sub:'Sấm to đùng đùng'},
-      {word:'Chớp', emoji:'⚡', sub:'Chớp sáng lòe'},
-      {word:'Sương', emoji:'🌫️', sub:'Sương mù buổi sáng'},
-      {word:'Tuyết', emoji:'❄️', sub:'Tuyết rơi trắng'},
-      {word:'Cầu vồng', emoji:'🌈', sub:'Cầu vồng bảy sắc'},
-      {word:'Bầu trời', emoji:'🌌', sub:'Bầu trời xanh cao'},
-      {word:'Mặt trời', emoji:'🌞', sub:'Mặt trời tỏa sáng'},
-      {word:'Mặt trăng', emoji:'🌙', sub:'Mặt trăng đêm'},
-      {word:'Ngôi sao', emoji:'⭐', sub:'Ngôi sao lung linh'},
-      {word:'Trời nóng', emoji:'🥵', sub:'Trời nóng bức'},
-      {word:'Trời lạnh', emoji:'🥶', sub:'Trời lạnh buốt'},
-      {word:'Mùa xuân', emoji:'🌸', sub:'Mùa xuân ấm áp'},
-      {word:'Mùa hạ', emoji:'🌻', sub:'Mùa hạ nóng bức'},
-      {word:'Mùa thu', emoji:'🍂', sub:'Mùa thu lá vàng'},
-      {word:'Mùa đông', emoji:'⛄', sub:'Mùa đông lạnh giá'},
-      {word:'Bão', emoji:'🌀', sub:'Cơn bão to'},
-    ]
-  },
+// Unsplash Source API – trả ảnh thực tế theo keyword tiếng Anh
+// sig = seed để ảnh ổn định mỗi lần load cùng từ khoá
+function img(q,sig,w=500,h=340){
+  return `https://source.unsplash.com/${w}x${h}/?${encodeURIComponent(q)}&sig=${sig}`;
+}
+
+const lessons=[
+  {id:'giadinh',name:'Gia đình',icon:'👨‍👩‍👧',thumbQ:'happy family portrait',thumbSig:1,
+   items:[
+    {w:'Bố',s:'Bố của bé',q:'father with child smiling',sig:11},
+    {w:'Mẹ',s:'Mẹ của bé',q:'mother smiling portrait woman',sig:12},
+    {w:'Ông',s:'Ông nội / ông ngoại',q:'grandfather old man kind',sig:13},
+    {w:'Bà',s:'Bà nội / bà ngoại',q:'grandmother old woman smiling',sig:14},
+    {w:'Anh trai',s:'Anh trai của bé',q:'teenage boy smiling portrait',sig:15},
+    {w:'Chị gái',s:'Chị gái của bé',q:'teenage girl happy portrait',sig:16},
+    {w:'Em bé',s:'Em bé nhỏ xinh',q:'cute baby infant portrait',sig:17},
+    {w:'Gia đình',s:'Cả nhà yêu thương',q:'happy family together outdoors',sig:18},
+    {w:'Bố mẹ',s:'Bố và mẹ',q:'couple parents smiling together',sig:19},
+    {w:'Ông bà',s:'Ông và bà',q:'grandparents couple smiling',sig:20},
+    {w:'Con trai',s:'Con trai của bố mẹ',q:'little boy portrait child',sig:21},
+    {w:'Con gái',s:'Con gái của bố mẹ',q:'little girl smiling portrait child',sig:22},
+    {w:'Anh chị em',s:'Anh chị em ruột',q:'siblings brother sister children',sig:23},
+    {w:'Cả nhà',s:'Cả gia đình',q:'big happy family gathering',sig:24},
+    {w:'Dì',s:'Dì của bé',q:'young aunt woman smiling',sig:25},
+    {w:'Chú',s:'Chú của bé',q:'young uncle man smiling',sig:26},
+    {w:'Trẻ em',s:'Các bé nhỏ vui chơi',q:'children playing laughing together',sig:27},
+    {w:'Bé gái',s:'Bé gái dễ thương',q:'cute little girl portrait smile',sig:28},
+    {w:'Bé trai',s:'Bé trai nghịch ngợm',q:'cute little boy portrait laugh',sig:29},
+    {w:'Họ hàng',s:'Cả họ hàng đoàn tụ',q:'extended family reunion gathering',sig:30},
+   ]},
+  {id:'traicay',name:'Trái cây',icon:'🍎',thumbQ:'fresh fruits colorful',thumbSig:2,
+   items:[
+    {w:'Táo',s:'Quả táo đỏ',q:'red apple fruit fresh',sig:101},
+    {w:'Chuối',s:'Quả chuối vàng',q:'yellow banana fruit fresh',sig:102},
+    {w:'Cam',s:'Quả cam tươi',q:'orange citrus fruit fresh',sig:103},
+    {w:'Dưa hấu',s:'Dưa hấu mát lạnh',q:'watermelon slice fresh summer',sig:104},
+    {w:'Nho',s:'Chùm nho tím',q:'purple grapes bunch fresh',sig:105},
+    {w:'Xoài',s:'Xoài vàng ngọt',q:'mango tropical fruit fresh',sig:106},
+    {w:'Dứa',s:'Quả dứa gai',q:'pineapple tropical fruit',sig:107},
+    {w:'Dâu tây',s:'Quả dâu đỏ',q:'strawberry red fresh fruit',sig:108},
+    {w:'Lê',s:'Quả lê xanh',q:'pear green fruit fresh',sig:109},
+    {w:'Đào',s:'Quả đào hồng',q:'peach pink fruit fresh',sig:110},
+    {w:'Chanh',s:'Quả chanh vàng',q:'lemon yellow citrus fresh',sig:111},
+    {w:'Bưởi',s:'Quả bưởi to',q:'pomelo grapefruit citrus',sig:112},
+    {w:'Nhãn',s:'Quả nhãn ngọt',q:'longan fruit tropical',sig:113},
+    {w:'Vải',s:'Quả vải đỏ',q:'lychee red fruit tropical',sig:114},
+    {w:'Thanh long',s:'Quả thanh long',q:'dragon fruit pink',sig:115},
+    {w:'Bơ',s:'Quả bơ xanh',q:'avocado green fruit fresh',sig:116},
+    {w:'Ổi',s:'Quả ổi thơm',q:'guava fruit tropical',sig:117},
+    {w:'Mít',s:'Quả mít thơm',q:'jackfruit large tropical',sig:118},
+    {w:'Đu đủ',s:'Quả đu đủ vàng',q:'papaya tropical fruit',sig:119},
+    {w:'Việt quất',s:'Quả việt quất nhỏ',q:'blueberry fresh fruit',sig:120},
+   ]},
+  {id:'conVat',name:'Con vật',icon:'🐶',thumbQ:'cute domestic animals',thumbSig:3,
+   items:[
+    {w:'Chó',s:'Con chó sủa gâu gâu',q:'cute dog portrait domestic',sig:201},
+    {w:'Mèo',s:'Con mèo kêu meo meo',q:'cute cat portrait domestic',sig:202},
+    {w:'Gà',s:'Con gà gáy ò ó o',q:'chicken rooster farm bird',sig:203},
+    {w:'Vịt',s:'Con vịt kêu cạc cạc',q:'duck bird pond water',sig:204},
+    {w:'Bò',s:'Con bò cho sữa',q:'cow dairy farm animal',sig:205},
+    {w:'Lợn',s:'Con lợn nuôi',q:'pig farm animal',sig:206},
+    {w:'Thỏ',s:'Con thỏ tai dài',q:'rabbit bunny cute white',sig:207},
+    {w:'Cá vàng',s:'Cá vàng bơi lội',q:'goldfish aquarium colorful',sig:208},
+    {w:'Chim sẻ',s:'Chim hót hay',q:'sparrow bird perch cute',sig:209},
+    {w:'Bướm',s:'Con bướm xinh đẹp',q:'butterfly colorful flower',sig:210},
+    {w:'Rùa',s:'Con rùa chậm chạp',q:'turtle tortoise cute',sig:211},
+    {w:'Ếch',s:'Con ếch nhảy nhót',q:'frog green cute',sig:212},
+    {w:'Dê',s:'Con dê kêu be be',q:'goat farm animal',sig:213},
+    {w:'Ngựa',s:'Con ngựa phi nhanh',q:'horse beautiful animal',sig:214},
+    {w:'Trâu',s:'Con trâu cày ruộng',q:'water buffalo animal',sig:215},
+    {w:'Mèo con',s:'Mèo con bé xíu',q:'kitten small cute',sig:216},
+    {w:'Chó con',s:'Chó con đáng yêu',q:'puppy small cute',sig:217},
+    {w:'Gà con',s:'Gà con vàng xinh',q:'baby chick yellow cute',sig:218},
+    {w:'Vịt con',s:'Vịt con bé nhỏ',q:'baby duckling yellow water',sig:219},
+    {w:'Cò',s:'Con cò trắng',q:'egret white bird standing',sig:220},
+   ]},
+  {id:'mausac',name:'Màu sắc',icon:'🎨',thumbQ:'colorful paint palette',thumbSig:4,
+   items:[
+    {w:'Màu đỏ',s:'Đỏ như quả táo',q:'red color bright apple',sig:301},
+    {w:'Màu vàng',s:'Vàng như mặt trời',q:'yellow sunflower bright color',sig:302},
+    {w:'Màu xanh lá',s:'Xanh như lá cây',q:'green leaves forest nature',sig:303},
+    {w:'Màu xanh dương',s:'Xanh như bầu trời',q:'blue clear sky daytime',sig:304},
+    {w:'Màu hồng',s:'Hồng như hoa anh đào',q:'pink cherry blossom flower',sig:305},
+    {w:'Màu cam',s:'Cam như quả cam',q:'orange fruit color bright',sig:306},
+    {w:'Màu tím',s:'Tím như hoa oải hương',q:'purple lavender flowers',sig:307},
+    {w:'Màu trắng',s:'Trắng như bông tuyết',q:'white snow winter pure',sig:308},
+    {w:'Màu đen',s:'Đen như đêm tối',q:'black night dark sky',sig:309},
+    {w:'Màu nâu',s:'Nâu như đất',q:'brown wood texture natural',sig:310},
+    {w:'Màu xanh ngọc',s:'Xanh ngọc của biển',q:'turquoise tropical sea water',sig:311},
+    {w:'Màu vàng kim',s:'Vàng rực rỡ',q:'gold golden shiny metal',sig:312},
+    {w:'Màu đỏ đậm',s:'Đỏ đậm như hoa hồng',q:'dark red rose flower',sig:313},
+    {w:'Màu xanh nhạt',s:'Xanh nhạt dịu dàng',q:'light blue pastel soft',sig:314},
+    {w:'Màu xám',s:'Xám như đám mây',q:'gray cloudy sky overcast',sig:315},
+    {w:'Màu be',s:'Màu be nhẹ nhàng',q:'beige sand color natural',sig:316},
+    {w:'Màu xanh rêu',s:'Xanh rêu của cỏ',q:'moss green ground forest',sig:317},
+    {w:'Màu bạc',s:'Bạc sáng bóng',q:'silver metallic shiny surface',sig:318},
+    {w:'Màu đỏ hồng',s:'Đỏ hồng tươi sáng',q:'coral pink color bright',sig:319},
+    {w:'Màu tím nhạt',s:'Tím nhạt dịu',q:'light purple lilac flower',sig:320},
+   ]},
+  {id:'cotheso',name:'Cơ thể',icon:'👦',thumbQ:'child healthy portrait smile',thumbSig:5,
+   items:[
+    {w:'Đầu',s:'Cái đầu của bé',q:'child head portrait close up',sig:401},
+    {w:'Mắt',s:'Đôi mắt sáng',q:'child eyes close up beautiful',sig:402},
+    {w:'Mũi',s:'Cái mũi nhỏ',q:'child nose face close up',sig:403},
+    {w:'Miệng',s:'Nụ cười xinh',q:'child smile teeth happy',sig:404},
+    {w:'Tai',s:'Đôi tai nghe',q:'child ear close up side',sig:405},
+    {w:'Tóc',s:'Mái tóc mềm mại',q:'child hair soft portrait',sig:406},
+    {w:'Bàn tay',s:'Đôi bàn tay nhỏ',q:'child small hands cute',sig:407},
+    {w:'Bàn chân',s:'Đôi chân khoẻ',q:'baby feet toes cute',sig:408},
+    {w:'Ngón tay',s:'Ngón tay bé xíu',q:'child fingers hand close up',sig:409},
+    {w:'Bụng',s:'Cái bụng no tròn',q:'child tummy belly laughing',sig:410},
+    {w:'Vai',s:'Đôi vai nhỏ',q:'child shoulder portrait',sig:411},
+    {w:'Đầu gối',s:'Đầu gối của bé',q:'child knee leg sitting',sig:412},
+    {w:'Cánh tay',s:'Cánh tay khoẻ',q:'child arm raising up',sig:413},
+    {w:'Ngón chân',s:'Ngón chân nhỏ xinh',q:'baby toes feet cute',sig:414},
+    {w:'Răng',s:'Hàm răng trắng',q:'child teeth smile open',sig:415},
+    {w:'Cổ',s:'Cái cổ thon',q:'child neck portrait side',sig:416},
+    {w:'Trán',s:'Cái trán rộng',q:'child forehead portrait close',sig:417},
+    {w:'Má',s:'Má phúng phính',q:'baby chubby cheeks cute portrait',sig:418},
+    {w:'Lòng bàn tay',s:'Lòng bàn tay mềm',q:'child palm hand open',sig:419},
+    {w:'Lưng',s:'Lưng thẳng',q:'child back posture standing',sig:420},
+   ]},
+  {id:'thoitiet',name:'Thời tiết',icon:'🌤️',thumbQ:'weather sky clouds sunny',thumbSig:6,
+   items:[
+    {w:'Trời nắng',s:'Nắng rực rỡ',q:'sunny day clear blue sky bright',sig:501},
+    {w:'Trời mưa',s:'Mưa rơi lộp độp',q:'rain drops falling street',sig:502},
+    {w:'Gió thổi',s:'Gió mát dịu',q:'wind blowing trees leaves',sig:503},
+    {w:'Đám mây',s:'Mây trắng xốp',q:'white fluffy clouds blue sky',sig:504},
+    {w:'Sấm sét',s:'Sấm to đùng đùng',q:'lightning bolt storm dark',sig:505},
+    {w:'Sương mù',s:'Sương sớm mù mờ',q:'morning fog mist forest',sig:506},
+    {w:'Tuyết rơi',s:'Tuyết trắng xóa',q:'snow falling winter white',sig:507},
+    {w:'Cầu vồng',s:'Bảy sắc cầu vồng',q:'rainbow colorful sky after rain',sig:508},
+    {w:'Bầu trời',s:'Bầu trời xanh',q:'clear blue sky daytime horizon',sig:509},
+    {w:'Mặt trời',s:'Mặt trời tỏa sáng',q:'bright sun shining sky',sig:510},
+    {w:'Mặt trăng',s:'Trăng đêm sáng',q:'full moon night sky dark',sig:511},
+    {w:'Ngôi sao',s:'Sao lung linh',q:'stars night sky milky way',sig:512},
+    {w:'Trời nóng',s:'Nắng nóng mùa hè',q:'hot summer heat heatwave',sig:513},
+    {w:'Trời lạnh',s:'Lạnh giá mùa đông',q:'cold winter frost ice',sig:514},
+    {w:'Mùa xuân',s:'Hoa nở mùa xuân',q:'spring flowers bloom garden',sig:515},
+    {w:'Mùa hạ',s:'Nắng hè rực rỡ',q:'summer beach sunny hot',sig:516},
+    {w:'Mùa thu',s:'Lá vàng mùa thu',q:'autumn fall golden leaves',sig:517},
+    {w:'Mùa đông',s:'Tuyết đông lạnh giá',q:'winter snow landscape cold',sig:518},
+    {w:'Bão',s:'Bão tố giữa trời',q:'storm strong wind dark clouds',sig:519},
+    {w:'Nắng nhẹ',s:'Nắng ban mai dịu',q:'soft morning sunlight warm',sig:520},
+   ]},
+  {id:'doVat',name:'Đồ vật',icon:'🏠',thumbQ:'children toys bedroom colorful',thumbSig:7,
+   items:[
+    {w:'Gấu bông',s:'Gấu bông mềm mại',q:'teddy bear soft plush toy',sig:601},
+    {w:'Bóng',s:'Quả bóng tròn',q:'colorful ball toy child play',sig:602},
+    {w:'Sách',s:'Quyển sách đẹp',q:'children book colorful pages',sig:603},
+    {w:'Bút chì',s:'Cây bút chì màu',q:'colored pencils drawing art',sig:604},
+    {w:'Bàn học',s:'Bàn học của bé',q:'child study desk table school',sig:605},
+    {w:'Ghế',s:'Cái ghế ngồi',q:'small chair wood sitting',sig:606},
+    {w:'Giường',s:'Giường ngủ êm ái',q:'children bedroom bed cozy',sig:607},
+    {w:'Gối',s:'Gối mềm êm',q:'pillow soft fluffy bed',sig:608},
+    {w:'Cốc nước',s:'Cốc uống nước',q:'drinking glass cup water',sig:609},
+    {w:'Bát cơm',s:'Bát ăn cơm',q:'bowl ceramic rice eating',sig:610},
+    {w:'Cái thìa',s:'Thìa ăn nhỏ',q:'spoon silver cutlery',sig:611},
+    {w:'Đèn ngủ',s:'Đèn ngủ ấm áp',q:'night lamp bedroom warm glow',sig:612},
+    {w:'Xe đồ chơi',s:'Ô tô đồ chơi',q:'toy car plastic colorful child',sig:613},
+    {w:'Búp bê',s:'Búp bê xinh',q:'doll toy girl',sig:614},
+    {w:'Xếp hình',s:'Trò xếp hình sáng tạo',q:'building blocks lego colorful',sig:615},
+    {w:'Bàn chải răng',s:'Bàn chải đánh răng',q:'toothbrush bathroom hygiene',sig:616},
+    {w:'Khăn mặt',s:'Khăn mặt mềm',q:'face towel soft bathroom',sig:617},
+    {w:'Cặp sách',s:'Cặp đi học',q:'school backpack children colorful',sig:618},
+    {w:'Xe đạp',s:'Xe đạp nhỏ của bé',q:'kids bicycle small colorful',sig:619},
+    {w:'Bóng bay',s:'Bóng bay nhiều màu',q:'colorful balloons party',sig:620},
+   ]},
 ];
 
-let currentLesson = null;
-let currentQueue = [];
-let currentIndex = 0;
-let synth = window.speechSynthesis;
-
-function getVoice() {
-  const voices = synth.getVoices();
-  return voices.find(v => v.lang.startsWith('vi')) || voices[0];
-}
-
-function speakWord(word) {
+let currentLesson=null,queue=[],idx=0;
+const synth=window.speechSynthesis;
+function imgUrl(q,sig,w,h){return`https://source.unsplash.com/${w}x${h}/?${encodeURIComponent(q)}&sig=${sig}`;}
+function getVoice(){const v=synth.getVoices();return v.find(x=>x.lang.startsWith('vi'))||v[0];}
+function speakText(t){
   synth.cancel();
-  const utter = new SpeechSynthesisUtterance(word);
-  utter.lang = 'vi-VN';
-  utter.rate = 0.75;
-  utter.pitch = 1.2;
-  const voice = getVoice();
-  if(voice) utter.voice = voice;
-  const btn = document.getElementById('speakBtn');
-  btn.classList.add('speaking');
-  utter.onend = () => btn.classList.remove('speaking');
-  synth.speak(utter);
+  const u=new SpeechSynthesisUtterance(t);
+  u.lang='vi-VN';u.rate=0.75;u.pitch=1.2;
+  const vo=getVoice();if(vo)u.voice=vo;
+  const btn=document.getElementById('speakBtn');
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');}
+  synth.speak(u);
 }
-
-function renderLessons() {
-  const grid = document.getElementById('lessonGrid');
-  const colors = ['#FFE0E6','#FFF0D9','#E8F5E9','#E3F2FD','#EDE7F6','#FCE4EC','#E0F7FA'];
-  grid.innerHTML = lessons.map((l,i) => `
+function renderLessons(){
+  const colors=['#fff0f3','#fff8e6','#edfbea','#e6f4ff','#f3eeff','#fce8ff','#e6fff9'];
+  document.getElementById('lessonGrid').innerHTML=lessons.map((l,i)=>`
     <div class="lesson-card" style="background:${colors[i%colors.length]}" onclick="startLesson('${l.id}')">
-      <span class="icon">${l.icon}</span>
-      <div class="name">${l.name}</div>
-    </div>
-  `).join('');
+      <img class="lesson-thumb" src="${imgUrl(l.thumbQ,l.thumbSig,280,90)}" alt="${l.name}" onerror="this.style.background='#e0e0e0'">
+      <div class="lesson-card-body"><span class="icon">${l.icon}</span><div class="name">${l.name}</div></div>
+    </div>`).join('');
 }
-
-function startLesson(id) {
-  currentLesson = lessons.find(l => l.id === id);
-  const shuffled = [...currentLesson.items].sort(() => Math.random() - 0.5);
-  currentQueue = shuffled.slice(0, 8);
-  currentIndex = 0;
-  document.getElementById('lesson-screen').style.display = 'none';
-  document.getElementById('done-screen').style.display = 'none';
-  document.getElementById('learn-screen').style.display = 'block';
+function startLesson(id){
+  currentLesson=lessons.find(l=>l.id===id);
+  queue=[...currentLesson.items].sort(()=>Math.random()-.5).slice(0,8);
+  idx=0;
+  document.getElementById('lesson-screen').style.display='none';
+  document.getElementById('done-screen').style.display='none';
+  document.getElementById('learn-screen').style.display='block';
   showCard();
 }
-
-function showCard() {
-  const item = currentQueue[currentIndex];
-  document.getElementById('cardEmoji').textContent = item.emoji;
-  document.getElementById('cardWord').textContent = item.word;
-  document.getElementById('cardSub').textContent = item.sub;
+function showCard(){
+  const item=queue[idx];
+  const sp=document.getElementById('photoSpinner');
+  sp.style.display='flex';sp.textContent='⏳';sp.style.opacity='1';
+  const ph=document.getElementById('cardPhoto');
+  ph.style.opacity='0';
+  ph.onload=()=>{ph.style.opacity='1';sp.style.opacity='0';};
+  ph.onerror=()=>{sp.textContent='🖼️';};
+  ph.src=imgUrl(item.q,item.sig,500,300);
+  ph.alt=item.w;
+  document.getElementById('cardWord').textContent=item.w;
+  document.getElementById('cardSub').textContent=item.s;
   updateProgress();
-  // auto speak
-  setTimeout(() => speakWord(item.word), 400);
-  // animate
-  const wrap = document.getElementById('cardWrap');
-  wrap.style.animation = 'none';
-  void wrap.offsetWidth;
-  wrap.style.animation = 'popIn .4s cubic-bezier(.3,1.4,.5,1)';
+  const wrap=document.getElementById('cardWrap');
+  wrap.style.animation='none';void wrap.offsetWidth;
+  wrap.style.animation='popIn .4s cubic-bezier(.3,1.4,.5,1)';
+  setTimeout(()=>speakText(item.w),500);
 }
-
-function speak() { speakWord(currentQueue[currentIndex].word); }
-
-function nextCard() {
-  currentIndex++;
-  if(currentIndex >= currentQueue.length) {
-    showDone(); return;
-  }
-  showCard();
+function speak(){speakText(queue[idx].w);}
+function nextCard(){idx++;if(idx>=queue.length){showDone();return;}showCard();}
+function updateProgress(){
+  document.getElementById('progFill').style.width=((idx+1)/queue.length*100)+'%';
+  document.getElementById('progText').textContent=`${idx+1}/${queue.length}`;
 }
-
-function updateProgress() {
-  const pct = ((currentIndex+1) / currentQueue.length) * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = `${currentIndex+1}/${currentQueue.length}`;
+function showDone(){
+  document.getElementById('learn-screen').style.display='none';
+  document.getElementById('done-screen').style.display='block';
+  speakText('Giỏi lắm! Bé học rất tốt!');
 }
-
-function showDone() {
-  document.getElementById('learn-screen').style.display = 'none';
-  document.getElementById('done-screen').style.display = 'block';
-  speakWord('Giỏi lắm! Bé học rất tốt!');
-}
-
-function replay() {
-  startLesson(currentLesson.id);
-}
-
-function goBack() {
+function replay(){startLesson(currentLesson.id);}
+function goBack(){
   synth.cancel();
-  document.getElementById('learn-screen').style.display = 'none';
-  document.getElementById('done-screen').style.display = 'none';
-  document.getElementById('lesson-screen').style.display = 'block';
+  document.getElementById('learn-screen').style.display='none';
+  document.getElementById('done-screen').style.display='none';
+  document.getElementById('lesson-screen').style.display='block';
 }
-
-// init
-synth.onvoiceschanged = () => {};
+synth.onvoiceschanged=()=>{};
 renderLessons();
 </script>
 </body>

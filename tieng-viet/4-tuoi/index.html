@@ -6,238 +6,104 @@
 <title>Bé học tiếng Việt - 4 tuổi 🦁</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg1: #1a1a2e;
-    --bg2: #16213e;
-    --accent: #e94560;
-    --gold: #f5a623;
-    --green: #0BDA51;
-    --blue: #4FC3F7;
-    --card: rgba(255,255,255,0.07);
-    --card-border: rgba(255,255,255,0.15);
-    --white: #ffffff;
-  }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    min-height: 100vh;
-    color: var(--white);
-    overflow-x: hidden;
-  }
-
-  /* Animated bg stars */
-  .stars {
-    position: fixed; inset:0; pointer-events:none; z-index:0;
-    background: radial-gradient(ellipse at center, transparent 60%, rgba(10,10,40,0.8) 100%);
-  }
-  .star-particle {
-    position: fixed; border-radius:50%; background:white;
-    animation: twinkle ease-in-out infinite;
-    pointer-events:none;
-  }
-  @keyframes twinkle {
-    0%,100%{opacity:.15;transform:scale(1)}
-    50%{opacity:.9;transform:scale(1.5)}
-  }
-
-  header {
-    position:relative;z-index:10;
-    text-align:center; padding: 28px 20px 18px;
-  }
-  header h1 {
-    font-size: 2.2rem; font-weight:900;
-    background: linear-gradient(90deg, #f5a623, #e94560, #4FC3F7);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    filter: drop-shadow(0 2px 12px rgba(229,69,96,.4));
-    letter-spacing: 1px;
-  }
-  header p { color:rgba(255,255,255,0.65); font-size:1rem; margin-top:6px; }
-
-  /* Lesson screen */
-  #lesson-screen { position:relative;z-index:10; max-width:680px;margin:0 auto;padding:10px 20px 40px; }
-  .lesson-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:14px; margin-top:8px; }
-  .lesson-card {
-    background:var(--card); border:2px solid var(--card-border); border-radius:20px;
-    padding:18px 10px; text-align:center; cursor:pointer;
-    transition: transform .2s, border-color .2s, background .2s;
-    backdrop-filter: blur(8px);
-  }
-  .lesson-card:hover {
-    transform:translateY(-6px) scale(1.05);
-    border-color: var(--gold);
-    background: rgba(245,166,35,0.12);
-  }
-  .lesson-card .icon { font-size:2.6rem; display:block;margin-bottom:8px; }
-  .lesson-card .name { font-size:.92rem;font-weight:800;color:rgba(255,255,255,0.9); }
-
-  /* Learn screen */
-  #learn-screen { display:none; max-width:560px;margin:0 auto;padding:10px 20px 40px; position:relative;z-index:10; }
-
-  .top-bar { display:flex;align-items:center;gap:12px;margin-bottom:20px; }
-  .btn-back {
-    background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2);
-    color:white; border-radius:50px; padding:7px 16px;
-    font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;
-    cursor:pointer;transition:background .2s;
-  }
-  .btn-back:hover { background:rgba(255,255,255,0.2); }
-  .progress-wrap { flex:1; height:12px; background:rgba(255,255,255,0.12); border-radius:10px;overflow:hidden; }
-  .progress-fill { height:100%; background:linear-gradient(90deg,#f5a623,#e94560); border-radius:10px; transition:width .5s ease; }
-  .progress-label { font-size:.9rem;font-weight:800;color:var(--gold);white-space:nowrap; }
-
-  /* Question card */
-  .question-box {
-    background:var(--card); border:2px solid var(--card-border);
-    border-radius:24px; padding:24px 20px 20px; text-align:center;
-    backdrop-filter:blur(12px);
-    animation: slideIn .4s cubic-bezier(.3,1.3,.5,1);
-  }
-  @keyframes slideIn {
-    from { transform:translateY(30px) scale(0.9); opacity:0; }
-    to { transform:translateY(0) scale(1); opacity:1; }
-  }
-  .question-label { font-size:.9rem;color:rgba(255,255,255,.55);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px; }
-  .question-word {
-    font-size: 2.8rem; font-weight:900;
-    background:linear-gradient(135deg,#fff,#4FC3F7);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    margin-bottom: 8px; letter-spacing:2px;
-  }
-  .speak-q-btn {
-    background:linear-gradient(135deg,#e94560,#f5a623);
-    border:none;border-radius:50px;padding:8px 22px;
-    font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:white;
-    cursor:pointer;transition:transform .15s;margin-bottom:6px;
-    box-shadow:0 4px 16px rgba(229,69,96,.35);
-  }
-  .speak-q-btn:hover { transform:scale(1.07); }
-
-  /* Choices */
-  .choices-grid {
-    display:grid; grid-template-columns:1fr 1fr;
-    gap:12px; margin-top:16px;
-  }
-  .choice-btn {
-    background:rgba(255,255,255,0.08); border:2px solid rgba(255,255,255,0.15);
-    border-radius:18px; padding:16px 10px; cursor:pointer;
-    transition: transform .2s, border-color .2s, background .2s;
-    text-align:center; position:relative; overflow:hidden;
-  }
-  .choice-btn:hover:not(:disabled) {
-    transform:scale(1.04);
-    border-color:rgba(255,255,255,0.5);
-    background:rgba(255,255,255,0.14);
-  }
-  .choice-btn .c-emoji { font-size:2.8rem; display:block;margin-bottom:6px; }
-  .choice-btn .c-label { font-size:1rem; font-weight:800; color:rgba(255,255,255,0.85); }
-  .choice-btn.correct {
-    border-color: var(--green); background:rgba(11,218,81,.15);
-    animation: correctPop .4s ease;
-  }
-  .choice-btn.wrong {
-    border-color: var(--accent); background:rgba(233,69,96,.15);
-    animation: shake .4s ease;
-  }
-  @keyframes correctPop {
-    0%{transform:scale(1)} 40%{transform:scale(1.15)} 100%{transform:scale(1)}
-  }
-  @keyframes shake {
-    0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)}
-  }
-  .choice-btn:disabled { cursor:default; }
-
-  .feedback-msg {
-    font-size:1.3rem;font-weight:900;text-align:center;margin-top:12px;
-    min-height:32px; transition:opacity .3s;
-  }
-  .feedback-msg.correct { color:var(--green); }
-  .feedback-msg.wrong { color:var(--accent); }
-
-  .next-btn {
-    display:block;margin:14px auto 0;
-    background:linear-gradient(135deg,#4FC3F7,#6C5CE7);
-    border:none;border-radius:50px;padding:11px 34px;
-    font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:white;
-    cursor:pointer;box-shadow:0 6px 20px rgba(79,195,247,.3);transition:transform .15s;
-    opacity:0;pointer-events:none;
-  }
-  .next-btn.visible { opacity:1;pointer-events:all;animation:popIn .3s ease; }
-  @keyframes popIn { from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1} }
-  .next-btn:hover { transform:scale(1.05); }
-
-  /* Score bar */
-  .score-row { display:flex;justify-content:center;gap:20px;margin-bottom:14px; }
-  .score-badge {
-    background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);
-    border-radius:50px;padding:5px 16px;font-size:.9rem;font-weight:800;
-  }
-  .score-badge.good { border-color:var(--green);color:var(--green); }
-  .score-badge.bad { border-color:var(--accent);color:var(--accent); }
-
-  /* Done */
-  #done-screen {
-    display:none;text-align:center;max-width:420px;
-    margin:0 auto;padding:30px 20px;position:relative;z-index:10;
-  }
-  .done-box {
-    background:var(--card);border:2px solid var(--card-border);
-    border-radius:28px;padding:40px 28px;backdrop-filter:blur(12px);
-  }
-  .done-box .trophy { font-size:4.5rem;animation:float 2s ease-in-out infinite; }
-  @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)} }
-  .done-box h2 { font-size:2rem;font-weight:900;color:var(--gold);margin:16px 0 8px; }
-  .done-result { font-size:1.3rem;color:var(--green);font-weight:800;margin-bottom:6px; }
-  .done-box p { color:rgba(255,255,255,.65);font-size:1rem; }
-  .done-actions { display:flex;flex-direction:column;gap:10px;margin-top:22px; }
-  .done-actions button {
-    border:none;border-radius:50px;padding:12px;
-    font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:white;cursor:pointer;
-    transition:transform .15s;
-  }
-  .done-actions button:hover { transform:scale(1.04); }
-  .btn-replay { background:linear-gradient(135deg,#0BDA51,#00b341); }
-  .btn-home { background:linear-gradient(135deg,#f5a623,#e94560); }
+:root{--bg1:#1a1a2e;--bg2:#16213e;--accent:#e94560;--gold:#f5a623;--green:#0BDA51;--blue:#4FC3F7;--card:rgba(255,255,255,0.07);--border:rgba(255,255,255,0.15);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);min-height:100vh;color:#fff;overflow-x:hidden;}
+.star-p{position:fixed;border-radius:50%;background:white;animation:twinkle ease-in-out infinite;pointer-events:none;}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.9;transform:scale(1.5)}}
+header{position:relative;z-index:10;text-align:center;padding:28px 20px 18px;}
+header h1{font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,#f5a623,#e94560,#4FC3F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px;}
+header p{color:rgba(255,255,255,.65);font-size:1rem;margin-top:6px;}
+#lesson-screen{position:relative;z-index:10;max-width:680px;margin:0 auto;padding:10px 20px 40px;}
+.lesson-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px;margin-top:8px;}
+.lesson-card{background:var(--card);border:2px solid var(--border);border-radius:20px;cursor:pointer;transition:transform .2s,border-color .2s;backdrop-filter:blur(8px);overflow:hidden;}
+.lesson-card:hover{transform:translateY(-6px) scale(1.05);border-color:var(--gold);}
+.lesson-thumb{width:100%;height:80px;object-fit:cover;background:#222;}
+.lesson-card-body{padding:10px 8px 12px;text-align:center;}
+.lesson-card .icon{font-size:1.3rem;}
+.lesson-card .name{font-size:.85rem;font-weight:800;color:rgba(255,255,255,.9);margin-top:3px;}
+#learn-screen{display:none;max-width:560px;margin:0 auto;padding:10px 20px 40px;position:relative;z-index:10;}
+.top-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.btn-back{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);color:white;border-radius:50px;padding:7px 16px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-back:hover{background:rgba(255,255,255,.2);}
+.prog-wrap{flex:1;height:12px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#f5a623,#e94560);border-radius:10px;transition:width .5s;}
+.prog-label{font-size:.9rem;font-weight:800;color:var(--gold);white-space:nowrap;}
+.score-row{display:flex;justify-content:center;gap:20px;margin-bottom:14px;}
+.score-badge{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:50px;padding:5px 16px;font-size:.9rem;font-weight:800;}
+.score-badge.good{border-color:var(--green);color:var(--green);}
+.score-badge.bad{border-color:var(--accent);color:var(--accent);}
+.q-box{background:var(--card);border:2px solid var(--border);border-radius:24px;padding:22px 18px 18px;backdrop-filter:blur(12px);animation:slideIn .4s cubic-bezier(.3,1.3,.5,1);}
+@keyframes slideIn{from{transform:translateY(30px) scale(0.9);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.q-label{font-size:.85rem;color:rgba(255,255,255,.5);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.q-word{font-size:2.6rem;font-weight:900;background:linear-gradient(135deg,#fff,#4FC3F7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;letter-spacing:2px;}
+.speak-q-btn{background:linear-gradient(135deg,#e94560,#f5a623);border:none;border-radius:50px;padding:8px 22px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;color:white;cursor:pointer;transition:.15s;margin-bottom:14px;box-shadow:0 4px 14px rgba(229,69,96,.3);}
+.speak-q-btn:hover{transform:scale(1.07);}
+/* 4-choice grid with real photos */
+.choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.choice-btn{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);border-radius:16px;cursor:pointer;transition:.2s;text-align:center;overflow:hidden;position:relative;}
+.choice-btn:hover:not(:disabled){border-color:rgba(255,255,255,.5);transform:scale(1.04);}
+.choice-img-wrap{width:100%;height:110px;overflow:hidden;background:#1a1a2e;position:relative;}
+.choice-img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s;}
+.choice-img-spinner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:#1a1a2e;}
+.choice-label{padding:8px 4px;font-size:.9rem;font-weight:800;color:rgba(255,255,255,.85);}
+.choice-btn.correct{border-color:var(--green);background:rgba(11,218,81,.18);animation:correctBounce .4s;}
+.choice-btn.wrong{border-color:var(--accent);background:rgba(233,69,96,.15);animation:wrongShake .4s;}
+@keyframes correctBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@keyframes wrongShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.choice-btn:disabled{cursor:default;}
+.feedback-msg{font-size:1.2rem;font-weight:900;text-align:center;margin-top:12px;min-height:28px;}
+.feedback-msg.ok{color:var(--green);}
+.feedback-msg.no{color:var(--accent);}
+.next-btn{display:block;margin:14px auto 0;background:linear-gradient(135deg,#4FC3F7,#6C5CE7);border:none;border-radius:50px;padding:11px 34px;font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:white;cursor:pointer;box-shadow:0 6px 20px rgba(79,195,247,.3);transition:.15s;opacity:0;pointer-events:none;}
+.next-btn.visible{opacity:1;pointer-events:all;animation:popIn .3s;}
+@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.next-btn:hover{transform:scale(1.05);}
+#done-screen{display:none;text-align:center;max-width:420px;margin:0 auto;padding:30px 20px;position:relative;z-index:10;}
+.done-box{background:var(--card);border:2px solid var(--border);border-radius:28px;padding:40px 28px;backdrop-filter:blur(12px);}
+.done-trophy{font-size:4.5rem;animation:float 2s ease-in-out infinite;display:block;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.done-box h2{font-size:2rem;font-weight:900;color:var(--gold);margin:16px 0 8px;}
+.done-result{font-size:1.3rem;color:var(--green);font-weight:800;margin-bottom:6px;}
+.done-box p{color:rgba(255,255,255,.65);font-size:1rem;}
+.done-actions{display:flex;flex-direction:column;gap:10px;margin-top:22px;}
+.done-actions button{border:none;border-radius:50px;padding:12px;font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:white;cursor:pointer;transition:.15s;}
+.done-actions button:hover{transform:scale(1.04);}
+.btn-replay{background:linear-gradient(135deg,#0BDA51,#00b341);}
+.btn-home{background:linear-gradient(135deg,#f5a623,#e94560);}
 </style>
 </head>
 <body>
-<div class="stars" id="starsEl"></div>
-
+<div id="starsEl"></div>
 <header>
   <h1>🦁 Bé Học Tiếng Việt</h1>
   <p>Dành cho bé 4 tuổi thông minh ✨</p>
 </header>
-
-<!-- LESSON -->
 <div id="lesson-screen">
   <div class="lesson-grid" id="lessonGrid"></div>
 </div>
-
-<!-- LEARN -->
 <div id="learn-screen">
   <div class="top-bar">
     <button class="btn-back" onclick="goBack()">← Về</button>
-    <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
-    <span class="progress-label" id="progressLabel">1/8</span>
+    <div class="prog-wrap"><div class="prog-fill" id="progFill"></div></div>
+    <span class="prog-label" id="progLabel">1/8</span>
   </div>
   <div class="score-row">
     <span class="score-badge good" id="scoreGood">✅ 0</span>
     <span class="score-badge bad" id="scoreBad">❌ 0</span>
   </div>
-  <div class="question-box" id="questionBox">
-    <div class="question-label">Chọn hình đúng cho</div>
-    <div class="question-word" id="qWord">CON HỔ</div>
-    <button class="speak-q-btn" onclick="speakQuestion()">🔊 Nghe lại</button>
+  <div class="q-box" id="qBox">
+    <div class="q-label">Chọn hình đúng cho từ</div>
+    <div class="q-word" id="qWord"></div>
+    <button class="speak-q-btn" onclick="speakQ()">🔊 Nghe lại</button>
     <div class="choices-grid" id="choicesGrid"></div>
     <div class="feedback-msg" id="feedbackMsg"></div>
-    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Tiếp theo →</button>
+    <button class="next-btn" id="nextBtn" onclick="nextQ()">Tiếp theo →</button>
   </div>
 </div>
-
-<!-- DONE -->
 <div id="done-screen">
   <div class="done-box">
-    <div class="trophy">🏆</div>
+    <span class="done-trophy">🏆</span>
     <h2>Tuyệt vời!</h2>
     <div class="done-result" id="doneResult">8/8 đúng</div>
     <p>Bé học rất giỏi!</p>
@@ -247,361 +113,203 @@
     </div>
   </div>
 </div>
-
 <script>
-// Generate stars
-const starsEl = document.getElementById('starsEl');
+// Stars
+const starsEl=document.getElementById('starsEl');
 for(let i=0;i<60;i++){
-  const s=document.createElement('div');
-  s.className='star-particle';
+  const s=document.createElement('div');s.className='star-p';
   const sz=Math.random()*3+1;
-  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*4}s`;
+  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;position:fixed;animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*4}s`;
   starsEl.appendChild(s);
 }
 
-const lessons = [
-  {
-    id:'truonghoc', name:'Trường học', icon:'🏫',
-    items:[
-      {word:'Trường học', emoji:'🏫'},
-      {word:'Lớp học', emoji:'📚'},
-      {word:'Thầy giáo', emoji:'👨‍🏫'},
-      {word:'Cô giáo', emoji:'👩‍🏫'},
-      {word:'Học sinh', emoji:'🧒'},
-      {word:'Bảng đen', emoji:'🪑'},
-      {word:'Phấn', emoji:'✏️'},
-      {word:'Sách giáo khoa', emoji:'📖'},
-      {word:'Cặp sách', emoji:'🎒'},
-      {word:'Thước kẻ', emoji:'📏'},
-      {word:'Kéo', emoji:'✂️'},
-      {word:'Hồ dán', emoji:'🧴'},
-      {word:'Bút màu', emoji:'🖍️'},
-      {word:'Vở', emoji:'📓'},
-      {word:'Tẩy', emoji:'⬜'},
-      {word:'Compa', emoji:'🔵'},
-      {word:'Bản đồ', emoji:'🗺️'},
-      {word:'Trống trường', emoji:'🥁'},
-      {word:'Cờ', emoji:'🚩'},
-      {word:'Ghế học', emoji:'🪑'},
-      {word:'Máy tính', emoji:'💻'},
-      {word:'Bảng trắng', emoji:'⬜'},
-      {word:'Sân trường', emoji:'🏟️'},
-      {word:'Thư viện', emoji:'📚'},
-      {word:'Căng tin', emoji:'🍱'},
-    ]
-  },
-  {
-    id:'phuongtien', name:'Phương tiện', icon:'🚗',
-    items:[
-      {word:'Ô tô', emoji:'🚗'},
-      {word:'Xe máy', emoji:'🏍️'},
-      {word:'Xe đạp', emoji:'🚲'},
-      {word:'Xe buýt', emoji:'🚌'},
-      {word:'Xe lửa', emoji:'🚂'},
-      {word:'Máy bay', emoji:'✈️'},
-      {word:'Tàu thuyền', emoji:'⛵'},
-      {word:'Xe tải', emoji:'🚚'},
-      {word:'Xe cứu thương', emoji:'🚑'},
-      {word:'Xe cứu hỏa', emoji:'🚒'},
-      {word:'Xe cảnh sát', emoji:'🚓'},
-      {word:'Trực thăng', emoji:'🚁'},
-      {word:'Tên lửa', emoji:'🚀'},
-      {word:'Xe ngựa', emoji:'🐎'},
-      {word:'Thuyền máy', emoji:'🚤'},
-      {word:'Phà', emoji:'⛴️'},
-      {word:'Tàu điện ngầm', emoji:'🚇'},
-      {word:'Xe lăn', emoji:'🦽'},
-      {word:'Xe ba bánh', emoji:'🛺'},
-      {word:'Xe kéo', emoji:'🚜'},
-      {word:'Xe golf', emoji:'⛳'},
-      {word:'Xe trượt', emoji:'🛷'},
-      {word:'Cáp treo', emoji:'🚡'},
-      {word:'Khinh khí cầu', emoji:'🎈'},
-      {word:'Tàu ngầm', emoji:'🔵'},
-    ]
-  },
-  {
-    id:'cayCoi', name:'Cây cối', icon:'🌿',
-    items:[
-      {word:'Cây xanh', emoji:'🌳'},
-      {word:'Hoa hồng', emoji:'🌹'},
-      {word:'Hoa sen', emoji:'🪷'},
-      {word:'Hoa cúc', emoji:'🌻'},
-      {word:'Hoa tulip', emoji:'🌷'},
-      {word:'Cỏ', emoji:'🌿'},
-      {word:'Tre', emoji:'🎋'},
-      {word:'Trúc', emoji:'🎍'},
-      {word:'Cây dừa', emoji:'🥥'},
-      {word:'Cây thông', emoji:'🌲'},
-      {word:'Nấm', emoji:'🍄'},
-      {word:'Xương rồng', emoji:'🌵'},
-      {word:'Lá cây', emoji:'🍃'},
-      {word:'Cành cây', emoji:'🌿'},
-      {word:'Gốc cây', emoji:'🪵'},
-      {word:'Hạt giống', emoji:'🌱'},
-      {word:'Mầm cây', emoji:'🌱'},
-      {word:'Rễ cây', emoji:'🌾'},
-      {word:'Cây ăn quả', emoji:'🌳'},
-      {word:'Rừng', emoji:'🌲'},
-      {word:'Bông lúa', emoji:'🌾'},
-      {word:'Rau cải', emoji:'🥬'},
-      {word:'Cần tây', emoji:'🥦'},
-      {word:'Hoa lan', emoji:'🌸'},
-      {word:'Dây leo', emoji:'🍀'},
-    ]
-  },
-  {
-    id:'dongVatHD', name:'Động vật hoang dã', icon:'🦁',
-    items:[
-      {word:'Sư tử', emoji:'🦁'},
-      {word:'Con hổ', emoji:'🐯'},
-      {word:'Voi', emoji:'🐘'},
-      {word:'Hươu cao cổ', emoji:'🦒'},
-      {word:'Ngựa vằn', emoji:'🦓'},
-      {word:'Khỉ', emoji:'🐒'},
-      {word:'Gấu', emoji:'🐻'},
-      {word:'Gấu trúc', emoji:'🐼'},
-      {word:'Cáo', emoji:'🦊'},
-      {word:'Chó sói', emoji:'🐺'},
-      {word:'Cá sấu', emoji:'🐊'},
-      {word:'Rắn', emoji:'🐍'},
-      {word:'Đại bàng', emoji:'🦅'},
-      {word:'Cú', emoji:'🦉'},
-      {word:'Vẹt', emoji:'🦜'},
-      {word:'Hà mã', emoji:'🦛'},
-      {word:'Tê giác', emoji:'🦏'},
-      {word:'Gấu Bắc Cực', emoji:'🐻‍❄️'},
-      {word:'Kangaroo', emoji:'🦘'},
-      {word:'Koala', emoji:'🐨'},
-      {word:'Cánh cụt', emoji:'🐧'},
-      {word:'Cá voi', emoji:'🐋'},
-      {word:'Cá heo', emoji:'🐬'},
-      {word:'Cá mập', emoji:'🦈'},
-      {word:'Bạch tuộc', emoji:'🐙'},
-    ]
-  },
-  {
-    id:'quanAo', name:'Quần áo', icon:'👔',
-    items:[
-      {word:'Áo phông', emoji:'👕'},
-      {word:'Quần dài', emoji:'👖'},
-      {word:'Váy', emoji:'👗'},
-      {word:'Áo khoác', emoji:'🧥'},
-      {word:'Mũ', emoji:'🧢'},
-      {word:'Giày', emoji:'👟'},
-      {word:'Dép', emoji:'🩴'},
-      {word:'Bít tất', emoji:'🧦'},
-      {word:'Găng tay', emoji:'🧤'},
-      {word:'Khăn choàng', emoji:'🧣'},
-      {word:'Áo vest', emoji:'🤵'},
-      {word:'Áo dài', emoji:'👘'},
-      {word:'Nón lá', emoji:'🪖'},
-      {word:'Thắt lưng', emoji:'👔'},
-      {word:'Kính mắt', emoji:'👓'},
-      {word:'Đồng hồ', emoji:'⌚'},
-      {word:'Vòng cổ', emoji:'📿'},
-      {word:'Bông tai', emoji:'💎'},
-      {word:'Dây buộc tóc', emoji:'🎀'},
-      {word:'Ô dù', emoji:'☂️'},
-      {word:'Túi xách', emoji:'👜'},
-      {word:'Ba lô', emoji:'🎒'},
-      {word:'Áo bơi', emoji:'🩱'},
-      {word:'Pyjama', emoji:'🌙'},
-      {word:'Yếm', emoji:'👶'},
-    ]
-  },
-  {
-    id:'ngheNghiep', name:'Nghề nghiệp', icon:'👨‍⚕️',
-    items:[
-      {word:'Bác sĩ', emoji:'👨‍⚕️'},
-      {word:'Giáo viên', emoji:'👩‍🏫'},
-      {word:'Cảnh sát', emoji:'👮'},
-      {word:'Lính cứu hỏa', emoji:'👨‍🚒'},
-      {word:'Đầu bếp', emoji:'👨‍🍳'},
-      {word:'Phi công', emoji:'👨‍✈️'},
-      {word:'Kỹ sư', emoji:'👷'},
-      {word:'Họa sĩ', emoji:'🧑‍🎨'},
-      {word:'Nhạc sĩ', emoji:'🧑‍🎤'},
-      {word:'Nông dân', emoji:'👨‍🌾'},
-      {word:'Ngư dân', emoji:'🎣'},
-      {word:'Thợ điện', emoji:'🔧'},
-      {word:'Y tá', emoji:'👩‍⚕️'},
-      {word:'Luật sư', emoji:'👩‍⚖️'},
-      {word:'Kiến trúc sư', emoji:'👩‍💼'},
-      {word:'Nhà khoa học', emoji:'🧑‍🔬'},
-      {word:'Phi hành gia', emoji:'👨‍🚀'},
-      {word:'Thủy thủ', emoji:'⚓'},
-      {word:'Vận động viên', emoji:'🏃'},
-      {word:'Diễn viên', emoji:'🎭'},
-      {word:'Thợ may', emoji:'🧵'},
-      {word:'Bưu tá', emoji:'📬'},
-      {word:'Thủ thư', emoji:'📚'},
-      {word:'Tài xế', emoji:'🚌'},
-      {word:'Bảo vệ', emoji:'🔒'},
-    ]
-  },
-  {
-    id:'rauCu', name:'Rau củ quả', icon:'🥕',
-    items:[
-      {word:'Cà rốt', emoji:'🥕'},
-      {word:'Cà chua', emoji:'🍅'},
-      {word:'Khoai tây', emoji:'🥔'},
-      {word:'Bắp cải', emoji:'🥬'},
-      {word:'Bông cải', emoji:'🥦'},
-      {word:'Hành tây', emoji:'🧅'},
-      {word:'Tỏi', emoji:'🧄'},
-      {word:'Ớt', emoji:'🌶️'},
-      {word:'Bí ngô', emoji:'🎃'},
-      {word:'Dưa chuột', emoji:'🥒'},
-      {word:'Ngô', emoji:'🌽'},
-      {word:'Đậu xanh', emoji:'🫘'},
-      {word:'Cần tây', emoji:'🌿'},
-      {word:'Gừng', emoji:'🌱'},
-      {word:'Nấm', emoji:'🍄'},
-      {word:'Cà tím', emoji:'🍆'},
-      {word:'Ớt chuông', emoji:'🫑'},
-      {word:'Đậu bắp', emoji:'🟢'},
-      {word:'Rau muống', emoji:'🌿'},
-      {word:'Bí xanh', emoji:'💚'},
-      {word:'Su hào', emoji:'🟢'},
-      {word:'Cải thảo', emoji:'🥬'},
-      {word:'Mướp', emoji:'🌿'},
-      {word:'Đậu đỗ', emoji:'🫘'},
-      {word:'Rau cải', emoji:'🥬'},
-    ]
-  },
+function img(q,sig,w,h){return`https://source.unsplash.com/${w}x${h}/?${encodeURIComponent(q)}&sig=${sig}`;}
+
+const lessons=[
+  {id:'truonghoc',name:'Trường học',icon:'🏫',tQ:'school classroom children',tS:1,
+   items:[
+    {w:'Trường học',q:'school building exterior',sig:11},{w:'Lớp học',q:'classroom school desks',sig:12},
+    {w:'Thầy giáo',q:'male teacher classroom school',sig:13},{w:'Cô giáo',q:'female teacher classroom school',sig:14},
+    {w:'Học sinh',q:'school children students classroom',sig:15},{w:'Bảng đen',q:'blackboard chalk classroom',sig:16},
+    {w:'Phấn',q:'chalk white blackboard',sig:17},{w:'Sách giáo khoa',q:'school textbook open pages',sig:18},
+    {w:'Cặp sách',q:'school backpack bag children',sig:19},{w:'Thước kẻ',q:'ruler measuring stationery',sig:20},
+    {w:'Kéo',q:'scissors stationery craft',sig:21},{w:'Bút màu',q:'colored pencils crayons art',sig:22},
+    {w:'Vở',q:'notebook open school',sig:23},{w:'Tẩy',q:'eraser rubber stationery',sig:24},
+    {w:'Bàn học',q:'school desk table study',sig:25},{w:'Sân trường',q:'school playground yard',sig:26},
+    {w:'Thư viện',q:'library books shelves school',sig:27},{w:'Căng tin',q:'school canteen cafeteria',sig:28},
+    {w:'Bút chì',q:'pencil wood writing',sig:29},{w:'Ghế học',q:'school chair student',sig:30},
+   ]},
+  {id:'phuongtien',name:'Phương tiện',icon:'🚗',tQ:'vehicles transportation',tS:2,
+   items:[
+    {w:'Ô tô',q:'car automobile road',sig:101},{w:'Xe máy',q:'motorcycle motorbike',sig:102},
+    {w:'Xe đạp',q:'bicycle bike cycling',sig:103},{w:'Xe buýt',q:'bus public transport',sig:104},
+    {w:'Xe lửa',q:'train railway locomotive',sig:105},{w:'Máy bay',q:'airplane aircraft flying',sig:106},
+    {w:'Tàu thuyền',q:'boat sailing sea',sig:107},{w:'Xe tải',q:'truck cargo transport',sig:108},
+    {w:'Xe cứu thương',q:'ambulance emergency vehicle',sig:109},{w:'Xe cứu hỏa',q:'fire truck engine red',sig:110},
+    {w:'Xe cảnh sát',q:'police car vehicle',sig:111},{w:'Trực thăng',q:'helicopter flying air',sig:112},
+    {w:'Tên lửa',q:'rocket launch space',sig:113},{w:'Thuyền máy',q:'speedboat motorboat water',sig:114},
+    {w:'Phà',q:'ferry boat river transport',sig:115},{w:'Tàu điện',q:'tram streetcar city',sig:116},
+    {w:'Xe kéo',q:'tractor farm machine',sig:117},{w:'Khinh khí cầu',q:'hot air balloon sky',sig:118},
+    {w:'Xe lăn',q:'wheelchair disability mobility',sig:119},{w:'Cáp treo',q:'cable car gondola mountain',sig:120},
+   ]},
+  {id:'cayCoi',name:'Cây cối',icon:'🌿',tQ:'plants trees garden nature',tS:3,
+   items:[
+    {w:'Cây xanh',q:'green tree nature park',sig:201},{w:'Hoa hồng',q:'red rose flower bloom',sig:202},
+    {w:'Hoa sen',q:'lotus flower pink water',sig:203},{w:'Hoa cúc',q:'sunflower yellow field',sig:204},
+    {w:'Hoa tulip',q:'tulip flower colorful garden',sig:205},{w:'Cỏ xanh',q:'green grass field lawn',sig:206},
+    {w:'Tre',q:'bamboo tree green',sig:207},{w:'Cây dừa',q:'coconut palm tree tropical',sig:208},
+    {w:'Cây thông',q:'pine tree forest green',sig:209},{w:'Nấm',q:'mushroom forest ground',sig:210},
+    {w:'Xương rồng',q:'cactus desert plant',sig:211},{w:'Lá cây',q:'green leaf nature close up',sig:212},
+    {w:'Hoa lan',q:'orchid flower beautiful',sig:213},{w:'Rau cải',q:'cabbage vegetable fresh green',sig:214},
+    {w:'Hoa đào',q:'peach blossom pink flower tree',sig:215},{w:'Hoa mai',q:'apricot blossom yellow flower',sig:216},
+    {w:'Rừng',q:'forest trees green tall',sig:217},{w:'Bông lúa',q:'rice paddy field grain',sig:218},
+    {w:'Hạt giống',q:'seeds small plant growing',sig:219},{w:'Dây leo',q:'vine climbing plant wall',sig:220},
+   ]},
+  {id:'dongVatHD',name:'Động vật hoang dã',icon:'🦁',tQ:'wild animals safari nature',tS:4,
+   items:[
+    {w:'Sư tử',q:'lion wildlife africa',sig:301},{w:'Con hổ',q:'tiger wildlife jungle',sig:302},
+    {w:'Voi',q:'elephant wildlife africa',sig:303},{w:'Hươu cao cổ',q:'giraffe wildlife tall',sig:304},
+    {w:'Ngựa vằn',q:'zebra wildlife stripes',sig:305},{w:'Khỉ',q:'monkey primate jungle',sig:306},
+    {w:'Gấu',q:'bear wildlife forest',sig:307},{w:'Gấu trúc',q:'giant panda bear',sig:308},
+    {w:'Cáo',q:'fox wildlife cute',sig:309},{w:'Chó sói',q:'wolf wildlife forest',sig:310},
+    {w:'Cá sấu',q:'crocodile reptile water',sig:311},{w:'Rắn',q:'snake reptile wildlife',sig:312},
+    {w:'Đại bàng',q:'eagle bird flying sky',sig:313},{w:'Cú',q:'owl bird night',sig:314},
+    {w:'Vẹt',q:'parrot colorful bird',sig:315},{w:'Hà mã',q:'hippopotamus water wildlife',sig:316},
+    {w:'Gấu Bắc Cực',q:'polar bear arctic ice',sig:317},{w:'Kangaroo',q:'kangaroo australia wildlife',sig:318},
+    {w:'Cánh cụt',q:'penguin antarctic bird',sig:319},{w:'Cá heo',q:'dolphin ocean sea',sig:320},
+   ]},
+  {id:'quanAo',name:'Quần áo',icon:'👕',tQ:'clothing fashion colorful',tS:5,
+   items:[
+    {w:'Áo phông',q:'t-shirt casual clothing',sig:401},{w:'Quần dài',q:'trousers pants jeans clothing',sig:402},
+    {w:'Váy',q:'dress skirt girl fashion',sig:403},{w:'Áo khoác',q:'jacket coat outerwear',sig:404},
+    {w:'Mũ',q:'hat cap children colorful',sig:405},{w:'Giày thể thao',q:'sneakers sport shoes colorful',sig:406},
+    {w:'Dép',q:'sandals slippers footwear',sig:407},{w:'Bít tất',q:'socks colorful cotton',sig:408},
+    {w:'Găng tay',q:'gloves winter hands warm',sig:409},{w:'Khăn choàng',q:'scarf winter warm colorful',sig:410},
+    {w:'Áo vest',q:'suit jacket formal',sig:411},{w:'Áo dài',q:'ao dai vietnamese dress traditional',sig:412},
+    {w:'Kính mắt',q:'eyeglasses children cute',sig:413},{w:'Ô dù',q:'umbrella rain colorful',sig:414},
+    {w:'Túi xách',q:'handbag purse women',sig:415},{w:'Ba lô',q:'backpack children school',sig:416},
+    {w:'Áo bơi',q:'swimsuit swimwear beach',sig:417},{w:'Pyjama',q:'pajamas sleepwear children',sig:418},
+    {w:'Nón lá',q:'vietnamese conical hat traditional',sig:419},{w:'Áo len',q:'sweater knitted warm wool',sig:420},
+   ]},
+  {id:'ngheNghiep',name:'Nghề nghiệp',icon:'👨‍⚕️',tQ:'people professions jobs',tS:6,
+   items:[
+    {w:'Bác sĩ',q:'doctor medical white coat stethoscope',sig:501},{w:'Giáo viên',q:'teacher classroom school',sig:502},
+    {w:'Cảnh sát',q:'police officer uniform',sig:503},{w:'Lính cứu hỏa',q:'firefighter uniform helmet',sig:504},
+    {w:'Đầu bếp',q:'chef cook kitchen white hat',sig:505},{w:'Phi công',q:'pilot airplane cockpit uniform',sig:506},
+    {w:'Kỹ sư',q:'engineer construction worker helmet',sig:507},{w:'Họa sĩ',q:'artist painter brush canvas',sig:508},
+    {w:'Nhạc sĩ',q:'musician playing guitar instrument',sig:509},{w:'Nông dân',q:'farmer field agricultural',sig:510},
+    {w:'Ngư dân',q:'fisherman fishing boat sea',sig:511},{w:'Y tá',q:'nurse hospital medical',sig:512},
+    {w:'Nhà khoa học',q:'scientist laboratory experiment',sig:513},{w:'Phi hành gia',q:'astronaut space suit helmet',sig:514},
+    {w:'Thủy thủ',q:'sailor boat navy uniform',sig:515},{w:'Vận động viên',q:'athlete running sport stadium',sig:516},
+    {w:'Thợ may',q:'tailor sewing fashion workshop',sig:517},{w:'Bưu tá',q:'postman mail delivery uniform',sig:518},
+    {w:'Tài xế',q:'bus driver vehicle transport',sig:519},{w:'Kiến trúc sư',q:'architect blueprint building design',sig:520},
+   ]},
+  {id:'rauCu',name:'Rau củ quả',icon:'🥕',tQ:'vegetables fresh market colorful',tS:7,
+   items:[
+    {w:'Cà rốt',q:'carrot vegetable orange fresh',sig:601},{w:'Cà chua',q:'tomato red fresh vegetable',sig:602},
+    {w:'Khoai tây',q:'potato fresh vegetable raw',sig:603},{w:'Bắp cải',q:'cabbage green fresh vegetable',sig:604},
+    {w:'Bông cải xanh',q:'broccoli green vegetable fresh',sig:605},{w:'Hành tây',q:'onion vegetable fresh',sig:606},
+    {w:'Tỏi',q:'garlic cloves fresh',sig:607},{w:'Ớt chuông',q:'bell pepper colorful vegetable',sig:608},
+    {w:'Bí ngô',q:'pumpkin autumn orange',sig:609},{w:'Dưa chuột',q:'cucumber green fresh vegetable',sig:610},
+    {w:'Ngô',q:'corn maize yellow vegetable',sig:611},{w:'Nấm',q:'mushroom fresh cooking',sig:612},
+    {w:'Cà tím',q:'eggplant aubergine purple',sig:613},{w:'Ớt đỏ',q:'red chili pepper hot',sig:614},
+    {w:'Đậu bắp',q:'okra green vegetable',sig:615},{w:'Rau muống',q:'morning glory water spinach',sig:616},
+    {w:'Su hào',q:'kohlrabi vegetable fresh',sig:617},{w:'Cải thảo',q:'chinese cabbage napa fresh',sig:618},
+    {w:'Đậu đũa',q:'long beans green vegetable',sig:619},{w:'Súp lơ',q:'cauliflower white vegetable',sig:620},
+   ]},
 ];
 
-let currentLesson = null;
-let queue = [];
-let idx = 0;
-let score = 0;
-let wrong = 0;
-let answered = false;
-const synth = window.speechSynthesis;
-
-function getVoice() {
-  const voices = synth.getVoices();
-  return voices.find(v => v.lang.startsWith('vi')) || voices[0];
+let currentLesson=null,queue=[],idx=0,score=0,wrong=0,answered=false;
+const synth=window.speechSynthesis;
+function imgUrl(q,sig,w,h){return`https://source.unsplash.com/${w}x${h}/?${encodeURIComponent(q)}&sig=${sig}`;}
+function getVoice(){const v=synth.getVoices();return v.find(x=>x.lang.startsWith('vi'))||v[0];}
+function speakText(t){
+  synth.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='vi-VN';u.rate=0.82;u.pitch=1.1;
+  const vo=getVoice();if(vo)u.voice=vo;synth.speak(u);
 }
-function speakText(text, rate=0.8) {
-  synth.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang='vi-VN'; u.rate=rate; u.pitch=1.1;
-  const v=getVoice(); if(v) u.voice=v;
-  synth.speak(u);
+function renderLessons(){
+  const colors=['#e94560','#f5a623','#0BDA51','#4FC3F7','#A29BFE','#fd79a8','#00cec9'];
+  document.getElementById('lessonGrid').innerHTML=lessons.map((l,i)=>`
+    <div class="lesson-card" onclick="startLesson('${l.id}')" style="border-color:${colors[i%colors.length]}44">
+      <img class="lesson-thumb" src="${imgUrl(l.tQ,l.tS,260,80)}" alt="${l.name}" onerror="this.style.background='#333'">
+      <div class="lesson-card-body"><span class="icon">${l.icon}</span><div class="name">${l.name}</div></div>
+    </div>`).join('');
 }
-
-function renderLessons() {
-  const colors = ['#e94560','#f5a623','#0BDA51','#4FC3F7','#A29BFE','#fd79a8','#00cec9'];
-  document.getElementById('lessonGrid').innerHTML = lessons.map((l,i) => `
-    <div class="lesson-card" onclick="startLesson('${l.id}')" style="border-color:${colors[i%colors.length]}22">
-      <span class="icon">${l.icon}</span>
-      <div class="name">${l.name}</div>
-    </div>
-  `).join('');
-}
-
-function startLesson(id) {
-  currentLesson = lessons.find(l=>l.id===id);
-  const shuffled = [...currentLesson.items].sort(()=>Math.random()-.5);
-  queue = shuffled.slice(0,8);
-  idx=0; score=0; wrong=0; answered=false;
+function startLesson(id){
+  currentLesson=lessons.find(l=>l.id===id);
+  queue=[...currentLesson.items].sort(()=>Math.random()-.5).slice(0,8);
+  idx=0;score=0;wrong=0;answered=false;
   document.getElementById('lesson-screen').style.display='none';
   document.getElementById('done-screen').style.display='none';
   document.getElementById('learn-screen').style.display='block';
-  renderQuestion();
+  renderQ();
 }
-
-function renderQuestion() {
-  answered = false;
-  const correct = queue[idx];
-  // Pick 3 wrong items from lesson pool, not duplicates
-  const pool = currentLesson.items.filter(it=>it.word!==correct.word);
-  const wrongs = pool.sort(()=>Math.random()-.5).slice(0,3);
-  const choices = [correct,...wrongs].sort(()=>Math.random()-.5);
-
-  document.getElementById('qWord').textContent = correct.word.toUpperCase();
+function makeChoiceHTML(c,correctWord){
+  const spinId='sp_'+c.sig;
+  const imgId='ci_'+c.sig;
+  return `
+    <button class="choice-btn" onclick="checkAns(this,'${c.w}','${correctWord}')">
+      <div class="choice-img-wrap">
+        <div class="choice-img-spinner" id="${spinId}">⏳</div>
+        <img class="choice-img" id="${imgId}" src="" alt="${c.w}" style="opacity:0"
+          onload="this.style.opacity='1';document.getElementById('${spinId}').style.display='none'"
+          onerror="document.getElementById('${spinId}').textContent='🖼️'">
+      </div>
+      <div class="choice-label">${c.w}</div>
+    </button>`;
+}
+function renderQ(){
+  answered=false;
+  const correct=queue[idx];
+  const pool=currentLesson.items.filter(it=>it.w!==correct.w);
+  const wrongs=pool.sort(()=>Math.random()-.5).slice(0,3);
+  const choices=[correct,...wrongs].sort(()=>Math.random()-.5);
+  document.getElementById('qWord').textContent=correct.w.toUpperCase();
   document.getElementById('feedbackMsg').textContent='';
   document.getElementById('feedbackMsg').className='feedback-msg';
   document.getElementById('nextBtn').classList.remove('visible');
-
-  // Progress
-  const pct = ((idx+1)/queue.length)*100;
-  document.getElementById('progressFill').style.width=pct+'%';
-  document.getElementById('progressLabel').textContent=`${idx+1}/${queue.length}`;
+  const pct=((idx+1)/queue.length)*100;
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progLabel').textContent=`${idx+1}/${queue.length}`;
   document.getElementById('scoreGood').textContent=`✅ ${score}`;
   document.getElementById('scoreBad').textContent=`❌ ${wrong}`;
-
-  // Choices
-  document.getElementById('choicesGrid').innerHTML = choices.map(c=>`
-    <button class="choice-btn" onclick="checkAnswer(this,'${c.word}','${correct.word}')">
-      <span class="c-emoji">${c.emoji}</span>
-      <span class="c-label">${c.word}</span>
-    </button>
-  `).join('');
-
-  // Animate question box
-  const box = document.getElementById('questionBox');
-  box.style.animation='none';
-  void box.offsetWidth;
-  box.style.animation='slideIn .4s cubic-bezier(.3,1.3,.5,1)';
-
-  // Auto speak
-  setTimeout(()=>speakText(correct.word), 400);
+  document.getElementById('choicesGrid').innerHTML=choices.map(c=>makeChoiceHTML(c,correct.w)).join('');
+  // load images after DOM ready
+  choices.forEach(c=>{
+    const el=document.getElementById('ci_'+c.sig);
+    if(el) el.src=imgUrl(c.q,c.sig,260,110);
+  });
+  const box=document.getElementById('qBox');
+  box.style.animation='none';void box.offsetWidth;box.style.animation='slideIn .4s cubic-bezier(.3,1.3,.5,1)';
+  setTimeout(()=>speakText(correct.w),400);
 }
-
-function speakQuestion() {
-  speakText(queue[idx].word);
-}
-
-function checkAnswer(btn, chosen, correct) {
-  if(answered) return;
-  answered = true;
-  const allBtns = document.querySelectorAll('.choice-btn');
-  allBtns.forEach(b=>b.disabled=true);
-  const fm = document.getElementById('feedbackMsg');
-  if(chosen===correct) {
-    btn.classList.add('correct');
-    fm.textContent='🎉 Đúng rồi! Giỏi lắm!';
-    fm.className='feedback-msg correct';
-    score++;
+function speakQ(){speakText(queue[idx].w);}
+function checkAns(btn,chosen,correct){
+  if(answered)return;answered=true;
+  document.querySelectorAll('.choice-btn').forEach(b=>b.disabled=true);
+  const fm=document.getElementById('feedbackMsg');
+  if(chosen===correct){
+    btn.classList.add('correct');fm.textContent='🎉 Đúng rồi! Giỏi lắm!';fm.className='feedback-msg ok';score++;
     speakText('Đúng rồi! Giỏi lắm!');
   } else {
     btn.classList.add('wrong');
-    // highlight correct
-    allBtns.forEach(b=>{ if(b.querySelector('.c-label').textContent===correct) b.classList.add('correct'); });
-    fm.textContent='❌ Chưa đúng! Thử lại nhé!';
-    fm.className='feedback-msg wrong';
-    wrong++;
+    document.querySelectorAll('.choice-btn').forEach(b=>{if(b.querySelector('.choice-label').textContent===correct)b.classList.add('correct');});
+    fm.textContent='❌ Chưa đúng! Thử lại nhé!';fm.className='feedback-msg no';wrong++;
     speakText('Chưa đúng! Thử lại nhé!');
   }
   document.getElementById('scoreGood').textContent=`✅ ${score}`;
   document.getElementById('scoreBad').textContent=`❌ ${wrong}`;
   document.getElementById('nextBtn').classList.add('visible');
 }
-
-function nextQuestion() {
-  idx++;
-  if(idx>=queue.length) { showDone(); return; }
-  renderQuestion();
-}
-
-function showDone() {
+function nextQ(){idx++;if(idx>=queue.length){showDone();return;}renderQ();}
+function showDone(){
   document.getElementById('learn-screen').style.display='none';
   document.getElementById('done-screen').style.display='block';
   document.getElementById('doneResult').textContent=`${score}/${queue.length} câu đúng`;
   speakText(`Bé đã trả lời đúng ${score} trên ${queue.length} câu. Giỏi lắm!`);
 }
-
-function replay() { startLesson(currentLesson.id); }
-function goBack() {
-  synth.cancel();
-  document.getElementById('learn-screen').style.display='none';
-  document.getElementById('done-screen').style.display='none';
-  document.getElementById('lesson-screen').style.display='block';
-}
-
+function replay(){startLesson(currentLesson.id);}
+function goBack(){synth.cancel();document.getElementById('learn-screen').style.display='none';document.getElementById('done-screen').style.display='none';document.getElementById('lesson-screen').style.display='block';}
 synth.onvoiceschanged=()=>{};
 renderLessons();
 </script>
