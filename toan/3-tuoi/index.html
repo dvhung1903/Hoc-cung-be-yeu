@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Bé Vui Học — 3 Tuổi</title>
+<title>BÃ© Vui Há»c â€” 3 Tuá»•i</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -166,54 +166,54 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 
 <!-- HEADER -->
 <div id="app-header">
-  <a href="../index.html" class="hbtn" style="text-decoration:none;">‹ Quay lại</a>
-  <h1>🌈 Bé Vui Học</h1>
+  <a href="../index.html" class="hbtn" style="text-decoration:none;">â€¹ Quay láº¡i</a>
+  <h1>ðŸŒˆ BÃ© Vui Há»c</h1>
   <div style="display:flex;gap:8px;align-items:center;">
-    <span id="hdr-stars" style="font-size:14px;font-weight:800;color:var(--purple);">⭐ 0</span>
-    <button class="hbtn" id="music-btn" onclick="toggleMusic()">🎵</button>
+    <span id="hdr-stars" style="font-size:14px;font-weight:800;color:var(--purple);">â­ 0</span>
+    <button class="hbtn" id="music-btn" onclick="toggleMusic()">ðŸŽµ</button>
   </div>
 </div>
 
-<!-- ══ MENU ══ -->
+<!-- â•â• MENU â•â• -->
 <div id="screen-menu" class="screen active">
-  <div class="menu-hero">🐣</div>
-  <div class="menu-title">Bé Vui Học Toán!</div>
-  <div class="menu-sub">Dành cho bé 3 tuổi 💛</div>
+  <div class="menu-hero">ðŸ£</div>
+  <div class="menu-title">BÃ© Vui Há»c ToÃ¡n!</div>
+  <div class="menu-sub">DÃ nh cho bÃ© 3 tuá»•i ðŸ’›</div>
   <div class="lesson-grid">
     <button class="lesson-btn l1" onclick="startLesson('count1')">
-      <div class="lb-icon">🍎</div>
-      <div class="lb-num">BÀI 1</div>
-      <div class="lb-title">Đếm 1–5</div>
-      <div class="lb-desc">Đếm đồ vật</div>
+      <div class="lb-icon">ðŸŽ</div>
+      <div class="lb-num">BÃ€I 1</div>
+      <div class="lb-title">Äáº¿m 1â€“5</div>
+      <div class="lb-desc">Äáº¿m Ä‘á»“ váº­t</div>
     </button>
     <button class="lesson-btn l2" onclick="startLesson('count2')">
-      <div class="lb-icon">🌟</div>
-      <div class="lb-num">BÀI 2</div>
-      <div class="lb-title">Đếm 6–10</div>
-      <div class="lb-desc">Đếm nhiều hơn</div>
+      <div class="lb-icon">ðŸŒŸ</div>
+      <div class="lb-num">BÃ€I 2</div>
+      <div class="lb-title">Äáº¿m 6â€“10</div>
+      <div class="lb-desc">Äáº¿m nhiá»u hÆ¡n</div>
     </button>
     <button class="lesson-btn l3" onclick="startLesson('color')">
-      <div class="lb-icon">🎨</div>
-      <div class="lb-num">BÀI 3</div>
-      <div class="lb-title">Màu sắc</div>
-      <div class="lb-desc">Nhận biết màu</div>
+      <div class="lb-icon">ðŸŽ¨</div>
+      <div class="lb-num">BÃ€I 3</div>
+      <div class="lb-title">MÃ u sáº¯c</div>
+      <div class="lb-desc">Nháº­n biáº¿t mÃ u</div>
     </button>
     <button class="lesson-btn l4" onclick="startLesson('shape')">
-      <div class="lb-icon">🔷</div>
-      <div class="lb-num">BÀI 4</div>
-      <div class="lb-title">Hình dạng</div>
-      <div class="lb-desc">Nhận biết hình</div>
+      <div class="lb-icon">ðŸ”·</div>
+      <div class="lb-num">BÃ€I 4</div>
+      <div class="lb-title">HÃ¬nh dáº¡ng</div>
+      <div class="lb-desc">Nháº­n biáº¿t hÃ¬nh</div>
     </button>
   </div>
 </div>
 
-<!-- ══ GAME ══ -->
+<!-- â•â• GAME â•â• -->
 <div id="screen-game" class="screen">
   <div class="game-top">
-    <div class="ginfo" id="gi-lesson">Bài 1</div>
+    <div class="ginfo" id="gi-lesson">BÃ i 1</div>
     <div class="ginfo" id="gi-prog">1/8</div>
-    <div class="ginfo" id="gi-stars">⭐ 0</div>
-    <button class="ginfo home" onclick="goMenu()">🏠</button>
+    <div class="ginfo" id="gi-stars">â­ 0</div>
+    <button class="ginfo home" onclick="goMenu()">ðŸ </button>
   </div>
   <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
   <div class="qcard">
@@ -222,26 +222,30 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
     <div class="q-feedback" id="q-feedback"></div>
   </div>
   <div class="choices-grid" id="choices-grid"></div>
-  <button class="btn-next" id="btn-next" onclick="nextQuestion()">Câu tiếp theo →</button>
+  <button class="btn-next" id="btn-next" onclick="nextQuestion()">CÃ¢u tiáº¿p theo â†’</button>
 </div>
 
-<!-- ══ RESULT ══ -->
+<!-- â•â• RESULT â•â• -->
 <div id="screen-result" class="screen">
-  <div class="result-emoji" id="res-emoji">🏆</div>
+  <div class="result-emoji" id="res-emoji">ðŸ†</div>
   <div class="card">
-    <div class="card-title" id="res-title">Xuất sắc!</div>
+    <div class="card-title" id="res-title">Xuáº¥t sáº¯c!</div>
     <div class="card-sub" id="res-msg"></div>
-    <div class="result-score" id="res-score">8/8 ⭐</div>
-    <button class="btn-primary" onclick="replayLesson()">🔄 Làm lại</button>
-    <button class="btn-secondary" onclick="goMenu()">🏠 Về menu</button>
+    <div class="result-score" id="res-score">8/8 â­</div>
+    <button class="btn-primary" onclick="replayLesson()">ðŸ”„ LÃ m láº¡i</button>
+    <button class="btn-secondary" onclick="goMenu()">ðŸ  Vá» menu</button>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // AUDIO
-// ══════════════════════════════════
-const AC = new (window.AudioContext||window.webkitAudioContext)();
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+let AC = null;
+function ensureAC(){
+  if(!AC) AC = new (window.AudioContext||window.webkitAudioContext)();
+  return AC;
+}
 let musicOn = true;
 let bgTimer = null;
 let melIdx = 0;
@@ -251,24 +255,26 @@ const BASS   = [262,262,349,349,392,392,349,349];
 
 function updateMusicButton(){
   const btn = document.getElementById('music-btn');
-  if(btn) btn.textContent = musicOn ? '🎵' : '🔇';
+  if(btn) btn.textContent = musicOn ? 'ðŸŽµ' : 'ðŸ”‡';
 }
 
 function unlockAudio(){
   if(audioUnlocked) return;
   audioUnlocked = true;
-  if(AC.state==='suspended') AC.resume();
+  const ac = ensureAC();
+  if(ac.state==='suspended') ac.resume();
   if(musicOn) startMusic();
   updateMusicButton();
 }
 
 function tone(f,type,dur,vol,delay=0){
   if(!musicOn)return;
-  if(AC.state==='suspended')AC.resume();
-  const o=AC.createOscillator(),g=AC.createGain();
-  o.connect(g);g.connect(AC.destination);
+  const ac=ensureAC();
+  if(ac.state==='suspended')ac.resume();
+  const o=ac.createOscillator(),g=ac.createGain();
+  o.connect(g);g.connect(ac.destination);
   o.type=type;o.frequency.value=f;
-  const t=AC.currentTime+delay;
+  const t=ac.currentTime+delay;
   g.gain.setValueAtTime(0,t);
   g.gain.linearRampToValueAtTime(vol,t+0.01);
   g.gain.exponentialRampToValueAtTime(0.001,t+dur);
@@ -293,7 +299,7 @@ document.addEventListener('pointerdown',unlockAudio,{capture:true,once:true});
 document.addEventListener('touchstart',unlockAudio,{capture:true,once:true});
 document.addEventListener('click',e=>{
   if(e.target.matches('button,.lesson-btn,.cho-btn,.color-swatch,.shape-btn')){
-    if(musicOn&&AC.state==='suspended')AC.resume();
+    if(musicOn){ const ac=ensureAC(); if(ac.state==='suspended')ac.resume(); }
     tone(600,'sine',0.08,0.12);
   }
 },true);
@@ -305,9 +311,9 @@ const snd={
     setTimeout(()=>[784,1047,1319].forEach((f,i)=>tone(f,'sine',0.2,0.15,i*0.06)),700);}
 };
 
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // SCREEN MANAGEMENT
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -319,70 +325,70 @@ function goMenu(){
   showScreen('screen-menu');
 }
 
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // QUESTION BANKS
-// ══════════════════════════════════
-// Màu hồng dùng hex nhạt (#f48fb1) thay vì đậm (#e91e63)
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// MÃ u há»“ng dÃ¹ng hex nháº¡t (#f48fb1) thay vÃ¬ Ä‘áº­m (#e91e63)
 const COLORS = [
-  {name:'Đỏ',        hex:'#f44336', choices:['#f44336','#2196f3','#ffeb3b']},
-  {name:'Xanh dương',hex:'#2196f3', choices:['#f44336','#2196f3','#4caf50']},
-  {name:'Vàng',      hex:'#ffeb3b', choices:['#ffeb3b','#9c27b0','#f44336']},
-  {name:'Xanh lá',   hex:'#4caf50', choices:['#ff9800','#4caf50','#2196f3']},
-  {name:'Tím',       hex:'#9c27b0', choices:['#4caf50','#f44336','#9c27b0']},
+  {name:'Äá»',        hex:'#f44336', choices:['#f44336','#2196f3','#ffeb3b']},
+  {name:'Xanh dÆ°Æ¡ng',hex:'#2196f3', choices:['#f44336','#2196f3','#4caf50']},
+  {name:'VÃ ng',      hex:'#ffeb3b', choices:['#ffeb3b','#9c27b0','#f44336']},
+  {name:'Xanh lÃ¡',   hex:'#4caf50', choices:['#ff9800','#4caf50','#2196f3']},
+  {name:'TÃ­m',       hex:'#9c27b0', choices:['#4caf50','#f44336','#9c27b0']},
   {name:'Cam',       hex:'#ff9800', choices:['#2196f3','#ff9800','#4caf50']},
-  {name:'Hồng',      hex:'#f48fb1', choices:['#f48fb1','#ffeb3b','#4caf50']},
-  {name:'Nâu',       hex:'#795548', choices:['#2196f3','#795548','#f44336']},
-  // ── 8 màu thêm để đủ bộ 16 câu ──
-  {name:'Đỏ',        hex:'#f44336', choices:['#f44336','#9c27b0','#4caf50']},
-  {name:'Xanh dương',hex:'#2196f3', choices:['#ff9800','#2196f3','#f48fb1']},
-  {name:'Vàng',      hex:'#ffeb3b', choices:['#795548','#2196f3','#ffeb3b']},
-  {name:'Xanh lá',   hex:'#4caf50', choices:['#f44336','#4caf50','#ffeb3b']},
-  {name:'Tím',       hex:'#9c27b0', choices:['#9c27b0','#ff9800','#f48fb1']},
+  {name:'Há»“ng',      hex:'#f48fb1', choices:['#f48fb1','#ffeb3b','#4caf50']},
+  {name:'NÃ¢u',       hex:'#795548', choices:['#2196f3','#795548','#f44336']},
+  // â”€â”€ 8 mÃ u thÃªm Ä‘á»ƒ Ä‘á»§ bá»™ 16 cÃ¢u â”€â”€
+  {name:'Äá»',        hex:'#f44336', choices:['#f44336','#9c27b0','#4caf50']},
+  {name:'Xanh dÆ°Æ¡ng',hex:'#2196f3', choices:['#ff9800','#2196f3','#f48fb1']},
+  {name:'VÃ ng',      hex:'#ffeb3b', choices:['#795548','#2196f3','#ffeb3b']},
+  {name:'Xanh lÃ¡',   hex:'#4caf50', choices:['#f44336','#4caf50','#ffeb3b']},
+  {name:'TÃ­m',       hex:'#9c27b0', choices:['#9c27b0','#ff9800','#f48fb1']},
   {name:'Cam',       hex:'#ff9800', choices:['#ff9800','#795548','#9c27b0']},
-  {name:'Hồng',      hex:'#f48fb1', choices:['#2196f3','#f44336','#f48fb1']},
-  {name:'Nâu',       hex:'#795548', choices:['#4caf50','#795548','#ffeb3b']},
+  {name:'Há»“ng',      hex:'#f48fb1', choices:['#2196f3','#f44336','#f48fb1']},
+  {name:'NÃ¢u',       hex:'#795548', choices:['#4caf50','#795548','#ffeb3b']},
 ];
 
 const SHAPES = [
-  {name:'Hình tròn',    svg:'<circle cx="45" cy="45" r="38" fill="currentColor"/>',                                                                      vb:'0 0 90 90'},
-  {name:'Hình vuông',   svg:'<rect x="8" y="8" width="74" height="74" rx="6" fill="currentColor"/>',                                                     vb:'0 0 90 90'},
-  {name:'Tam giác',     svg:'<polygon points="45,5 88,85 2,85" fill="currentColor"/>',                                                                    vb:'0 0 90 90'},
-  {name:'Hình thoi',    svg:'<polygon points="45,4 88,45 45,86 2,45" fill="currentColor"/>',                                                              vb:'0 0 90 90'},
-  {name:'Ngôi sao',     svg:'<polygon points="45,3 56,36 90,36 63,57 74,90 45,68 16,90 27,57 0,36 34,36" fill="currentColor"/>',                         vb:'0 0 90 90'},
-  {name:'Hình chữ nhật',svg:'<rect x="4" y="22" width="82" height="46" rx="6" fill="currentColor"/>',                                                    vb:'0 0 90 90'},
-  // ── 10 câu thêm để đủ bộ 16 ──
-  {name:'Hình tròn',    svg:'<circle cx="45" cy="45" r="38" fill="currentColor"/>',                                                                      vb:'0 0 90 90'},
-  {name:'Hình vuông',   svg:'<rect x="8" y="8" width="74" height="74" rx="6" fill="currentColor"/>',                                                     vb:'0 0 90 90'},
-  {name:'Tam giác',     svg:'<polygon points="45,5 88,85 2,85" fill="currentColor"/>',                                                                    vb:'0 0 90 90'},
-  {name:'Hình thoi',    svg:'<polygon points="45,4 88,45 45,86 2,45" fill="currentColor"/>',                                                              vb:'0 0 90 90'},
-  {name:'Ngôi sao',     svg:'<polygon points="45,3 56,36 90,36 63,57 74,90 45,68 16,90 27,57 0,36 34,36" fill="currentColor"/>',                         vb:'0 0 90 90'},
-  {name:'Hình chữ nhật',svg:'<rect x="4" y="22" width="82" height="46" rx="6" fill="currentColor"/>',                                                    vb:'0 0 90 90'},
-  {name:'Hình tròn',    svg:'<circle cx="45" cy="45" r="38" fill="currentColor"/>',                                                                      vb:'0 0 90 90'},
-  {name:'Hình vuông',   svg:'<rect x="8" y="8" width="74" height="74" rx="6" fill="currentColor"/>',                                                     vb:'0 0 90 90'},
-  {name:'Tam giác',     svg:'<polygon points="45,5 88,85 2,85" fill="currentColor"/>',                                                                    vb:'0 0 90 90'},
-  {name:'Hình thoi',    svg:'<polygon points="45,4 88,45 45,86 2,45" fill="currentColor"/>',                                                              vb:'0 0 90 90'},
+  {name:'HÃ¬nh trÃ²n',    svg:'<circle cx="45" cy="45" r="38" fill="currentColor"/>',                                                                      vb:'0 0 90 90'},
+  {name:'HÃ¬nh vuÃ´ng',   svg:'<rect x="8" y="8" width="74" height="74" rx="6" fill="currentColor"/>',                                                     vb:'0 0 90 90'},
+  {name:'Tam giÃ¡c',     svg:'<polygon points="45,5 88,85 2,85" fill="currentColor"/>',                                                                    vb:'0 0 90 90'},
+  {name:'HÃ¬nh thoi',    svg:'<polygon points="45,4 88,45 45,86 2,45" fill="currentColor"/>',                                                              vb:'0 0 90 90'},
+  {name:'NgÃ´i sao',     svg:'<polygon points="45,3 56,36 90,36 63,57 74,90 45,68 16,90 27,57 0,36 34,36" fill="currentColor"/>',                         vb:'0 0 90 90'},
+  {name:'HÃ¬nh chá»¯ nháº­t',svg:'<rect x="4" y="22" width="82" height="46" rx="6" fill="currentColor"/>',                                                    vb:'0 0 90 90'},
+  // â”€â”€ 10 cÃ¢u thÃªm Ä‘á»ƒ Ä‘á»§ bá»™ 16 â”€â”€
+  {name:'HÃ¬nh trÃ²n',    svg:'<circle cx="45" cy="45" r="38" fill="currentColor"/>',                                                                      vb:'0 0 90 90'},
+  {name:'HÃ¬nh vuÃ´ng',   svg:'<rect x="8" y="8" width="74" height="74" rx="6" fill="currentColor"/>',                                                     vb:'0 0 90 90'},
+  {name:'Tam giÃ¡c',     svg:'<polygon points="45,5 88,85 2,85" fill="currentColor"/>',                                                                    vb:'0 0 90 90'},
+  {name:'HÃ¬nh thoi',    svg:'<polygon points="45,4 88,45 45,86 2,45" fill="currentColor"/>',                                                              vb:'0 0 90 90'},
+  {name:'NgÃ´i sao',     svg:'<polygon points="45,3 56,36 90,36 63,57 74,90 45,68 16,90 27,57 0,36 34,36" fill="currentColor"/>',                         vb:'0 0 90 90'},
+  {name:'HÃ¬nh chá»¯ nháº­t',svg:'<rect x="4" y="22" width="82" height="46" rx="6" fill="currentColor"/>',                                                    vb:'0 0 90 90'},
+  {name:'HÃ¬nh trÃ²n',    svg:'<circle cx="45" cy="45" r="38" fill="currentColor"/>',                                                                      vb:'0 0 90 90'},
+  {name:'HÃ¬nh vuÃ´ng',   svg:'<rect x="8" y="8" width="74" height="74" rx="6" fill="currentColor"/>',                                                     vb:'0 0 90 90'},
+  {name:'Tam giÃ¡c',     svg:'<polygon points="45,5 88,85 2,85" fill="currentColor"/>',                                                                    vb:'0 0 90 90'},
+  {name:'HÃ¬nh thoi',    svg:'<polygon points="45,4 88,45 45,86 2,45" fill="currentColor"/>',                                                              vb:'0 0 90 90'},
 ];
 
 function shuffle(arr){ return arr.slice().sort(()=>Math.random()-0.5); }
 
-const EMOJIS_1_5 = ['🍎','🐱','🌸','🐸','⭐','🍭','🦋','🐥','🍇','🐰','🌈','🦊','🍓','🐨','🌻','🎠'];
-const EMOJIS_6_10= ['🍊','🎈','🐶','🌻','🍕','🐙','🎀','🦄','🍦','🐬','🎺','🦁','🍄','🎡','🐠','🧁'];
+const EMOJIS_1_5 = ['ðŸŽ','ðŸ±','ðŸŒ¸','ðŸ¸','â­','ðŸ­','ðŸ¦‹','ðŸ¥','ðŸ‡','ðŸ°','ðŸŒˆ','ðŸ¦Š','ðŸ“','ðŸ¨','ðŸŒ»','ðŸŽ '];
+const EMOJIS_6_10= ['ðŸŠ','ðŸŽˆ','ðŸ¶','ðŸŒ»','ðŸ•','ðŸ™','ðŸŽ€','ðŸ¦„','ðŸ¦','ðŸ¬','ðŸŽº','ðŸ¦','ðŸ„','ðŸŽ¡','ðŸ ','ðŸ§'];
 
-// ── ĐẾM: pool 16 câu, mỗi số khác nhau (1-5 có 5 số → dùng emoji khác nhau để phân biệt)
-// Đảm bảo 8 câu được chọn KHÔNG có 2 câu cùng số đếm
+// â”€â”€ Äáº¾M: pool 16 cÃ¢u, má»—i sá»‘ khÃ¡c nhau (1-5 cÃ³ 5 sá»‘ â†’ dÃ¹ng emoji khÃ¡c nhau Ä‘á»ƒ phÃ¢n biá»‡t)
+// Äáº£m báº£o 8 cÃ¢u Ä‘Æ°á»£c chá»n KHÃ”NG cÃ³ 2 cÃ¢u cÃ¹ng sá»‘ Ä‘áº¿m
 function makeCountQs(emojis, minN, maxN){
-  const range = maxN - minN + 1; // vd: 5 số (1-5) hoặc 5 số (6-10)
-  // Tạo pool: mỗi số xuất hiện 16/range lần (làm tròn) → xáo → slice 8
-  // Nhưng để không trùng số trong 8 câu: mỗi số chỉ lấy 1 lần trong 8 câu
-  // → tạo đủ số, xáo emoji, lấy đúng range câu (mỗi số 1 lần), lặp nếu cần đủ 16
+  const range = maxN - minN + 1; // vd: 5 sá»‘ (1-5) hoáº·c 5 sá»‘ (6-10)
+  // Táº¡o pool: má»—i sá»‘ xuáº¥t hiá»‡n 16/range láº§n (lÃ m trÃ²n) â†’ xÃ¡o â†’ slice 8
+  // NhÆ°ng Ä‘á»ƒ khÃ´ng trÃ¹ng sá»‘ trong 8 cÃ¢u: má»—i sá»‘ chá»‰ láº¥y 1 láº§n trong 8 cÃ¢u
+  // â†’ táº¡o Ä‘á»§ sá»‘, xÃ¡o emoji, láº¥y Ä‘Ãºng range cÃ¢u (má»—i sá»‘ 1 láº§n), láº·p náº¿u cáº§n Ä‘á»§ 16
   const allNums = [];
   for(let rep=0; rep<4; rep++)
-    for(let n=minN; n<=maxN; n++) allNums.push(n); // 4 lần × range số = 16 câu nếu range=4, 20 nếu range=5
+    for(let n=minN; n<=maxN; n++) allNums.push(n); // 4 láº§n Ã— range sá»‘ = 16 cÃ¢u náº¿u range=4, 20 náº¿u range=5
 
   const pool16 = shuffle(allNums).slice(0,16);
   const emojiList = shuffle(emojis);
 
-  // Xây pool 16 câu
+  // XÃ¢y pool 16 cÃ¢u
   const pool = pool16.map((count, i)=>{
     const emoji = emojiList[i % emojiList.length];
     const opts = new Set([count]);
@@ -392,14 +398,14 @@ function makeCountQs(emojis, minN, maxN){
       if(r !== count) opts.add(r);
       tries++;
     }
-    // fallback nếu range quá nhỏ
+    // fallback náº¿u range quÃ¡ nhá»
     if(opts.size < 3){
       for(let n=minN; n<=maxN && opts.size<3; n++) opts.add(n);
     }
     return {type:'count', emoji, count, choices:[...opts].sort(()=>Math.random()-0.5), answer:count};
   });
 
-  // Chọn 8 câu KHÔNG trùng số đếm
+  // Chá»n 8 cÃ¢u KHÃ”NG trÃ¹ng sá»‘ Ä‘áº¿m
   const picked = [];
   const usedNums = new Set();
   for(const q of shuffle(pool)){
@@ -409,7 +415,7 @@ function makeCountQs(emojis, minN, maxN){
     }
     if(picked.length === 8) break;
   }
-  // Nếu không đủ 8 (range < 8), bổ sung câu trùng số nhưng khác emoji
+  // Náº¿u khÃ´ng Ä‘á»§ 8 (range < 8), bá»• sung cÃ¢u trÃ¹ng sá»‘ nhÆ°ng khÃ¡c emoji
   if(picked.length < 8){
     for(const q of shuffle(pool)){
       if(picked.length >= 8) break;
@@ -420,13 +426,13 @@ function makeCountQs(emojis, minN, maxN){
   return shuffle(picked);
 }
 
-// ── MÀU: pool 16 câu, 8 câu chọn KHÔNG trùng tên màu
+// â”€â”€ MÃ€U: pool 16 cÃ¢u, 8 cÃ¢u chá»n KHÃ”NG trÃ¹ng tÃªn mÃ u
 function makeColorQs(){
   const pool = COLORS.map(c=>({
     type:'color', name:c.name, target:c.hex,
     choices:[...c.choices].sort(()=>Math.random()-0.5), answer:c.hex
   }));
-  // Chọn 8 câu không trùng tên màu
+  // Chá»n 8 cÃ¢u khÃ´ng trÃ¹ng tÃªn mÃ u
   const picked = [];
   const usedNames = new Set();
   for(const q of shuffle(pool)){
@@ -439,17 +445,17 @@ function makeColorQs(){
   return shuffle(picked);
 }
 
-// ── HÌNH: pool 16 câu, 8 câu chọn KHÔNG trùng tên hình
+// â”€â”€ HÃŒNH: pool 16 cÃ¢u, 8 cÃ¢u chá»n KHÃ”NG trÃ¹ng tÃªn hÃ¬nh
 function makeShapeQs(){
   const UNIQUE_SHAPES = [
-    {name:'Hình tròn',    svg:'<circle cx="45" cy="45" r="38" fill="currentColor"/>',                                                          vb:'0 0 90 90'},
-    {name:'Hình vuông',   svg:'<rect x="8" y="8" width="74" height="74" rx="6" fill="currentColor"/>',                                         vb:'0 0 90 90'},
-    {name:'Tam giác',     svg:'<polygon points="45,5 88,85 2,85" fill="currentColor"/>',                                                        vb:'0 0 90 90'},
-    {name:'Hình thoi',    svg:'<polygon points="45,4 88,45 45,86 2,45" fill="currentColor"/>',                                                  vb:'0 0 90 90'},
-    {name:'Ngôi sao',     svg:'<polygon points="45,3 56,36 90,36 63,57 74,90 45,68 16,90 27,57 0,36 34,36" fill="currentColor"/>',             vb:'0 0 90 90'},
-    {name:'Hình chữ nhật',svg:'<rect x="4" y="22" width="82" height="46" rx="6" fill="currentColor"/>',                                        vb:'0 0 90 90'},
+    {name:'HÃ¬nh trÃ²n',    svg:'<circle cx="45" cy="45" r="38" fill="currentColor"/>',                                                          vb:'0 0 90 90'},
+    {name:'HÃ¬nh vuÃ´ng',   svg:'<rect x="8" y="8" width="74" height="74" rx="6" fill="currentColor"/>',                                         vb:'0 0 90 90'},
+    {name:'Tam giÃ¡c',     svg:'<polygon points="45,5 88,85 2,85" fill="currentColor"/>',                                                        vb:'0 0 90 90'},
+    {name:'HÃ¬nh thoi',    svg:'<polygon points="45,4 88,45 45,86 2,45" fill="currentColor"/>',                                                  vb:'0 0 90 90'},
+    {name:'NgÃ´i sao',     svg:'<polygon points="45,3 56,36 90,36 63,57 74,90 45,68 16,90 27,57 0,36 34,36" fill="currentColor"/>',             vb:'0 0 90 90'},
+    {name:'HÃ¬nh chá»¯ nháº­t',svg:'<rect x="4" y="22" width="82" height="46" rx="6" fill="currentColor"/>',                                        vb:'0 0 90 90'},
   ];
-  // Mỗi hình lặp để tạo pool 16 (lặp 2-3 lần), nhưng khi pick thì không trùng tên
+  // Má»—i hÃ¬nh láº·p Ä‘á»ƒ táº¡o pool 16 (láº·p 2-3 láº§n), nhÆ°ng khi pick thÃ¬ khÃ´ng trÃ¹ng tÃªn
   const pool = [];
   for(let rep=0; rep<3; rep++) UNIQUE_SHAPES.forEach(s => pool.push(s));
 
@@ -461,14 +467,14 @@ function makeShapeQs(){
       picked.push({type:'shape', name:s.name, target:s, choices:[s,...others].sort(()=>Math.random()-0.5), answer:s.name});
       usedNames.add(s.name);
     }
-    if(picked.length === 6) break; // chỉ có 6 hình unique tối đa
+    if(picked.length === 6) break; // chá»‰ cÃ³ 6 hÃ¬nh unique tá»‘i Ä‘a
   }
-  return shuffle(picked); // trả về tối đa 6 câu không trùng (bài hình chỉ có 6 hình)
+  return shuffle(picked); // tráº£ vá» tá»‘i Ä‘a 6 cÃ¢u khÃ´ng trÃ¹ng (bÃ i hÃ¬nh chá»‰ cÃ³ 6 hÃ¬nh)
 }
 
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // GAME STATE
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 let questions=[], qIdx=0, qStars=0, qAnswered=false, currentLesson='';
 let totalStars=0;
 
@@ -479,15 +485,15 @@ function startLesson(mode){
   else if(mode==='count2') questions=makeCountQs(EMOJIS_6_10,6,10);
   else if(mode==='color') questions=makeColorQs();
   else if(mode==='shape') questions=makeShapeQs();
-  const labels={count1:'Bài 1 — Đếm 1–5',count2:'Bài 2 — Đếm 6–10',color:'Bài 3 — Màu sắc',shape:'Bài 4 — Hình dạng'};
+  const labels={count1:'BÃ i 1 â€” Äáº¿m 1â€“5',count2:'BÃ i 2 â€” Äáº¿m 6â€“10',color:'BÃ i 3 â€” MÃ u sáº¯c',shape:'BÃ i 4 â€” HÃ¬nh dáº¡ng'};
   document.getElementById('gi-lesson').textContent=labels[mode];
   showScreen('screen-game');
   renderQuestion();
 }
 
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // SPEECH (Web Speech API)
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 let speechTimer1=null, speechTimer2=null;
 
 function speak(text){
@@ -520,7 +526,7 @@ function renderQuestion(){
   const q=questions[qIdx];
   const total=questions.length;
   document.getElementById('gi-prog').textContent=(qIdx+1)+'/'+total;
-  document.getElementById('gi-stars').textContent='⭐ '+qStars;
+  document.getElementById('gi-stars').textContent='â­ '+qStars;
   document.getElementById('prog-fill').style.width=(qIdx/total*100)+'%';
   document.getElementById('q-feedback').textContent='';
   document.getElementById('q-feedback').className='q-feedback';
@@ -531,9 +537,9 @@ function renderQuestion(){
   const colors=['#b388ff','#f48fb1','#4dd0e1','#ffd54f','#81c784','#ffb74d'];
 
   if(q.type==='count'){
-    speechText = 'Số ' + q.answer;
-    instruction = 'Bé nghe rồi chọn số đúng!';
-    // Show emojis so bé can count along
+    speechText = 'Sá»‘ ' + q.answer;
+    instruction = 'BÃ© nghe rá»“i chá»n sá»‘ Ä‘Ãºng!';
+    // Show emojis so bÃ© can count along
     document.getElementById('q-display').innerHTML=
       `<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
         ${Array(q.count).fill(`<span style="font-size:${q.count>7?38:46}px;line-height:1;">${q.emoji}</span>`).join('')}
@@ -545,9 +551,9 @@ function renderQuestion(){
     ).join('');
 
   } else if(q.type==='color'){
-    speechText = 'Màu ' + q.name;
-    instruction = 'Bé nghe rồi chọn màu đúng!';
-    // No color sample shown — only voice
+    speechText = 'MÃ u ' + q.name;
+    instruction = 'BÃ© nghe rá»“i chá»n mÃ u Ä‘Ãºng!';
+    // No color sample shown â€” only voice
     document.getElementById('q-display').innerHTML='';
     const cg=document.getElementById('choices-grid');
     cg.style.gridTemplateColumns='repeat(3,1fr)';
@@ -557,8 +563,8 @@ function renderQuestion(){
 
   } else if(q.type==='shape'){
     speechText = q.name;
-    instruction = 'Bé nghe rồi chọn hình đúng!';
-    // No shape sample shown — only voice
+    instruction = 'BÃ© nghe rá»“i chá»n hÃ¬nh Ä‘Ãºng!';
+    // No shape sample shown â€” only voice
     document.getElementById('q-display').innerHTML='';
     const cg=document.getElementById('choices-grid');
     cg.style.gridTemplateColumns='repeat(3,1fr)';
@@ -571,11 +577,11 @@ function renderQuestion(){
 
   document.getElementById('q-instruction').innerHTML =
     `<span>${instruction}</span>
-     <button id="speak-btn" onclick="speakQuestion('${speechText}')" title="Nghe lại"
+     <button id="speak-btn" onclick="speakQuestion('${speechText}')" title="Nghe láº¡i"
        style="margin-left:10px;border:none;background:rgba(179,136,255,0.18);
               border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;
               vertical-align:middle;transition:transform .15s,background .15s;font-family:'Baloo 2',sans-serif;">
-       🔊
+       ðŸ”Š
      </button>`;
 
   // Auto-speak on question load (small delay so page renders first)
@@ -606,16 +612,16 @@ function handleResult(btn, correct, cls='cho-btn'){
   const fb=document.getElementById('q-feedback');
   if(correct){
     btn.classList.add('correct');
-    fb.textContent='🌟 Đúng rồi! Giỏi quá!';
+    fb.textContent='ðŸŒŸ ÄÃºng rá»“i! Giá»i quÃ¡!';
     fb.className='q-feedback ok';
     qStars++;
     totalStars++;
-    document.getElementById('gi-stars').textContent='⭐ '+qStars;
-    document.getElementById('hdr-stars').textContent='⭐ '+totalStars;
+    document.getElementById('gi-stars').textContent='â­ '+qStars;
+    document.getElementById('hdr-stars').textContent='â­ '+totalStars;
     snd.correct();
   } else {
     btn.classList.add('wrong');
-    fb.textContent='💙 Chưa đúng, thử câu khác nhé!';
+    fb.textContent='ðŸ’™ ChÆ°a Ä‘Ãºng, thá»­ cÃ¢u khÃ¡c nhÃ©!';
     fb.className='q-feedback no';
     // highlight correct
     if(cls==='cho-btn'){
@@ -650,23 +656,23 @@ function nextQuestion(){
 
 function showResult(){
   const total=questions.length;
-  let emoji='💪',title='Cố gắng lên!',msg='Lần sau bé sẽ làm tốt hơn nhé! 🌈';
-  if(qStars===total){emoji='🏆';title='Xuất sắc! 🌟';msg='Bé giỏi quá! Đúng hết rồi! Tuyệt vời!';snd.cheer();}
-  else if(qStars>=total*0.75){emoji='🎉';title='Rất giỏi! 👏';msg='Bé học tốt lắm! Gần hoàn hảo rồi!';snd.correct();}
-  else if(qStars>=total*0.5){emoji='😊';title='Giỏi lắm! 👍';msg='Bé làm được nhiều câu rồi! Tiếp tục nhé!';snd.correct();}
+  let emoji='ðŸ’ª',title='Cá»‘ gáº¯ng lÃªn!',msg='Láº§n sau bÃ© sáº½ lÃ m tá»‘t hÆ¡n nhÃ©! ðŸŒˆ';
+  if(qStars===total){emoji='ðŸ†';title='Xuáº¥t sáº¯c! ðŸŒŸ';msg='BÃ© giá»i quÃ¡! ÄÃºng háº¿t rá»“i! Tuyá»‡t vá»i!';snd.cheer();}
+  else if(qStars>=total*0.75){emoji='ðŸŽ‰';title='Ráº¥t giá»i! ðŸ‘';msg='BÃ© há»c tá»‘t láº¯m! Gáº§n hoÃ n háº£o rá»“i!';snd.correct();}
+  else if(qStars>=total*0.5){emoji='ðŸ˜Š';title='Giá»i láº¯m! ðŸ‘';msg='BÃ© lÃ m Ä‘Æ°á»£c nhiá»u cÃ¢u rá»“i! Tiáº¿p tá»¥c nhÃ©!';snd.correct();}
   document.getElementById('res-emoji').textContent=emoji;
   document.getElementById('res-title').textContent=title;
   document.getElementById('res-msg').textContent=msg;
-  document.getElementById('res-score').textContent=qStars+' / '+total+' ⭐';
+  document.getElementById('res-score').textContent=qStars+' / '+total+' â­';
   showScreen('screen-result');
   if(qStars===total) launchConfetti();
 }
 
 function replayLesson(){ startLesson(currentLesson); }
 
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // CONFETTI
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 const CONF_COLORS=['#f44336','#2196f3','#ffeb3b','#4caf50','#9c27b0','#ff9800','#e91e63'];
 function launchConfetti(){
   for(let i=0;i<50;i++){
@@ -687,13 +693,17 @@ function launchConfetti(){
   }
 }
 
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // BOOT
-// ══════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 updateMusicButton();
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
