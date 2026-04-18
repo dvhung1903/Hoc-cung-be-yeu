@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Học toán cùng bé</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary:       #FF6B6B;
+    --primary-light: #FFF0F0;
+    --primary-dark:  #C0392B;
+    --age3:          #FFB347;
+    --age3-light:    #FFF7EE;
+    --age3-dark:     #B85C00;
+    --age4:          #FF6B6B;
+    --age4-light:    #FFF0F0;
+    --age4-dark:     #C0392B;
+    --age5:          #7C6FF7;
+    --age5-light:    #F2F0FF;
+    --age5-dark:     #4936C2;
+    --bg: #FDFCF8;
+    --text: #2D2A26;
+    --text-soft: #6B6560;
+    --radius: 20px;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -120px; left: -120px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, #FF6B6B22 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -100px; right: -100px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, #FFB34722 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .back-btn {
+    position: fixed;
+    top: 1.2rem; left: 1.2rem;
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    text-decoration: none;
+    background: white;
+    border: 1.5px solid #EEE;
+    border-radius: 50px;
+    padding: 6px 14px 6px 10px;
+    transition: all 0.18s;
+    z-index: 10;
+  }
+  .back-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateX(-3px);
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .header .badge {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: 50px;
+    padding: 4px 14px;
+    margin-bottom: 0.8rem;
+    border: 1.5px solid #FFCACA;
+    letter-spacing: 0.5px;
+  }
+
+  .header h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .header h1 span {
+    color: var(--primary);
+  }
+
+  .header p {
+    margin-top: 0.6rem;
+    font-size: 1rem;
+    color: var(--text-soft);
+    font-weight: 600;
+  }
+
+  .menu {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 22px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    border: 2.5px solid transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .menu-item.age3 {
+    animation-delay: 0.1s;
+    background: var(--age3-light);
+    border-color: #FFE0B2;
+  }
+  .menu-item.age4 {
+    animation-delay: 0.2s;
+    background: var(--age4-light);
+    border-color: #FFCACA;
+  }
+  .menu-item.age5 {
+    animation-delay: 0.3s;
+    background: var(--age5-light);
+    border-color: #D5D0FF;
+  }
+
+  .menu-item:hover {
+    transform: translateX(8px) scale(1.02);
+  }
+  .menu-item.age3:hover {
+    border-color: var(--age3);
+    box-shadow: 0 8px 30px #FFB34722;
+  }
+  .menu-item.age4:hover {
+    border-color: var(--age4);
+    box-shadow: 0 8px 30px #FF6B6B22;
+  }
+  .menu-item.age5:hover {
+    border-color: var(--age5);
+    box-shadow: 0 8px 30px #7C6FF722;
+  }
+  .menu-item:active { transform: translateX(4px) scale(0.99); }
+
+  /* Coming soon style */
+  .menu-item.coming-soon {
+    opacity: 0.65;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .icon-wrap {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  .age3 .icon-wrap { background: var(--age3); }
+  .age4 .icon-wrap { background: var(--age4); }
+  .age5 .icon-wrap { background: var(--age5); }
+
+  .info { flex: 1; }
+
+  .info .title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .info .sub {
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-top: 3px;
+  }
+  .age3 .sub { color: var(--age3-dark); }
+  .age4 .sub { color: var(--age4-dark); }
+  .age5 .sub { color: var(--age5-dark); }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    flex-shrink: 0;
+  }
+  .tag.soon {
+    background: #F1EFEA;
+    color: #999;
+    border: 1px solid #E0DDD8;
+  }
+  .tag.ready {
+    background: #E8F8F5;
+    color: #1A9B93;
+    border: 1px solid #B2ECEA;
+  }
+
+  .arrow {
+    font-size: 1.3rem;
+    opacity: 0.4;
+    transition: opacity 0.18s, transform 0.18s;
+    margin-left: 4px;
+  }
+  .menu-item:hover .arrow { opacity: 1; transform: translateX(4px); }
+
+  .footer {
+    margin-top: 2.5rem;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    font-weight: 600;
+    text-align: center;
+    opacity: 0.7;
+    animation: fadeUp 0.5s 0.35s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 400px) {
+    .icon-wrap { width: 50px; height: 50px; font-size: 1.6rem; border-radius: 12px; }
+    .info .title { font-size: 1.05rem; }
+    .menu-item { padding: 15px 16px; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-btn" href="../index.html">‹ Quay lại</a>
+
+<div class="header">
+  <div class="badge">🔢 Học toán cùng bé</div>
+  <h1>Chọn <span>độ tuổi</span> của bé</h1>
+  <p>Nội dung phù hợp với từng giai đoạn phát triển</p>
+</div>
+
+<nav class="menu">
+
+  <a class="menu-item age3" href="3-tuoi/index.html">
+    <div class="icon-wrap">🌱</div>
+    <div class="info">
+      <div class="title">Toán cho bé 3 tuổi</div>
+      <div class="sub">Đếm 1–5 · Màu sắc · Hình dạng</div>
+    </div>
+    <span class="tag ready">Sẵn sàng</span>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="menu-item age4" href="4-tuoi/index.html">
+    <div class="icon-wrap">⭐</div>
+    <div class="info">
+      <div class="title">Toán cho bé 4 tuổi</div>
+      <div class="sub">Đếm 1–10 · Phép tính · Hình dạng</div>
+    </div>
+    <span class="tag ready">Sẵn sàng</span>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="menu-item age5" href="5-tuoi/index.html">
+    <div class="icon-wrap">🚀</div>
+    <div class="info">
+      <div class="title">Toán cho bé 5 tuổi</div>
+      <div class="sub">Cộng trừ · Nhân · Bảng cửu chương</div>
+    </div>
+    <span class="tag ready">Sẵn sàng</span>
+    <span class="arrow">›</span>
+  </a>
+
+</nav>
+
+<div class="footer">🌟 Học mà chơi, chơi mà học!</div>
+
+</body>
+</html>
