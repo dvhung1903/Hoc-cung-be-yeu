@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Bé Học Toán — 4 Tuổi</title>
+<title>BÃ© Há»c ToÃ¡n â€” 4 Tuá»•i</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -84,7 +84,7 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 .q-feedback.ok{color:#00c853;}
 .q-feedback.no{color:#f44336;}
 
-/* CHOICES — 2×2 */
+/* CHOICES â€” 2Ã—2 */
 .choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin-bottom:14px;}
 .cho-btn{
   border:3px solid transparent;border-radius:20px;
@@ -150,85 +150,85 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 
 <!-- HEADER -->
 <div id="app-header">
-  <button class="hbtn" id="back-btn" onclick="handleBack()">‹ Quay lại</button>
-  <h1>🧮 Bé Học Toán</h1>
+  <button class="hbtn" id="back-btn" onclick="handleBack()">â€¹ Quay láº¡i</button>
+  <h1>ðŸ§® BÃ© Há»c ToÃ¡n</h1>
   <div style="display:flex;gap:8px;align-items:center;">
-    <span id="hdr-stars" style="font-size:14px;font-weight:800;color:var(--purple);">⭐ 0</span>
-    <button class="hbtn" id="music-btn" onclick="toggleMusic()">🎵</button>
+    <span id="hdr-stars" style="font-size:14px;font-weight:800;color:var(--purple);">â­ 0</span>
+    <button class="hbtn" id="music-btn" onclick="toggleMusic()">ðŸŽµ</button>
   </div>
 </div>
 
-<!-- ══ MENU ══ -->
+<!-- â•â• MENU â•â• -->
 <div id="screen-menu" class="screen active">
-  <div class="menu-hero">🐣</div>
-  <div class="menu-title">Bé Học Toán!</div>
-  <div class="menu-sub">Dành cho bé 4 tuổi 💛</div>
+  <div class="menu-hero">ðŸ£</div>
+  <div class="menu-title">BÃ© Há»c ToÃ¡n!</div>
+  <div class="menu-sub">DÃ nh cho bÃ© 4 tuá»•i ðŸ’›</div>
   <div class="lesson-grid">
     <button class="lesson-btn l1" onclick="startLesson('count')">
-      <div class="lb-icon">🍎</div>
-      <div class="lb-num">BÀI 1</div>
-      <div class="lb-title">Đếm số lượng</div>
-      <div class="lb-desc">Đếm đồ vật</div>
+      <div class="lb-icon">ðŸŽ</div>
+      <div class="lb-num">BÃ€I 1</div>
+      <div class="lb-title">Äáº¿m sá»‘ lÆ°á»£ng</div>
+      <div class="lb-desc">Äáº¿m Ä‘á»“ váº­t</div>
     </button>
     <button class="lesson-btn l2" onclick="startLesson('add')">
-      <div class="lb-icon">➕</div>
-      <div class="lb-num">BÀI 2</div>
-      <div class="lb-title">Phép cộng</div>
-      <div class="lb-desc">Cộng hai số nhỏ</div>
+      <div class="lb-icon">âž•</div>
+      <div class="lb-num">BÃ€I 2</div>
+      <div class="lb-title">PhÃ©p cá»™ng</div>
+      <div class="lb-desc">Cá»™ng hai sá»‘ nhá»</div>
     </button>
     <button class="lesson-btn l3" onclick="startLesson('sub')">
-      <div class="lb-icon">➖</div>
-      <div class="lb-num">BÀI 3</div>
-      <div class="lb-title">Phép trừ</div>
-      <div class="lb-desc">Trừ hai số nhỏ</div>
+      <div class="lb-icon">âž–</div>
+      <div class="lb-num">BÃ€I 3</div>
+      <div class="lb-title">PhÃ©p trá»«</div>
+      <div class="lb-desc">Trá»« hai sá»‘ nhá»</div>
     </button>
     <button class="lesson-btn l4" onclick="startLesson('compare')">
-      <div class="lb-icon">⚖️</div>
-      <div class="lb-num">BÀI 4</div>
-      <div class="lb-title">So sánh số</div>
-      <div class="lb-desc">Lớn hơn hay nhỏ hơn?</div>
+      <div class="lb-icon">âš–ï¸</div>
+      <div class="lb-num">BÃ€I 4</div>
+      <div class="lb-title">So sÃ¡nh sá»‘</div>
+      <div class="lb-desc">Lá»›n hÆ¡n hay nhá» hÆ¡n?</div>
     </button>
     <button class="lesson-btn l5" onclick="startLesson('missing')" style="grid-column:span 2;">
-      <div class="lb-icon">❓</div>
-      <div class="lb-num">BÀI 5</div>
-      <div class="lb-title">Số còn thiếu</div>
-      <div class="lb-desc">Điền số vào dãy số</div>
+      <div class="lb-icon">â“</div>
+      <div class="lb-num">BÃ€I 5</div>
+      <div class="lb-title">Sá»‘ cÃ²n thiáº¿u</div>
+      <div class="lb-desc">Äiá»n sá»‘ vÃ o dÃ£y sá»‘</div>
     </button>
   </div>
 </div>
 
-<!-- ══ GAME ══ -->
+<!-- â•â• GAME â•â• -->
 <div id="screen-game" class="screen">
   <div class="game-top">
-    <div class="ginfo" id="gi-lesson" style="flex:1;overflow:hidden;text-overflow:ellipsis;">Bài 1</div>
+    <div class="ginfo" id="gi-lesson" style="flex:1;overflow:hidden;text-overflow:ellipsis;">BÃ i 1</div>
     <div class="ginfo" id="gi-prog">1/8</div>
-    <div class="ginfo" id="gi-stars">⭐ 0</div>
-    <button class="ginfo btn-style" onclick="goMenu()">🏠</button>
+    <div class="ginfo" id="gi-stars">â­ 0</div>
+    <button class="ginfo btn-style" onclick="goMenu()">ðŸ </button>
   </div>
   <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
   <div class="qcard" id="qcard">
-    <div class="q-label" id="q-label">CÂU HỎI</div>
+    <div class="q-label" id="q-label">CÃ‚U Há»ŽI</div>
     <div class="q-display" id="q-display"></div>
     <div class="q-feedback" id="q-feedback"></div>
   </div>
   <div class="choices-grid" id="choices-grid"></div>
-  <button class="btn-next" id="btn-next" onclick="nextQuestion()">Câu tiếp theo →</button>
+  <button class="btn-next" id="btn-next" onclick="nextQuestion()">CÃ¢u tiáº¿p theo â†’</button>
 </div>
 
-<!-- ══ RESULT ══ -->
+<!-- â•â• RESULT â•â• -->
 <div id="screen-result" class="screen">
-  <div class="result-emoji" id="res-emoji">🏆</div>
+  <div class="result-emoji" id="res-emoji">ðŸ†</div>
   <div class="card">
-    <div class="card-title" id="res-title">Xuất sắc!</div>
+    <div class="card-title" id="res-title">Xuáº¥t sáº¯c!</div>
     <div class="card-sub" id="res-msg"></div>
-    <div class="result-score" id="res-score">8/8 ⭐</div>
-    <button class="btn-primary" onclick="replayLesson()">🔄 Làm lại</button>
-    <button class="btn-secondary" onclick="goMenu()">🏠 Về menu</button>
+    <div class="result-score" id="res-score">8/8 â­</div>
+    <button class="btn-primary" onclick="replayLesson()">ðŸ”„ LÃ m láº¡i</button>
+    <button class="btn-secondary" onclick="goMenu()">ðŸ  Vá» menu</button>
   </div>
 </div>
 
 <script>
-// ══════ AUDIO ══════
+// â•â•â•â•â•â• AUDIO â•â•â•â•â•â•
 const AC=new (window.AudioContext||window.webkitAudioContext)();
 let musicOn=true,bgTimer=null,melIdx=0;
 let audioUnlocked=false;
@@ -236,7 +236,7 @@ const MELODY=[523,587,659,698,784,659,587,523,659,784,880,784,659,523,587,659];
 const BASS=[262,262,349,349,392,392,349,349];
 function updateMusicButton(){
   const btn=document.getElementById('music-btn');
-  if(btn) btn.textContent=musicOn?'🎵':'🔇';
+  if(btn) btn.textContent=musicOn?'ðŸŽµ':'ðŸ”‡';
 }
 function unlockAudio(){
   if(audioUnlocked) return;
@@ -259,8 +259,8 @@ function tone(f,type,dur,vol,delay=0){
 }
 function bgTick(){
   const ms=60000/76*0.5;
-  tone(MELODY[melIdx%MELODY.length],'triangle',0.35,0.035);
-  if(melIdx%4===0)tone(BASS[Math.floor(melIdx/4)%BASS.length],'sine',0.55,0.022);
+  tone(MELODY[melIdx%MELODY.length],'triangle',0.35,0.09);
+  if(melIdx%4===0)tone(BASS[Math.floor(melIdx/4)%BASS.length],'sine',0.55,0.06);
   melIdx++;bgTimer=setTimeout(bgTick,ms);
 }
 function startMusic(){if(!bgTimer){melIdx=0;bgTick();}}
@@ -286,7 +286,7 @@ const snd={
   cheer:()=>{[523,659,784,1047,1319,1568].forEach((f,i)=>tone(f,'triangle',0.3,0.2,i*0.07));setTimeout(()=>[784,1047,1319].forEach((f,i)=>tone(f,'sine',0.2,0.15,i*0.06)),700);}
 };
 
-// ══════ SCREENS ══════
+// â•â•â•â•â•â• SCREENS â•â•â•â•â•â•
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -299,7 +299,7 @@ function handleBack(){
 }
 function goMenu(){showScreen('screen-menu');}
 
-// ══════ QUESTION BANKS ══════
+// â•â•â•â•â•â• QUESTION BANKS â•â•â•â•â•â•
 function shuffle(arr){return arr.slice().sort(()=>Math.random()-0.5);}
 function pick8(arr){return shuffle(arr).slice(0,8);}
 
@@ -314,18 +314,18 @@ function genChoices4(answer,pool){
   return shuffle(s);
 }
 
-// BÀI 1: Đếm số lượng — 20 câu
+// BÃ€I 1: Äáº¿m sá»‘ lÆ°á»£ng â€” 20 cÃ¢u
 const EMOJI_BANK=[
-  {emoji:'🍎',count:3},{emoji:'🐶',count:2},{emoji:'⭐',count:4},
-  {emoji:'🐱',count:5},{emoji:'🌸',count:2},{emoji:'🚗',count:3},
-  {emoji:'🍌',count:4},{emoji:'🐸',count:1},{emoji:'🎈',count:5},
-  {emoji:'🦋',count:2},{emoji:'🍊',count:3},{emoji:'🐥',count:4},
-  {emoji:'🌙',count:3},{emoji:'🍕',count:2},{emoji:'🐠',count:3},
-  {emoji:'🏠',count:4},{emoji:'🌈',count:1},{emoji:'🎁',count:5},
-  {emoji:'🐇',count:2},{emoji:'🍦',count:3},
+  {emoji:'ðŸŽ',count:3},{emoji:'ðŸ¶',count:2},{emoji:'â­',count:4},
+  {emoji:'ðŸ±',count:5},{emoji:'ðŸŒ¸',count:2},{emoji:'ðŸš—',count:3},
+  {emoji:'ðŸŒ',count:4},{emoji:'ðŸ¸',count:1},{emoji:'ðŸŽˆ',count:5},
+  {emoji:'ðŸ¦‹',count:2},{emoji:'ðŸŠ',count:3},{emoji:'ðŸ¥',count:4},
+  {emoji:'ðŸŒ™',count:3},{emoji:'ðŸ•',count:2},{emoji:'ðŸ ',count:3},
+  {emoji:'ðŸ ',count:4},{emoji:'ðŸŒˆ',count:1},{emoji:'ðŸŽ',count:5},
+  {emoji:'ðŸ‡',count:2},{emoji:'ðŸ¦',count:3},
 ];
 
-// BÀI 2: Phép cộng — 20 câu
+// BÃ€I 2: PhÃ©p cá»™ng â€” 20 cÃ¢u
 const ADD_BANK=[
   {q:'1 + 1 = ?',a:2},{q:'2 + 1 = ?',a:3},{q:'1 + 2 = ?',a:3},{q:'2 + 2 = ?',a:4},
   {q:'3 + 1 = ?',a:4},{q:'1 + 3 = ?',a:4},{q:'4 + 1 = ?',a:5},{q:'2 + 3 = ?',a:5},
@@ -334,40 +334,40 @@ const ADD_BANK=[
   {q:'2 + 0 = ?',a:2},{q:'3 + 0 = ?',a:3},{q:'4 + 0 = ?',a:4},{q:'5 + 0 = ?',a:5},
 ];
 
-// BÀI 3: Phép trừ — 20 câu
+// BÃ€I 3: PhÃ©p trá»« â€” 20 cÃ¢u
 const SUB_BANK=[
-  {q:'2 − 1 = ?',a:1},{q:'3 − 1 = ?',a:2},{q:'4 − 1 = ?',a:3},{q:'5 − 1 = ?',a:4},
-  {q:'3 − 2 = ?',a:1},{q:'4 − 2 = ?',a:2},{q:'5 − 2 = ?',a:3},{q:'4 − 3 = ?',a:1},
-  {q:'5 − 3 = ?',a:2},{q:'5 − 4 = ?',a:1},{q:'2 − 0 = ?',a:2},{q:'3 − 0 = ?',a:3},
-  {q:'4 − 0 = ?',a:4},{q:'5 − 0 = ?',a:5},{q:'1 − 0 = ?',a:1},{q:'5 − 5 = ?',a:0},
-  {q:'4 − 4 = ?',a:0},{q:'3 − 3 = ?',a:0},{q:'2 − 2 = ?',a:0},{q:'1 − 1 = ?',a:0},
+  {q:'2 âˆ’ 1 = ?',a:1},{q:'3 âˆ’ 1 = ?',a:2},{q:'4 âˆ’ 1 = ?',a:3},{q:'5 âˆ’ 1 = ?',a:4},
+  {q:'3 âˆ’ 2 = ?',a:1},{q:'4 âˆ’ 2 = ?',a:2},{q:'5 âˆ’ 2 = ?',a:3},{q:'4 âˆ’ 3 = ?',a:1},
+  {q:'5 âˆ’ 3 = ?',a:2},{q:'5 âˆ’ 4 = ?',a:1},{q:'2 âˆ’ 0 = ?',a:2},{q:'3 âˆ’ 0 = ?',a:3},
+  {q:'4 âˆ’ 0 = ?',a:4},{q:'5 âˆ’ 0 = ?',a:5},{q:'1 âˆ’ 0 = ?',a:1},{q:'5 âˆ’ 5 = ?',a:0},
+  {q:'4 âˆ’ 4 = ?',a:0},{q:'3 âˆ’ 3 = ?',a:0},{q:'2 âˆ’ 2 = ?',a:0},{q:'1 âˆ’ 1 = ?',a:0},
 ];
 
-// BÀI 4: So sánh — 20 câu (đáp án là số)
+// BÃ€I 4: So sÃ¡nh â€” 20 cÃ¢u (Ä‘Ã¡p Ã¡n lÃ  sá»‘)
 const CMP_BANK=[
-  {q:'3  và  5\nSố nào lớn hơn?',a:'5',pool:['1','2','3','4','5']},
-  {q:'2  và  4\nSố nào lớn hơn?',a:'4',pool:['1','2','3','4','5']},
-  {q:'1  và  3\nSố nào nhỏ hơn?',a:'1',pool:['1','2','3','4','5']},
-  {q:'5  và  2\nSố nào nhỏ hơn?',a:'2',pool:['1','2','3','4','5']},
-  {q:'4  và  1\nSố nào lớn hơn?',a:'4',pool:['1','2','3','4','5']},
-  {q:'2  và  3\nSố nào nhỏ hơn?',a:'2',pool:['1','2','3','4','5']},
-  {q:'1  và  5\nSố nào lớn hơn?',a:'5',pool:['1','2','3','4','5']},
-  {q:'4  và  3\nSố nào lớn hơn?',a:'4',pool:['1','2','3','4','5']},
-  {q:'3  và  1\nSố nào nhỏ hơn?',a:'1',pool:['1','2','3','4','5']},
-  {q:'5  và  4\nSố nào nhỏ hơn?',a:'4',pool:['2','3','4','5','1']},
-  {q:'1  và  4\nSố nào nhỏ hơn?',a:'1',pool:['1','2','3','4','5']},
-  {q:'3  và  4\nSố nào lớn hơn?',a:'4',pool:['1','2','3','4','5']},
-  {q:'5  và  3\nSố nào lớn hơn?',a:'5',pool:['1','3','4','5','2']},
-  {q:'2  và  1\nSố nào lớn hơn?',a:'2',pool:['1','2','3','4','5']},
-  {q:'4  và  5\nSố nào nhỏ hơn?',a:'4',pool:['2','3','4','5','1']},
-  {q:'1  và  2\nSố nào lớn hơn?',a:'2',pool:['1','2','3','4','5']},
-  {q:'3  và  5\nSố nào nhỏ hơn?',a:'3',pool:['1','2','3','4','5']},
-  {q:'5  và  1\nSố nào lớn hơn?',a:'5',pool:['1','2','3','4','5']},
-  {q:'4  và  2\nSố nào nhỏ hơn?',a:'2',pool:['1','2','3','4','5']},
-  {q:'2  và  5\nSố nào lớn hơn?',a:'5',pool:['1','2','3','4','5']},
+  {q:'3  vÃ   5\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'5',pool:['1','2','3','4','5']},
+  {q:'2  vÃ   4\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'4',pool:['1','2','3','4','5']},
+  {q:'1  vÃ   3\nSá»‘ nÃ o nhá» hÆ¡n?',a:'1',pool:['1','2','3','4','5']},
+  {q:'5  vÃ   2\nSá»‘ nÃ o nhá» hÆ¡n?',a:'2',pool:['1','2','3','4','5']},
+  {q:'4  vÃ   1\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'4',pool:['1','2','3','4','5']},
+  {q:'2  vÃ   3\nSá»‘ nÃ o nhá» hÆ¡n?',a:'2',pool:['1','2','3','4','5']},
+  {q:'1  vÃ   5\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'5',pool:['1','2','3','4','5']},
+  {q:'4  vÃ   3\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'4',pool:['1','2','3','4','5']},
+  {q:'3  vÃ   1\nSá»‘ nÃ o nhá» hÆ¡n?',a:'1',pool:['1','2','3','4','5']},
+  {q:'5  vÃ   4\nSá»‘ nÃ o nhá» hÆ¡n?',a:'4',pool:['2','3','4','5','1']},
+  {q:'1  vÃ   4\nSá»‘ nÃ o nhá» hÆ¡n?',a:'1',pool:['1','2','3','4','5']},
+  {q:'3  vÃ   4\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'4',pool:['1','2','3','4','5']},
+  {q:'5  vÃ   3\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'5',pool:['1','3','4','5','2']},
+  {q:'2  vÃ   1\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'2',pool:['1','2','3','4','5']},
+  {q:'4  vÃ   5\nSá»‘ nÃ o nhá» hÆ¡n?',a:'4',pool:['2','3','4','5','1']},
+  {q:'1  vÃ   2\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'2',pool:['1','2','3','4','5']},
+  {q:'3  vÃ   5\nSá»‘ nÃ o nhá» hÆ¡n?',a:'3',pool:['1','2','3','4','5']},
+  {q:'5  vÃ   1\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'5',pool:['1','2','3','4','5']},
+  {q:'4  vÃ   2\nSá»‘ nÃ o nhá» hÆ¡n?',a:'2',pool:['1','2','3','4','5']},
+  {q:'2  vÃ   5\nSá»‘ nÃ o lá»›n hÆ¡n?',a:'5',pool:['1','2','3','4','5']},
 ];
 
-// BÀI 5: Số còn thiếu — 20 câu
+// BÃ€I 5: Sá»‘ cÃ²n thiáº¿u â€” 20 cÃ¢u
 const MISS_BANK=[
   {q:'1,  2,  ...,  4',a:3},{q:'2,  ...,  4,  5',a:3},{q:'...,  2,  3,  4',a:1},
   {q:'1,  2,  3,  ...',a:4},{q:'2,  3,  ...,  5',a:4},{q:'...,  3,  4,  5',a:2},
@@ -378,17 +378,17 @@ const MISS_BANK=[
   {q:'1,  2,  ...,  4,  5',a:3},{q:'0,  1,  ...,  3',a:2},
 ];
 
-// ══════ GAME STATE ══════
+// â•â•â•â•â•â• GAME STATE â•â•â•â•â•â•
 let questions=[],qIdx=0,qStars=0,qAnswered=false,currentLesson='',totalStars=0;
 
 function startLesson(mode){
   currentLesson=mode;qIdx=0;qStars=0;qAnswered=false;
   const labels={
-    count:'Bài 1 — Đếm số lượng',
-    add:'Bài 2 — Phép cộng',
-    sub:'Bài 3 — Phép trừ',
-    compare:'Bài 4 — So sánh số',
-    missing:'Bài 5 — Số còn thiếu'
+    count:'BÃ i 1 â€” Äáº¿m sá»‘ lÆ°á»£ng',
+    add:'BÃ i 2 â€” PhÃ©p cá»™ng',
+    sub:'BÃ i 3 â€” PhÃ©p trá»«',
+    compare:'BÃ i 4 â€” So sÃ¡nh sá»‘',
+    missing:'BÃ i 5 â€” Sá»‘ cÃ²n thiáº¿u'
   };
   document.getElementById('gi-lesson').textContent=labels[mode];
 
@@ -421,13 +421,13 @@ function startLesson(mode){
   renderQuestion();
 }
 
-// ══════ RENDER ══════
+// â•â•â•â•â•â• RENDER â•â•â•â•â•â•
 function renderQuestion(){
   qAnswered=false;
   const q=questions[qIdx];
   const total=questions.length;
   document.getElementById('gi-prog').textContent=(qIdx+1)+'/'+total;
-  document.getElementById('gi-stars').textContent='⭐ '+qStars;
+  document.getElementById('gi-stars').textContent='â­ '+qStars;
   document.getElementById('prog-fill').style.width=(qIdx/total*100)+'%';
   document.getElementById('q-feedback').textContent='';
   document.getElementById('q-feedback').className='q-feedback';
@@ -443,37 +443,37 @@ function renderQuestion(){
   const label=document.getElementById('q-label');
 
   if(q.type==='count'){
-    label.textContent='ĐẾM XEM CÓ MẤY?';
+    label.textContent='Äáº¾M XEM CÃ“ Máº¤Y?';
     disp.className='q-display emoji-row';
     disp.innerHTML=Array(q.count).fill(`<span style="display:inline-block;">${q.emoji}</span>`).join('');
   } else if(q.type==='calc'){
-    label.textContent='TÍNH KẾT QUẢ';
+    label.textContent='TÃNH Káº¾T QUáº¢';
     disp.className='q-display';
     disp.textContent=q.q;
   } else if(q.type==='compare'){
     // Extract speech text from question
     const lines=q.q.split('\n');
-    const nums=lines[0].trim(); // e.g. "3  và  5"
-    const instruction=lines[1]||''; // e.g. "Số nào lớn hơn?"
+    const nums=lines[0].trim(); // e.g. "3  vÃ   5"
+    const instruction=lines[1]||''; // e.g. "Sá»‘ nÃ o lá»›n hÆ¡n?"
     const speechText=nums+'. '+instruction;
-    label.innerHTML=`SO SÁNH SỐ &nbsp;
+    label.innerHTML=`SO SÃNH Sá» &nbsp;
       <button onclick="speak('${speechText.replace(/'/g,"\\'")}')"
         style="border:none;background:rgba(179,136,255,0.2);border-radius:50%;width:36px;height:36px;
-        font-size:18px;cursor:pointer;vertical-align:middle;line-height:1;">🔊</button>`;
+        font-size:18px;cursor:pointer;vertical-align:middle;line-height:1;">ðŸ”Š</button>`;
     disp.className='q-display';
     disp.style.fontSize='clamp(20px,5vw,26px)';
     disp.innerHTML=q.q.replace(/\n/g,'<br>');
     // Auto-speak after short delay
     setTimeout(()=>speak(speechText),350);
   } else if(q.type==='missing'){
-    label.textContent='SỐ NÀO CÒN THIẾU?';
+    label.textContent='Sá» NÃ€O CÃ’N THIáº¾U?';
     disp.className='q-display';
     disp.style.fontSize='clamp(22px,5.5vw,30px)';
     disp.textContent=q.q;
   }
   if(q.type!=='compare'&&q.type!=='missing') disp.style.fontSize='';
 
-  // 4 choices in 2×2 grid
+  // 4 choices in 2Ã—2 grid
   const cg=document.getElementById('choices-grid');
   cg.innerHTML=q.choices.map(c=>
     `<button class="cho-btn" onclick="pick(this,'${c}','${q.answer}')">${c}</button>`
@@ -488,15 +488,15 @@ function pick(btn,val,answer){
   const fb=document.getElementById('q-feedback');
   if(correct){
     btn.classList.add('correct');
-    fb.textContent='🌟 Đúng rồi! Giỏi quá!';
+    fb.textContent='ðŸŒŸ ÄÃºng rá»“i! Giá»i quÃ¡!';
     fb.className='q-feedback ok';
     qStars++;totalStars++;
-    document.getElementById('gi-stars').textContent='⭐ '+qStars;
-    document.getElementById('hdr-stars').textContent='⭐ '+totalStars;
+    document.getElementById('gi-stars').textContent='â­ '+qStars;
+    document.getElementById('hdr-stars').textContent='â­ '+totalStars;
     snd.correct();
   } else {
     btn.classList.add('wrong');
-    fb.textContent='💙 Chưa đúng, thử câu khác nhé!';
+    fb.textContent='ðŸ’™ ChÆ°a Ä‘Ãºng, thá»­ cÃ¢u khÃ¡c nhÃ©!';
     fb.className='q-feedback no';
     document.querySelectorAll('#choices-grid .cho-btn').forEach(b=>{
       if(String(b.textContent.trim())===String(answer))b.classList.add('correct');
@@ -514,14 +514,14 @@ function nextQuestion(){
 
 function showResult(){
   const total=questions.length;
-  let emoji='💪',title='Cố gắng lên!',msg='Lần sau bé sẽ làm tốt hơn nhé! 🌈';
-  if(qStars===total){emoji='🏆';title='Xuất sắc! 🌟';msg='Bé giỏi quá! Đúng hết rồi! Tuyệt vời!';snd.cheer();}
-  else if(qStars>=total*0.75){emoji='🎉';title='Rất giỏi! 👏';msg='Bé học tốt lắm! Gần hoàn hảo rồi!';snd.correct();}
-  else if(qStars>=total*0.5){emoji='😊';title='Giỏi lắm! 👍';msg='Bé làm được nhiều câu rồi! Tiếp tục nhé!';snd.correct();}
+  let emoji='ðŸ’ª',title='Cá»‘ gáº¯ng lÃªn!',msg='Láº§n sau bÃ© sáº½ lÃ m tá»‘t hÆ¡n nhÃ©! ðŸŒˆ';
+  if(qStars===total){emoji='ðŸ†';title='Xuáº¥t sáº¯c! ðŸŒŸ';msg='BÃ© giá»i quÃ¡! ÄÃºng háº¿t rá»“i! Tuyá»‡t vá»i!';snd.cheer();}
+  else if(qStars>=total*0.75){emoji='ðŸŽ‰';title='Ráº¥t giá»i! ðŸ‘';msg='BÃ© há»c tá»‘t láº¯m! Gáº§n hoÃ n háº£o rá»“i!';snd.correct();}
+  else if(qStars>=total*0.5){emoji='ðŸ˜Š';title='Giá»i láº¯m! ðŸ‘';msg='BÃ© lÃ m Ä‘Æ°á»£c nhiá»u cÃ¢u rá»“i! Tiáº¿p tá»¥c nhÃ©!';snd.correct();}
   document.getElementById('res-emoji').textContent=emoji;
   document.getElementById('res-title').textContent=title;
   document.getElementById('res-msg').textContent=msg;
-  document.getElementById('res-score').textContent=qStars+' / '+total+' ⭐';
+  document.getElementById('res-score').textContent=qStars+' / '+total+' â­';
   showScreen('screen-result');
   if(qStars===total)launchConfetti();
 }
@@ -542,7 +542,7 @@ function launchConfetti(){
   }
 }
 
-// ══════ SPEECH ══════
+// â•â•â•â•â•â• SPEECH â•â•â•â•â•â•
 function speak(text){
   if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
@@ -555,5 +555,6 @@ updateMusicButton();
 </script>
 </body>
 </html>
+
 
 
