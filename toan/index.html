@@ -18,6 +18,9 @@
     --age4:          #FF6B6B;
     --age4-light:    #FFF0F0;
     --age4-dark:     #C0392B;
+    --age5:          #7C6FF7;
+    --age5-light:    #F2F0FF;
+    --age5-dark:     #4936C2;
     --bg: #FDFCF8;
     --text: #2D2A26;
     --text-soft: #6B6560;
@@ -148,6 +151,11 @@
     background: var(--age4-light);
     border-color: #FFCACA;
   }
+  .menu-item.age5 {
+    animation-delay: 0.3s;
+    background: var(--age5-light);
+    border-color: #D5D0FF;
+  }
 
   .menu-item:hover {
     transform: translateX(8px) scale(1.02);
@@ -159,6 +167,10 @@
   .menu-item.age4:hover {
     border-color: var(--age4);
     box-shadow: 0 8px 30px #FF6B6B22;
+  }
+  .menu-item.age5:hover {
+    border-color: var(--age5);
+    box-shadow: 0 8px 30px #7C6FF722;
   }
   .menu-item:active { transform: translateX(4px) scale(0.99); }
 
@@ -178,6 +190,7 @@
   }
   .age3 .icon-wrap { background: var(--age3); }
   .age4 .icon-wrap { background: var(--age4); }
+  .age5 .icon-wrap { background: var(--age5); }
 
   .info { flex: 1; }
 
@@ -196,6 +209,7 @@
   }
   .age3 .sub { color: var(--age3-dark); }
   .age4 .sub { color: var(--age4-dark); }
+  .age5 .sub { color: var(--age5-dark); }
 
   .tag {
     font-size: 0.7rem;
@@ -261,13 +275,14 @@
 
 <nav class="menu">
 
-  <a class="menu-item age3 " href="3-tuoi/index.html">
+  <a class="menu-item age3" href="3-tuoi/index.html">
     <div class="icon-wrap">🌱</div>
     <div class="info">
       <div class="title">Toán cho bé 3 tuổi</div>
-      <div class="sub">Đếm 1–5 · Hình khối · So sánh</div>
+      <div class="sub">Đếm 1–5 · Màu sắc · Hình dạng</div>
     </div>
-    <span class="tag soon">Sắp có</span>
+    <span class="tag ready">Sẵn sàng</span>
+    <span class="arrow">›</span>
   </a>
 
   <a class="menu-item age4" href="4-tuoi/index.html">
@@ -275,6 +290,16 @@
     <div class="info">
       <div class="title">Toán cho bé 4 tuổi</div>
       <div class="sub">Đếm 1–10 · Phép tính · Hình dạng</div>
+    </div>
+    <span class="tag ready">Sẵn sàng</span>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="menu-item age5" href="5-tuoi/index.html">
+    <div class="icon-wrap">🚀</div>
+    <div class="info">
+      <div class="title">Toán cho bé 5 tuổi</div>
+      <div class="sub">Cộng trừ · Nhân · Bảng cửu chương</div>
     </div>
     <span class="tag ready">Sẵn sàng</span>
     <span class="arrow">›</span>
