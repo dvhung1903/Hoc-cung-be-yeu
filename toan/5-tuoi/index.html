@@ -268,11 +268,6 @@ input.name-input:focus{border-color:#7c4dff;}
 <body>
 
 <!-- ══ STICKY HEADER ══ -->
-<div id="audio-unlock" style="display:none;position:fixed;inset:0;background:rgba(24,18,40,.82);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;padding:24px;">
-  <button id="audio-unlock-btn" style="border:none;border-radius:20px;padding:20px 32px;background:#fff;color:#3a2a6a;font:800 20px/1.3 sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.3);cursor:pointer;">
-    🎵 Chạm để bắt đầu & bật nhạc!
-  </button>
-</div>
 <div id="app-header">
   <h1>🧮 Cùng Bé Học Toán</h1>
   <div id="header-score" style="display:none">⭐ <span id="hs-score">0</span></div>
@@ -1431,41 +1426,29 @@ function pmShowResult(){
   refreshMenuUI();
   initMenuBanner();
 
-// ── Mở khóa audio trên mobile ──
-function initAudioUnlock(){
-  var overlay = document.getElementById('audio-unlock');
-  var btn     = document.getElementById('audio-unlock-btn');
-  if(!overlay || !btn) return;
-  var isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent)
-               || ('ontouchstart' in window)
-               || navigator.maxTouchPoints > 0;
-  if(!isMobile){
-    bgMusic.play().catch(function(){
-      document.addEventListener('click', function h(){
-        bgMusic.play().catch(function(){});
-        document.removeEventListener('click', h);
-      });
-    });
-    return;
-  }
-  overlay.style.display = 'flex';
-  btn.addEventListener('click', function(){
-    overlay.style.display = 'none';
-    if(AC.state === 'suspended') AC.resume();
-    bgMusic.play().catch(function(){});
-  }, {once: true});
-}
 
-// Resume nhac khi quay lai app
-document.addEventListener('visibilitychange', function(){
+
+// ── Tự resume nhạc khi quay lại app ──
+document.addEventListener('visibilitychange', ()=>{
   if(document.hidden) return;
-  if(AC.state === 'suspended') AC.resume();
-  if(musicOn && bgMusic.paused) bgMusic.play().catch(function(){});
+  try{
+    if(AC.state==='suspended') AC.resume();
+    if(musicOn && bgMusic.paused) bgMusic.play().catch(()=>{});
+  }catch(e){}
 });
 
+  startBgMusic();
   initAudioUnlock();
   showScreen('screen-menu');
 })();
+// Phat nhac khi nguoi dung cham man hinh lan dau
+['touchstart','click'].forEach(function(evt){
+  document.addEventListener(evt, function play(){
+    bgMusic.play().catch(function(){});
+    document.removeEventListener(evt, play);
+  }, {once:true});
+});
+
 </script>
 </body>
 </html>
