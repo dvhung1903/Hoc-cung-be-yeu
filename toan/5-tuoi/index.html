@@ -568,6 +568,37 @@ function playTone(freq, type, dur, vol, delay=0){
 }
 
 // Noise burst (for click)
+function unmuteIOSAudio(){
+  if(window.__iosAudioUnlocked) return;
+  window.__iosAudioUnlocked = true;
+  const sampleRate = 8000;
+  const samples = Math.floor(sampleRate * 0.12);
+  const buffer = new ArrayBuffer(44 + samples * 2);
+  const view = new DataView(buffer);
+  const write = (offset, text) => { for(let i=0;i<text.length;i++) view.setUint8(offset+i, text.charCodeAt(i)); };
+  write(0,'RIFF');
+  view.setUint32(4, 36 + samples * 2, true);
+  write(8,'WAVE');
+  write(12,'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  write(36,'data');
+  view.setUint32(40, samples * 2, true);
+  const blob = new Blob([buffer], { type: 'audio/wav' });
+  const url = URL.createObjectURL(blob);
+  const audio = new Audio();
+  audio.preload = 'auto';
+  audio.playsInline = true;
+  audio.src = url;
+  const done = () => setTimeout(() => URL.revokeObjectURL(url), 1000);
+  const p = audio.play();
+  if(p && p.finally) p.finally(done); else done();
+}
 function playNoise(dur,vol){
   if(!musicOn) return;
   resumeAC();
@@ -582,7 +613,7 @@ function playNoise(dur,vol){
   src.start(); src.stop(AC.currentTime+dur+0.05);
 }
 
-function initAudioUnlock(){
+ initAudioUnlock(){
   const overlay=document.getElementById('audio-unlock');
   const btn=document.getElementById('audio-unlock-btn');
   if(!overlay||!btn) return;
@@ -590,6 +621,7 @@ function initAudioUnlock(){
   if(!needsUnlock) return;
   overlay.classList.add('show');
   btn.addEventListener('click',()=>{
+    try{ unmuteIOSAudio(); }catch(e){} 
     try{ if(AC.state==='suspended') AC.resume(); }catch(e){}
     if(musicOn) startBgMusic();
     playTone(880,'triangle',0.12,0.16);
