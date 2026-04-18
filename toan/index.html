@@ -3,24 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Học cùng bé yêu</title>
+<title>Học toán cùng bé</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --toan:       #FF6B6B;
-    --toan-light: #FFF0F0;
-    --toan-dark:  #C0392B;
-    --anh:        #4ECDC4;
-    --anh-light:  #EEFAF9;
-    --anh-dark:   #1A9B93;
-    --viet:       #FFD93D;
-    --viet-light: #FFFBEA;
-    --viet-dark:  #B8960C;
-    --giai-tri:   #A78BFA;
-    --giai-tri-light: #F5F0FF;
-    --giai-tri-dark:  #6D28D9;
+    --primary:       #FF6B6B;
+    --primary-light: #FFF0F0;
+    --primary-dark:  #C0392B;
+    --age3:          #FFB347;
+    --age3-light:    #FFF7EE;
+    --age3-dark:     #B85C00;
+    --age4:          #FF6B6B;
+    --age4-light:    #FFF0F0;
+    --age4-dark:     #C0392B;
     --bg: #FDFCF8;
     --text: #2D2A26;
     --text-soft: #6B6560;
@@ -40,13 +37,12 @@
     overflow-x: hidden;
   }
 
-  /* Decorative blobs */
   body::before {
     content: '';
     position: fixed;
     top: -120px; left: -120px;
     width: 380px; height: 380px;
-    background: radial-gradient(circle, #FFD93D33 0%, transparent 70%);
+    background: radial-gradient(circle, #FF6B6B22 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -55,9 +51,31 @@
     position: fixed;
     bottom: -100px; right: -100px;
     width: 320px; height: 320px;
-    background: radial-gradient(circle, #4ECDC433 0%, transparent 70%);
+    background: radial-gradient(circle, #FFB34722 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
+  }
+
+  .back-btn {
+    position: fixed;
+    top: 1.2rem; left: 1.2rem;
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    text-decoration: none;
+    background: white;
+    border: 1.5px solid #EEE;
+    border-radius: 50px;
+    padding: 6px 14px 6px 10px;
+    transition: all 0.18s;
+    z-index: 10;
+  }
+  .back-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateX(-3px);
   }
 
   .header {
@@ -66,25 +84,29 @@
     animation: fadeDown 0.6s ease both;
   }
 
-  .header .emoji-row {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 4px;
+  .header .badge {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: 50px;
+    padding: 4px 14px;
+    margin-bottom: 0.8rem;
+    border: 1.5px solid #FFCACA;
+    letter-spacing: 0.5px;
   }
 
   .header h1 {
     font-family: 'Baloo 2', cursive;
-    font-size: clamp(2rem, 6vw, 3rem);
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
     font-weight: 800;
     color: var(--text);
     line-height: 1.1;
   }
 
   .header h1 span {
-    background: linear-gradient(135deg, #FF6B6B, #A78BFA);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary);
   }
 
   .header p {
@@ -106,10 +128,9 @@
     display: flex;
     align-items: center;
     gap: 18px;
-    padding: 18px 22px;
+    padding: 20px 22px;
     border-radius: var(--radius);
     text-decoration: none;
-    cursor: pointer;
     border: 2.5px solid transparent;
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     position: relative;
@@ -117,39 +138,52 @@
     animation: fadeUp 0.5s ease both;
   }
 
-  .menu-item:nth-child(1) { animation-delay: 0.1s; background: var(--toan-light);   border-color: #FFCACA; }
-  .menu-item:nth-child(2) { animation-delay: 0.2s; background: var(--anh-light);    border-color: #B2ECEA; }
-  .menu-item:nth-child(3) { animation-delay: 0.3s; background: var(--viet-light);   border-color: #FFE99A; }
-  .menu-item:nth-child(4) { animation-delay: 0.4s; background: var(--giai-tri-light); border-color: #D8C8FF; }
+  .menu-item.age3 {
+    animation-delay: 0.1s;
+    background: var(--age3-light);
+    border-color: #FFE0B2;
+  }
+  .menu-item.age4 {
+    animation-delay: 0.2s;
+    background: var(--age4-light);
+    border-color: #FFCACA;
+  }
 
   .menu-item:hover {
     transform: translateX(8px) scale(1.02);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.10);
   }
-  .menu-item:nth-child(1):hover { border-color: var(--toan);     box-shadow: 0 8px 30px #FF6B6B22; }
-  .menu-item:nth-child(2):hover { border-color: var(--anh);      box-shadow: 0 8px 30px #4ECDC422; }
-  .menu-item:nth-child(3):hover { border-color: var(--viet);     box-shadow: 0 8px 30px #FFD93D22; }
-  .menu-item:nth-child(4):hover { border-color: var(--giai-tri); box-shadow: 0 8px 30px #A78BFA22; }
-
+  .menu-item.age3:hover {
+    border-color: var(--age3);
+    box-shadow: 0 8px 30px #FFB34722;
+  }
+  .menu-item.age4:hover {
+    border-color: var(--age4);
+    box-shadow: 0 8px 30px #FF6B6B22;
+  }
   .menu-item:active { transform: translateX(4px) scale(0.99); }
 
+  /* Coming soon style */
+  .menu-item.coming-soon {
+    opacity: 0.65;
+    cursor: default;
+    pointer-events: none;
+  }
+
   .icon-wrap {
-    width: 56px; height: 56px;
-    border-radius: 14px;
+    width: 60px; height: 60px;
+    border-radius: 16px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem;
+    font-size: 2rem;
     flex-shrink: 0;
   }
-  .menu-item:nth-child(1) .icon-wrap { background: var(--toan); }
-  .menu-item:nth-child(2) .icon-wrap { background: var(--anh); }
-  .menu-item:nth-child(3) .icon-wrap { background: var(--viet); }
-  .menu-item:nth-child(4) .icon-wrap { background: var(--giai-tri); }
+  .age3 .icon-wrap { background: var(--age3); }
+  .age4 .icon-wrap { background: var(--age4); }
 
   .info { flex: 1; }
 
   .info .title {
     font-family: 'Baloo 2', cursive;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--text);
     line-height: 1.2;
@@ -158,17 +192,34 @@
   .info .sub {
     font-size: 0.82rem;
     font-weight: 600;
-    margin-top: 2px;
+    margin-top: 3px;
   }
-  .menu-item:nth-child(1) .sub { color: var(--toan-dark); }
-  .menu-item:nth-child(2) .sub { color: var(--anh-dark); }
-  .menu-item:nth-child(3) .sub { color: var(--viet-dark); }
-  .menu-item:nth-child(4) .sub { color: var(--giai-tri-dark); }
+  .age3 .sub { color: var(--age3-dark); }
+  .age4 .sub { color: var(--age4-dark); }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    flex-shrink: 0;
+  }
+  .tag.soon {
+    background: #F1EFEA;
+    color: #999;
+    border: 1px solid #E0DDD8;
+  }
+  .tag.ready {
+    background: #E8F8F5;
+    color: #1A9B93;
+    border: 1px solid #B2ECEA;
+  }
 
   .arrow {
     font-size: 1.3rem;
     opacity: 0.4;
     transition: opacity 0.18s, transform 0.18s;
+    margin-left: 4px;
   }
   .menu-item:hover .arrow { opacity: 1; transform: translateX(4px); }
 
@@ -179,7 +230,7 @@
     font-weight: 600;
     text-align: center;
     opacity: 0.7;
-    animation: fadeUp 0.5s 0.5s ease both;
+    animation: fadeUp 0.5s 0.35s ease both;
   }
 
   @keyframes fadeDown {
@@ -192,61 +243,46 @@
   }
 
   @media (max-width: 400px) {
-    .icon-wrap { width: 46px; height: 46px; font-size: 1.5rem; border-radius: 10px; }
-    .info .title { font-size: 1rem; }
-    .menu-item { padding: 14px 16px; gap: 14px; }
+    .icon-wrap { width: 50px; height: 50px; font-size: 1.6rem; border-radius: 12px; }
+    .info .title { font-size: 1.05rem; }
+    .menu-item { padding: 15px 16px; gap: 14px; }
   }
 </style>
 </head>
 <body>
 
+<a class="back-btn" href="../index.html">‹ Quay lại</a>
+
 <div class="header">
-  <div class="emoji-row">🌟 ✨ 🌟</div>
-  <h1>Học cùng <span>bé yêu</span></h1>
-  <p>Chọn chủ đề để bắt đầu nhé!</p>
+  <div class="badge">🔢 Học toán cùng bé</div>
+  <h1>Chọn <span>độ tuổi</span> của bé</h1>
+  <p>Nội dung phù hợp với từng giai đoạn phát triển</p>
 </div>
 
 <nav class="menu">
 
-  <a class="menu-item" href="toan/index.html">
-    <div class="icon-wrap">🔢</div>
+  <a class="menu-item age3 coming-soon" href="3-tuoi/index.html">
+    <div class="icon-wrap">🌱</div>
     <div class="info">
-      <div class="title">Học toán cùng bé</div>
-      <div class="sub">Số đếm · Phép tính · Hình dạng</div>
+      <div class="title">Toán cho bé 3 tuổi</div>
+      <div class="sub">Đếm 1–5 · Hình khối · So sánh</div>
     </div>
-    <span class="arrow">›</span>
+    <span class="tag soon">Sắp có</span>
   </a>
 
-  <a class="menu-item" href="tieng-anh/index.html">
-    <div class="icon-wrap">🔤</div>
+  <a class="menu-item age4" href="4-tuoi/index.html">
+    <div class="icon-wrap">⭐</div>
     <div class="info">
-      <div class="title">Học tiếng Anh cùng bé</div>
-      <div class="sub">Chữ cái · Từ vựng · Phát âm</div>
+      <div class="title">Toán cho bé 4 tuổi</div>
+      <div class="sub">Đếm 1–10 · Phép tính · Hình dạng</div>
     </div>
-    <span class="arrow">›</span>
-  </a>
-
-  <a class="menu-item" href="tieng-viet/index.html">
-    <div class="icon-wrap">📖</div>
-    <div class="info">
-      <div class="title">Học tiếng Việt cùng bé</div>
-      <div class="sub">Bảng chữ cái · Đánh vần · Tập đọc</div>
-    </div>
-    <span class="arrow">›</span>
-  </a>
-
-  <a class="menu-item" href="giai-tri/index.html">
-    <div class="icon-wrap">🎮</div>
-    <div class="info">
-      <div class="title">Giải trí cùng bé</div>
-      <div class="sub">Trò chơi · Nhạc · Câu chuyện</div>
-    </div>
+    <span class="tag ready">Sẵn sàng</span>
     <span class="arrow">›</span>
   </a>
 
 </nav>
 
-<div class="footer">Made with ❤️ for little learners</div>
+<div class="footer">🌟 Học mà chơi, chơi mà học!</div>
 
 </body>
 </html>
