@@ -550,6 +550,12 @@ let musicOn = true;
 let bgNodes = []; // oscillators for bg music
 let bgScheduler = null;
 let bgBeat = 0;
+const bgMusic = new Audio('../bg-music.wav');
+bgMusic.loop = true;
+bgMusic.preload = 'auto';
+bgMusic.playsInline = true;
+bgMusic.volume = 0.65;
+
 
 function resumeAC(){ if(AC.state==='suspended') AC.resume(); }
 
@@ -617,17 +623,13 @@ function playNoise(dur,vol){
   const overlay=document.getElementById('audio-unlock');
   const btn=document.getElementById('audio-unlock-btn');
   if(!overlay||!btn) return;
-  const needsUnlock=window.matchMedia('(pointer: coarse)').matches||('ontouchstart' in window);
+  const needsUnlock=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   if(!needsUnlock) return;
   overlay.classList.add('show');
-  btn.addEventListener('click',()=>{
-    try{ unmuteIOSAudio(); }catch(e){} 
-    try{ if(AC.state==='suspended') AC.resume(); }catch(e){}
-    if(musicOn) startBgMusic();
-    playTone(880,'triangle',0.12,0.16);
-    setTimeout(()=>playTone(1320,'triangle',0.14,0.12),90);
-    overlay.classList.remove('show');
-  },{once:true});
+  const startAudio = ()=>{.classList.remove('show');
+  };
+  overlay.addEventListener('click', startAudio, {once:true});
+  btn.addEventListener('click',(e)=>{ e.stopPropagation(); startAudio(); },{once:true});
 }
 // Sound effects
 const snd={
@@ -693,12 +695,16 @@ function bgTick(){
 }
 
 function startBgMusic(){
+  if(bgMusic.paused){ bgMusic.currentTime = 0; bgMusic.play().catch(()=>{}); }
   if(bgScheduler) return;
   melodyIdx=0;
   bgTick();
 }
 function stopBgMusic(){
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
   if(bgScheduler){ clearTimeout(bgScheduler); bgScheduler=null; }
+}
 }
 function toggleMusic(){
   musicOn=!musicOn;

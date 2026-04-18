@@ -251,6 +251,12 @@ let bgTimer = null;
 let melIdx = 0;
 const MELODY = [523,587,659,698,784,659,587,523,659,784,880,784,659,523,587,659];
 const BASS   = [262,262,349,349,392,392,349,349];
+const bgMusic = new Audio('../bg-music.wav');
+bgMusic.loop = true;
+bgMusic.preload = 'auto';
+bgMusic.playsInline = true;
+bgMusic.volume = 0.65;
+
 
 function tone(f,type,dur,vol,delay=0){
   if(!musicOn)return;
@@ -271,8 +277,15 @@ function bgTick(){
   melIdx++;
   bgTimer=setTimeout(bgTick,ms);
 }
-function startMusic(){if(!bgTimer){melIdx=0;bgTick();}}
-function stopMusic(){if(bgTimer){clearTimeout(bgTimer);bgTimer=null;}}
+function startMusic(){
+  if(bgMusic.paused){ bgMusic.currentTime = 0; bgMusic.play().catch(()=>{}); }
+  if(!bgTimer){melIdx=0;bgTick();}
+}
+function stopMusic(){
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
+  if(bgTimer){clearTimeout(bgTimer);bgTimer=null;}
+}
 function unmuteIOSAudio(){
   if(window.__iosAudioUnlocked) return;
   window.__iosAudioUnlocked = true;
@@ -319,17 +332,13 @@ document.addEventListener('click',e=>{
   const overlay=document.getElementById('audio-unlock');
   const btn=document.getElementById('audio-unlock-btn');
   if(!overlay||!btn) return;
-  const needsUnlock=window.matchMedia('(pointer: coarse)').matches||('ontouchstart' in window);
+  const needsUnlock=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   if(!needsUnlock) return;
   overlay.classList.add('show');
-  btn.addEventListener('click',()=>{
-    try{ unmuteIOSAudio(); }catch(e){} 
-    try{ if(AC.state==='suspended') AC.resume(); }catch(e){}
-    if(musicOn) startMusic();
-    tone(880,'triangle',0.12,0.16);
-    setTimeout(()=>tone(1320,'triangle',0.14,0.12),90);
-    overlay.classList.remove('show');
-  },{once:true});
+  const startAudio = ()=>{.classList.remove('show');
+  };
+  overlay.addEventListener('click', startAudio, {once:true});
+  btn.addEventListener('click',(e)=>{ e.stopPropagation(); startAudio(); },{once:true});
 }
 const snd={
   correct:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,'sine',0.18,0.18,i*0.07));},
