@@ -245,8 +245,22 @@ const AC = new (window.AudioContext||window.webkitAudioContext)();
 let musicOn = true;
 let bgTimer = null;
 let melIdx = 0;
+let audioUnlocked = false;
 const MELODY = [523,587,659,698,784,659,587,523,659,784,880,784,659,523,587,659];
 const BASS   = [262,262,349,349,392,392,349,349];
+
+function updateMusicButton(){
+  const btn = document.getElementById('music-btn');
+  if(btn) btn.textContent = musicOn ? '🎵' : '🔇';
+}
+
+function unlockAudio(){
+  if(audioUnlocked) return;
+  audioUnlocked = true;
+  if(AC.state==='suspended') AC.resume();
+  if(musicOn) startMusic();
+  updateMusicButton();
+}
 
 function tone(f,type,dur,vol,delay=0){
   if(!musicOn)return;
@@ -271,9 +285,12 @@ function startMusic(){if(!bgTimer){melIdx=0;bgTick();}}
 function stopMusic(){if(bgTimer){clearTimeout(bgTimer);bgTimer=null;}}
 function toggleMusic(){
   musicOn=!musicOn;
-  document.getElementById('music-btn').textContent=musicOn?'🎵':'🔇';
+  if(musicOn) unlockAudio();
+  updateMusicButton();
   musicOn?startMusic():stopMusic();
 }
+document.addEventListener('pointerdown',unlockAudio,{capture:true,once:true});
+document.addEventListener('touchstart',unlockAudio,{capture:true,once:true});
 document.addEventListener('click',e=>{
   if(e.target.matches('button,.lesson-btn,.cho-btn,.color-swatch,.shape-btn')){
     if(musicOn&&AC.state==='suspended')AC.resume();
@@ -673,7 +690,9 @@ function launchConfetti(){
 // ══════════════════════════════════
 // BOOT
 // ══════════════════════════════════
-startMusic();
+updateMusicButton();
 </script>
 </body>
 </html>
+
+

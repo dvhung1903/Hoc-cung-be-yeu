@@ -545,8 +545,22 @@ let musicOn = true;
 let bgNodes = []; // oscillators for bg music
 let bgScheduler = null;
 let bgBeat = 0;
+let audioUnlocked = false;
 
 function resumeAC(){ if(AC.state==='suspended') AC.resume(); }
+
+function updateMusicButton(){
+  const btn=document.getElementById('music-btn');
+  if(btn) btn.textContent=musicOn?'🎵':'🔇';
+}
+
+function unlockAudio(){
+  if(audioUnlocked) return;
+  audioUnlocked = true;
+  resumeAC();
+  if(musicOn) startBgMusic();
+  updateMusicButton();
+}
 
 // Play a short tone
 function playTone(freq, type, dur, vol, delay=0){
@@ -650,11 +664,13 @@ function stopBgMusic(){
 }
 function toggleMusic(){
   musicOn=!musicOn;
-  const btn=document.getElementById('music-btn');
-  if(btn) btn.textContent=musicOn?'🎵':'🔇';
+  if(musicOn) unlockAudio();
+  updateMusicButton();
   if(musicOn){ startBgMusic(); }
   else { stopBgMusic(); }
 }
+document.addEventListener('pointerdown',unlockAudio,{capture:true,once:true});
+document.addEventListener('touchstart',unlockAudio,{capture:true,once:true});
 
 // Add click sound to all buttons automatically
 document.addEventListener('click', e=>{
@@ -1415,9 +1431,10 @@ function pmShowResult(){
   document.getElementById('hs-score').textContent = player.weekScore;
   refreshMenuUI();
   initMenuBanner();
-  startBgMusic();
+  updateMusicButton();
   showScreen('screen-menu');
 })();
 </script>
 </body>
 </html>
+
