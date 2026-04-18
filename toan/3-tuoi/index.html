@@ -237,10 +237,31 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 </div>
 
 <script>
+
+// ═══════════════════════════════════
+// AUDIO AN TOAN - khong bao gio crash
+// ═══════════════════════════════════
+var AC = null;
+try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+
+var bgMusic = null;
+try {
+  bgMusic = new Audio('../bg-music.wav');
+  bgMusic.loop = true;
+  bgMusic.preload = 'auto';
+  bgMusic.playsInline = true;
+  bgMusic.volume = 0.4;
+} catch(e) {}
+
+// Phat nhac khi nguoi dung tuong tac lan dau
+function tryPlayMusic() {
+  if(bgMusic) bgMusic.play().catch(function(){});
+  if(AC && AC.state === 'suspended') { try { AC.resume(); } catch(e) {} }
+}
+
 // ══════════════════════════════════
 // AUDIO
 // ══════════════════════════════════
-var AC; try { AC = new (window.AudioContext||window.webkitAudioContext)(); } catch(e) { AC = null; }
 let musicOn = true;
 let bgTimer = null;
 let melIdx = 0;
@@ -248,11 +269,10 @@ const MELODY = [523,587,659,698,784,659,587,523,659,784,880,784,659,523,587,659]
 const BASS   = [262,262,349,349,392,392,349,349];
 
 // ── File nhạc nền bg-music.wav ──
-var bgMusic; try { bgMusic = new Audio('../bg-music.wav'); bgMusic.loop=true; bgMusic.preload='auto'; bgMusic.playsInline=true; bgMusic.volume=0.4; } catch(e) { bgMusic = null; }
 
 function tone(f,type,dur,vol,delay=0){
-  if(!musicOn||!AC)return;
-  try{if(AC.state==='suspended')AC.resume();}catch(e){return;}
+  if(!musicOn)return;
+  if(AC && AC.state==='suspended') try{AC.resume();}catch(e){}
   const o=AC.createOscillator(),g=AC.createGain();
   o.connect(g);g.connect(AC.destination);
   o.type=type;o.frequency.value=f;
@@ -284,7 +304,7 @@ function toggleMusic(){
 }
 document.addEventListener('click',e=>{
   if(e.target.matches('button,.lesson-btn,.cho-btn,.color-swatch,.shape-btn')){
-    if(musicOn&&AC.state==='suspended')AC.resume();
+    if(AC && musicOn && AC.state==='suspended') try{AC.resume();}catch(e){}
     tone(600,'sine',0.08,0.12);
   }
 },true);
@@ -300,7 +320,7 @@ const snd={
 // SCREEN MANAGEMENT
 // ══════════════════════════════════
 function showScreen(id){
-  try{ if(AC.state==='suspended')AC.resume(); if(bgMusic.paused&&musicOn)bgMusic.play().catch(()=>{}); }catch(e){}
+  try{ if(AC && AC.state==='suspended') try{AC.resume();}catch(e){} if(bgMusic.paused&&musicOn)bgMusic.play().catch(()=>{}); }catch(e){}
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
@@ -683,26 +703,29 @@ function launchConfetti(){
 // BOOT
 // ══════════════════════════════════
 
-
+// ── Mở khóa audio trên mobile (iOS/Android bắt buộc cần user gesture) ──
 
 // ── Tự resume nhạc khi quay lại app ──
 document.addEventListener('visibilitychange', ()=>{
   if(document.hidden) return;
   try{
-    if(AC.state==='suspended') AC.resume();
+    if(AC && AC.state==='suspended') try{AC.resume();}catch(e){}
     if(musicOn && bgMusic.paused) bgMusic.play().catch(()=>{});
   }catch(e){}
 });
 
-// Bat nhac khi nguoi dung cham lan dau (tuong thich moi thiet bi)
-if(bgMusic) {
-  ['touchstart','click'].forEach(function(evt){
-    document.addEventListener(evt, function play(){
-      if(bgMusic) bgMusic.play().catch(function(){});
-      document.removeEventListener(evt, play);
-    }, {once:true});
-  });
-}
+
+// Bat nhac khi cham man hinh
+['touchstart', 'click'].forEach(function(evt) {
+  document.addEventListener(evt, function once() {
+    tryPlayMusic();
+    document.removeEventListener(evt, once);
+  }, {once: true});
+});
+
+document.addEventListener('visibilitychange', function() {
+  if (!document.hidden) tryPlayMusic();
+});
 
 </script>
 </body>

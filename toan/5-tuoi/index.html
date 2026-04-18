@@ -511,6 +511,18 @@ input.name-input:focus{border-color:#7c4dff;}
 
 
 <script>
+var AC = null;
+try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+var bgMusic = null;
+try {
+  bgMusic = new Audio('../bg-music.wav');
+  bgMusic.loop = true; bgMusic.preload = 'auto';
+  bgMusic.playsInline = true; bgMusic.volume = 0.4;
+} catch(e) {}
+function tryPlayMusic() {
+  if(bgMusic) bgMusic.play().catch(function(){});
+  if(AC && AC.state==='suspended') try{AC.resume();}catch(e){}
+}
 // ═══════════════════════════════════════════
 // CONFIG
 // ═══════════════════════════════════════════
@@ -540,13 +552,12 @@ let _bannerResultLoaded = false;
 // ═══════════════════════════════════════════
 // AUDIO ENGINE (Web Audio API — no files needed)
 // ═══════════════════════════════════════════
-var AC; try { AC = new (window.AudioContext||window.webkitAudioContext)(); } catch(e) { AC = null; }
 let musicOn = true;
 let bgNodes = []; // oscillators for bg music
 let bgScheduler = null;
 let bgBeat = 0;
 
-function resumeAC(){ if(AC.state==='suspended') AC.resume(); }
+function resumeAC(){ if(AC&&AC.state==='suspended')try{AC.resume();}catch(e){} }
 
 // Play a short tone
 function playTone(freq, type, dur, vol, delay=0){
@@ -564,8 +575,8 @@ function playTone(freq, type, dur, vol, delay=0){
 
 // Noise burst (for click)
 function playNoise(dur,vol){
-  if(!musicOn) return;
-  resumeAC();
+  if(!musicOn||!AC) return;
+  try{resumeAC();}catch(e){return;}
   const buf=AC.createBuffer(1,AC.sampleRate*dur,AC.sampleRate);
   const d=buf.getChannelData(0);
   for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1;
@@ -620,11 +631,10 @@ const BASS_NOTES=[131,165,196,165, 175,196,175,165, 131,165,196,165, 175,196,220
 let melodyIdx=0;
 
 // ── File nhạc nền bg-music.wav ──
-var bgMusic; try { bgMusic = new Audio('../bg-music.wav'); bgMusic.loop=true; bgMusic.preload='auto'; bgMusic.playsInline=true; bgMusic.volume=0.4; } catch(e) { bgMusic = null; }
 
 function bgTick(){
-  if(!musicOn) return;
-  resumeAC();
+  if(!musicOn||!AC) return;
+  try{resumeAC();}catch(e){return;}
   const bpm=80, ms=60000/bpm*0.5; // slower, gentler
 
   // Soft melody — triangle wave, very low volume
@@ -671,7 +681,7 @@ document.addEventListener('click', e=>{
 // SCREEN MANAGEMENT
 // ═══════════════════════════════════════════
 function showScreen(id){
-  try{ if(AC.state==='suspended')AC.resume(); if(bgMusic.paused&&musicOn)bgMusic.play().catch(()=>{}); }catch(e){}
+  try{ if(AC&&AC.state==='suspended')try{AC.resume();}catch(e){} if(bgMusic.paused&&musicOn)bgMusic.play().catch(()=>{}); }catch(e){}
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.page-screen').forEach(s=>s.classList.remove('active'));
   const el = document.getElementById(id);
@@ -1422,28 +1432,31 @@ function pmShowResult(){
   refreshMenuUI();
   initMenuBanner();
 
+// ── Mở khóa audio trên mobile ──
 
 
 // ── Tự resume nhạc khi quay lại app ──
 document.addEventListener('visibilitychange', ()=>{
   if(document.hidden) return;
   try{
-    if(AC.state==='suspended') AC.resume();
+    if(AC&&AC.state==='suspended')try{AC.resume();}catch(e){}
     if(musicOn && bgMusic.paused) bgMusic.play().catch(()=>{});
   }catch(e){}
 });
 
+  startBgMusic();
   showScreen('screen-menu');
 })();
-// Bat nhac khi nguoi dung cham lan dau (tuong thich moi thiet bi)
-if(bgMusic) {
-  ['touchstart','click'].forEach(function(evt){
-    document.addEventListener(evt, function play(){
-      if(bgMusic) bgMusic.play().catch(function(){});
-      document.removeEventListener(evt, play);
-    }, {once:true});
-  });
-}
+
+['touchstart','click'].forEach(function(evt){
+  document.addEventListener(evt, function once(){
+    tryPlayMusic();
+    document.removeEventListener(evt, once);
+  }, {once:true});
+});
+document.addEventListener('visibilitychange', function(){
+  if(!document.hidden) tryPlayMusic();
+});
 
 </script>
 </body>
