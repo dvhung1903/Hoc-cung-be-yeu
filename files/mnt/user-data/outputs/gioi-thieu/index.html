@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giới thiệu – Học cùng bé yêu</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FDFCF8;
+    --text: #2D2A26;
+    --text-soft: #6B6560;
+    --accent: #FF6B6B;
+    --accent2: #A78BFA;
+    --radius: 20px;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 3rem;
+    position: relative;
+    overflow-x: hidden;
+    color: var(--text);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -120px; left: -120px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, #FFD93D33 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -100px; right: -100px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, #4ECDC433 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text-soft);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(0,0,0,0.05);
+    transition: background 0.18s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.1); }
+
+  .container {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .header .emoji-row {
+    font-size: 2.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .header h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.15;
+  }
+
+  .header h1 span {
+    background: linear-gradient(135deg, #FF6B6B, #A78BFA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header .tagline {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    font-weight: 600;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    border: 2px solid #F0EDE8;
+    animation: fadeUp 0.5s ease both;
+  }
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.4s; }
+
+  .card-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .card:nth-child(1) .card-icon { background: #FFF0F0; }
+  .card:nth-child(2) .card-icon { background: #EEFAF9; }
+  .card:nth-child(3) .card-icon { background: #FFFBEA; }
+  .card:nth-child(4) .card-icon { background: #F5F0FF; }
+
+  .card p {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    line-height: 1.7;
+    font-weight: 600;
+  }
+
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .subject-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .badge-red   { background: #FFF0F0; color: #C0392B; }
+  .badge-teal  { background: #EEFAF9; color: #1A9B93; }
+  .badge-yel   { background: #FFFBEA; color: #B8960C; }
+  .badge-purp  { background: #F5F0FF; color: #6D28D9; }
+
+  .footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    font-weight: 600;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a class="back-btn" href="../index.html">← Trang chủ</a>
+
+  <div class="header">
+    <div class="emoji-row">📚</div>
+    <h1>Giới thiệu về <span>Học cùng bé yêu</span></h1>
+    <p class="tagline">Nền tảng học tập vui vẻ dành riêng cho trẻ nhỏ</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="card-icon">🌟</div>
+      Chúng tôi là ai?
+    </div>
+    <p>
+      <strong>Học cùng bé yêu</strong> là nền tảng học tập trực tuyến miễn phí dành cho trẻ em từ 3–8 tuổi. Chúng tôi tin rằng việc học sẽ trở nên hiệu quả và đáng nhớ hơn khi được thực hiện qua những trò chơi, câu chuyện và hoạt động thú vị — giúp bé vừa chơi vừa học mà không áp lực.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="card-icon">🎯</div>
+      Nội dung học tập
+    </div>
+    <p>Website cung cấp 4 chủ đề học tập chính, được thiết kế phù hợp với lứa tuổi mầm non và tiểu học:</p>
+    <div class="subjects-grid">
+      <div class="subject-badge badge-red">🔢 Học Toán</div>
+      <div class="subject-badge badge-teal">🔤 Tiếng Anh</div>
+      <div class="subject-badge badge-yel">📖 Tiếng Việt</div>
+      <div class="subject-badge badge-purp">🎮 Giải trí</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="card-icon">💡</div>
+      Sứ mệnh của chúng tôi
+    </div>
+    <p>
+      Chúng tôi hướng tới việc tạo ra môi trường học tập an toàn, lành mạnh và truyền cảm hứng cho mọi trẻ em Việt Nam — bất kể hoàn cảnh hay điều kiện. Tất cả nội dung đều được kiểm duyệt kỹ lưỡng, thân thiện với trẻ em và hoàn toàn không có nội dung độc hại.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <div class="card-icon">📩</div>
+      Liên hệ
+    </div>
+    <p>
+      Nếu bạn có câu hỏi, góp ý hoặc muốn hợp tác, hãy liên hệ với chúng tôi qua email: <strong>hocungbeye@gmail.com</strong>. Chúng tôi luôn lắng nghe và sẵn sàng hỗ trợ các bậc phụ huynh và giáo viên.
+    </p>
+  </div>
+
+  <div class="footer">Made with ❤️ for little learners</div>
+</div>
+
+</body>
+</html>

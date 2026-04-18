@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chính sách bảo mật – Học cùng bé yêu</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FDFCF8;
+    --text: #2D2A26;
+    --text-soft: #6B6560;
+    --accent: #A78BFA;
+    --radius: 20px;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 3rem;
+    position: relative;
+    overflow-x: hidden;
+    color: var(--text);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -120px; left: -120px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, #A78BFA22 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -100px; right: -100px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, #4ECDC422 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text-soft);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(0,0,0,0.05);
+    transition: background 0.18s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.1); }
+
+  .container {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .header .emoji-row { font-size: 2.2rem; margin-bottom: 0.5rem; }
+
+  .header h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(1.6rem, 5vw, 2.3rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .header h1 span {
+    background: linear-gradient(135deg, #A78BFA, #4ECDC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .update-date {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    font-weight: 600;
+  }
+
+  .section {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin-bottom: 14px;
+    border: 2px solid #F0EDE8;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.15s; }
+  .section:nth-child(4) { animation-delay: 0.2s; }
+  .section:nth-child(5) { animation-delay: 0.25s; }
+  .section:nth-child(6) { animation-delay: 0.3s; }
+  .section:nth-child(7) { animation-delay: 0.35s; }
+  .section:nth-child(8) { animation-delay: 0.4s; }
+
+  .section h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section h2 .ico {
+    width: 30px; height: 30px;
+    background: #F5F0FF;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .section p, .section li {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    line-height: 1.75;
+    font-weight: 600;
+  }
+
+  .section ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 6px;
+  }
+
+  .section ul li {
+    padding: 5px 0 5px 20px;
+    position: relative;
+  }
+
+  .section ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .highlight-box {
+    background: #F5F0FF;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: #6D28D9;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  .contact-box {
+    background: #EEFAF9;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: #1A9B93;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  .footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    font-weight: 600;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a class="back-btn" href="../index.html">← Trang chủ</a>
+
+  <div class="header">
+    <div class="emoji-row">🔒</div>
+    <h1>Chính sách <span>bảo mật</span></h1>
+    <p class="update-date">Cập nhật lần cuối: tháng 4 năm 2025</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">📋</span> Tổng quan</h2>
+    <p>
+      Chính sách bảo mật này mô tả cách <strong>Học cùng bé yêu</strong> ("chúng tôi") thu thập, sử dụng và bảo vệ thông tin của bạn khi bạn truy cập và sử dụng website này. Chúng tôi cam kết bảo vệ quyền riêng tư của người dùng, đặc biệt là trẻ em.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">📊</span> Thông tin chúng tôi thu thập</h2>
+    <p>Chúng tôi có thể thu thập các loại thông tin sau:</p>
+    <ul>
+      <li><strong>Thông tin sử dụng:</strong> Các trang bạn truy cập, thời gian sử dụng, thiết bị và trình duyệt web.</li>
+      <li><strong>Thông tin kỹ thuật:</strong> Địa chỉ IP, loại thiết bị, hệ điều hành.</li>
+      <li><strong>Cookies và công nghệ theo dõi:</strong> Được sử dụng để cải thiện trải nghiệm người dùng và phục vụ quảng cáo (xem mục Quảng cáo bên dưới).</li>
+    </ul>
+    <div class="highlight-box">
+      ⚠️ Chúng tôi KHÔNG thu thập thông tin cá nhân có thể nhận dạng (tên, số điện thoại, địa chỉ email) của trẻ em dưới 13 tuổi mà không có sự đồng ý của phụ huynh.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">🎯</span> Mục đích sử dụng thông tin</h2>
+    <p>Thông tin thu thập được sử dụng để:</p>
+    <ul>
+      <li>Cải thiện nội dung và trải nghiệm học tập trên website.</li>
+      <li>Phân tích lưu lượng truy cập thông qua Google Analytics.</li>
+      <li>Hiển thị quảng cáo phù hợp thông qua Google AdSense.</li>
+      <li>Đảm bảo hoạt động kỹ thuật của website.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">📢</span> Quảng cáo (Google AdSense)</h2>
+    <p>
+      Website sử dụng <strong>Google AdSense</strong> để hiển thị quảng cáo. Google và các đối tác có thể sử dụng cookies để phục vụ quảng cáo dựa trên lượt truy cập trước đây của bạn trên website này và các website khác.
+    </p>
+    <ul>
+      <li>Google sử dụng cookie DoubleClick để phục vụ quảng cáo.</li>
+      <li>Bạn có thể từ chối sử dụng cookie DoubleClick bằng cách truy cập <strong>Cài đặt quảng cáo của Google</strong>.</li>
+      <li>Bạn cũng có thể từ chối sử dụng cookie của bên thứ ba tại <strong>www.aboutads.info</strong>.</li>
+    </ul>
+    <div class="highlight-box">
+      🛡️ Chúng tôi đã bật tính năng <strong>Quảng cáo phi cá nhân hóa (Non-personalized Ads)</strong> cho phù hợp với đối tượng người dùng là trẻ em, nhằm tuân thủ chính sách COPPA và Google AdSense.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">🍪</span> Cookies</h2>
+    <p>
+      Cookies là các tệp nhỏ được lưu trên thiết bị của bạn. Chúng tôi sử dụng cookies để:
+    </p>
+    <ul>
+      <li>Ghi nhớ tùy chọn của người dùng.</li>
+      <li>Phân tích lưu lượng truy cập (Google Analytics).</li>
+      <li>Phục vụ quảng cáo (Google AdSense).</li>
+    </ul>
+    <p style="margin-top: 10px;">Bạn có thể tắt cookies trong cài đặt trình duyệt, tuy nhiên điều này có thể ảnh hưởng đến một số tính năng của website.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">👶</span> Bảo vệ trẻ em (COPPA)</h2>
+    <p>
+      Chúng tôi tuân thủ <strong>Đạo luật Bảo vệ Quyền riêng tư Trực tuyến của Trẻ em (COPPA)</strong>. Website này hướng đến trẻ em, do đó:
+    </p>
+    <ul>
+      <li>Chúng tôi không cố ý thu thập thông tin cá nhân của trẻ em dưới 13 tuổi.</li>
+      <li>Quảng cáo được hiển thị ở chế độ phi cá nhân hóa, không theo dõi hành vi cá nhân của trẻ.</li>
+      <li>Nếu phụ huynh tin rằng con mình đã cung cấp thông tin cá nhân, vui lòng liên hệ với chúng tôi ngay để xóa dữ liệu.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">🔗</span> Liên kết bên thứ ba</h2>
+    <p>
+      Website có thể chứa liên kết đến các trang web bên ngoài. Chúng tôi không chịu trách nhiệm về chính sách bảo mật của các trang web đó. Chúng tôi khuyến khích bạn đọc chính sách bảo mật của mọi trang web bạn truy cập.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">✏️</span> Cập nhật chính sách</h2>
+    <p>
+      Chúng tôi có thể cập nhật Chính sách bảo mật này theo thời gian. Mọi thay đổi sẽ được đăng tải tại trang này kèm theo ngày cập nhật mới nhất. Chúng tôi khuyến khích bạn thỉnh thoảng xem lại trang này.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2><span class="ico">📩</span> Liên hệ</h2>
+    <p>Nếu bạn có câu hỏi về Chính sách bảo mật này, vui lòng liên hệ:</p>
+    <div class="contact-box">
+      📧 Email: hocungbeye@gmail.com<br>
+      🌐 Website: hocungbeye.com
+    </div>
+  </div>
+
+  <div class="footer">Made with ❤️ for little learners</div>
+</div>
+
+</body>
+</html>
