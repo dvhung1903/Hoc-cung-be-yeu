@@ -327,6 +327,11 @@ input.name-input:focus{border-color:#7c4dff;}
         <div class="mc-title">Bài 3</div>
         <div class="mc-desc">Kiểm tra phép nhân</div>
       </button>
+      <button class="menu-card" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);" onclick="startPictureMath()">
+        <div class="mc-icon">🖼️</div>
+        <div class="mc-title">Bài 4</div>
+        <div class="mc-desc">Toán hình ảnh (4–5 tuổi)</div>
+      </button>
     </div>
   </div>
 </div>
@@ -421,6 +426,38 @@ input.name-input:focus{border-color:#7c4dff;}
   </div>
   <div class="answers-grid" id="tt-answers"></div>
   <button class="btn-next" id="tt-next" onclick="ttNext()">Câu tiếp theo →</button>
+</div>
+
+<!-- ══ SCREEN: PICTURE MATH (4–5 tuổi) ══ -->
+<div id="screen-picture" class="screen">
+  <div id="pm-game-header" style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:12px;">
+    <div class="game-info" id="pm-label">🖼️ Toán hình ảnh</div>
+    <div class="game-info" id="pm-progress">1/8</div>
+    <div class="game-info" id="pm-stars">⭐ 0</div>
+    <button class="game-info" style="cursor:pointer;border:none;background:rgba(255,255,255,0.25);color:#fff;font-size:13px;font-weight:700;" onclick="goMenu()">🏠</button>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="pm-progress-fill" style="width:0%"></div></div>
+  <div class="question-card" style="padding:24px 20px 18px;">
+    <div style="display:flex;flex-wrap:wrap;gap:6px;min-height:52px;justify-content:center;align-items:center;margin-bottom:10px;" id="pm-before"></div>
+    <div style="font-size:28px;font-weight:800;text-align:center;color:#9080b0;margin:2px 0;" id="pm-op-icon">➕</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;min-height:52px;justify-content:center;align-items:center;margin-bottom:10px;" id="pm-after"></div>
+    <div style="font-size:15px;font-weight:800;color:#4a3a7a;text-align:center;margin:6px 0 4px;" id="pm-question-text">Tất cả có mấy?</div>
+    <div class="score-change" id="pm-feedback" style="min-height:26px;font-size:17px;"></div>
+  </div>
+  <div class="answers-grid" id="pm-answers" style="margin-bottom:14px;"></div>
+  <button class="btn-next" id="pm-next" onclick="pmNext()">Câu tiếp theo →</button>
+</div>
+
+<!-- ══ SCREEN: PICTURE MATH RESULT ══ -->
+<div id="screen-picture-result" class="screen">
+  <div class="break-emoji" id="pm-result-emoji">🎊</div>
+  <div class="card">
+    <div class="card-title">Xong rồi! 🎉</div>
+    <div id="pm-result-msg" style="font-size:15px;text-align:center;color:#9080b0;margin-bottom:10px;"></div>
+    <div class="result-score" id="pm-result-score">0 ⭐</div>
+    <button class="btn-primary" style="margin-top:16px;" onclick="startPictureMath()">🔄 Làm lại</button>
+    <button class="btn-primary" style="background:linear-gradient(135deg,#43e97b,#38f9d7);margin-top:10px;" onclick="goMenu()">🏠 Về menu</button>
+  </div>
 </div>
 
 <!-- ══ AVATAR PICKER MODAL ══ -->
@@ -1249,6 +1286,112 @@ async function showResult(){
   document.getElementById('result-score').textContent=player.weekScore+' điểm';
   showScreen('screen-result');
   initResultBanner();
+}
+
+// ═══════════════════════════════════════════
+// PICTURE MATH (Bài 4 — 4–5 tuổi)
+// ═══════════════════════════════════════════
+const PM_QUESTIONS = [
+  { emoji:'🍎', before:3, op:'+', add:2, answer:5, label:'quả táo' },
+  { emoji:'🐥', before:5, op:'-', add:2, answer:3, label:'con gà' },
+  { emoji:'🌸', before:2, op:'+', add:4, answer:6, label:'bông hoa' },
+  { emoji:'🐟', before:6, op:'-', add:3, answer:3, label:'con cá' },
+  { emoji:'⭐', before:4, op:'+', add:3, answer:7, label:'ngôi sao' },
+  { emoji:'🍭', before:8, op:'-', add:4, answer:4, label:'cái kẹo' },
+  { emoji:'🐸', before:3, op:'+', add:5, answer:8, label:'con ếch' },
+  { emoji:'🎈', before:9, op:'-', add:2, answer:7, label:'quả bóng' },
+];
+let pmIndex = 0;
+let pmStars = 0;
+let pmAnswered = false;
+
+function pmShuffleChoices(answer){
+  const opts = new Set([answer]);
+  while(opts.size < 4){
+    const r = Math.max(1, answer + (Math.floor(Math.random()*7)-3));
+    if(r > 0 && r <= 15) opts.add(r);
+  }
+  return Array.from(opts).sort(()=>Math.random()-0.5);
+}
+
+function startPictureMath(){
+  pmIndex = 0; pmStars = 0; pmAnswered = false;
+  showScreen('screen-picture');
+  pmShowQuestion();
+}
+
+function pmShowQuestion(){
+  pmAnswered = false;
+  const q = PM_QUESTIONS[pmIndex];
+  const total = PM_QUESTIONS.length;
+  document.getElementById('pm-progress').textContent = (pmIndex+1)+'/'+total;
+  document.getElementById('pm-stars').textContent = '⭐ '+pmStars;
+  document.getElementById('pm-progress-fill').style.width = (pmIndex/total*100)+'%';
+  document.getElementById('pm-feedback').textContent = '';
+  document.getElementById('pm-next').classList.remove('enabled');
+
+  // Build emoji rows
+  document.getElementById('pm-before').innerHTML = Array(q.before).fill(
+    `<span style="font-size:36px;line-height:1;">${q.emoji}</span>`).join('');
+  document.getElementById('pm-op-icon').textContent = q.op === '+' ? '➕' : '➖';
+  document.getElementById('pm-after').innerHTML = Array(q.add).fill(
+    `<span style="font-size:36px;line-height:1;">${q.emoji}</span>`).join('');
+
+  const actionWord = q.op === '+' ? 'Tất cả có mấy ' : 'Còn lại mấy ';
+  document.getElementById('pm-question-text').textContent = actionWord + q.label + '?';
+
+  // Build answer buttons
+  const choices = pmShuffleChoices(q.answer);
+  document.getElementById('pm-answers').innerHTML = choices.map(c=>
+    `<button class="ans-btn" onclick="pmChoose(this,${c},${q.answer})">${c}</button>`
+  ).join('');
+}
+
+function pmChoose(btn, val, answer){
+  if(pmAnswered) return;
+  pmAnswered = true;
+  document.querySelectorAll('#pm-answers .ans-btn').forEach(b=>b.disabled=true);
+  const fb = document.getElementById('pm-feedback');
+  if(val === answer){
+    btn.classList.add('correct');
+    fb.textContent = '🌟 Đúng rồi! Giỏi lắm!';
+    fb.style.color = '#00c853';
+    pmStars++;
+    document.getElementById('pm-stars').textContent = '⭐ '+pmStars;
+    snd.correct();
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('#pm-answers .ans-btn').forEach(b=>{
+      if(parseInt(b.textContent)===answer) b.classList.add('correct');
+    });
+    fb.textContent = '💙 Chưa đúng, đáp án là '+answer;
+    fb.style.color = '#e53935';
+    snd.wrong();
+  }
+  document.getElementById('pm-next').classList.add('enabled');
+}
+
+function pmNext(){
+  pmIndex++;
+  if(pmIndex >= PM_QUESTIONS.length){
+    pmShowResult();
+  } else {
+    snd.next();
+    pmShowQuestion();
+  }
+}
+
+function pmShowResult(){
+  const total = PM_QUESTIONS.length;
+  let emoji='💪', msg='Cố gắng lên! Luyện tập thêm nhé!';
+  if(pmStars===total){ emoji='🏆'; msg='Xuất sắc! Bé thật thông minh! 🌟'; snd.excellent(); }
+  else if(pmStars>=total*0.75){ emoji='🎉'; msg='Giỏi lắm! Cố thêm một chút nữa nhé!'; snd.encourageGreat(); }
+  else if(pmStars>=total*0.5){ emoji='😊'; msg='Làm tốt lắm! Tiếp tục nhé bé!'; snd.encourageGood(); }
+  else { snd.encourageLight(); }
+  document.getElementById('pm-result-emoji').textContent = emoji;
+  document.getElementById('pm-result-msg').textContent = msg;
+  document.getElementById('pm-result-score').textContent = pmStars+' / '+total+' ⭐';
+  showScreen('screen-picture-result');
 }
 
 // ═══════════════════════════════════════════
