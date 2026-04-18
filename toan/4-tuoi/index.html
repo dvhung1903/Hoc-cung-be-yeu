@@ -273,8 +273,7 @@ input.name-input:focus{border-color:#7c4dff;}
   <div id="header-score" style="display:none">⭐ <span id="hs-score">0</span></div>
   <div id="header-btns">
     <button class="hbtn" id="music-btn" onclick="toggleMusic()">🎵</button>
-    <button class="hbtn" onclick="showAbout()">ℹ️</button>
-    <button class="hbtn" onclick="showPrivacy()">🔒</button>
+    <button class="hbtn" onclick="history.back()">← Quay lại</button>
   </div>
 </div>
 
@@ -472,45 +471,7 @@ input.name-input:focus{border-color:#7c4dff;}
   </div>
 </div>
 
-<!-- ══ PAGE: ABOUT ══ -->
-<div id="page-about" class="page-screen">
-  <button class="page-back-btn" onclick="hidePage()">← Quay lại</button>
-  <div class="page-content">
-    <h2>📚 Giới thiệu</h2>
-    <p><strong>Cùng Bé Học Toán</strong> là ứng dụng học toán vui nhộn dành cho bé 4–5 tuổi, giúp bé làm quen với phép tính cộng, trừ và bảng cửu chương thông qua hình thức trắc nghiệm thú vị.</p>
-    <h3>🎮 Cách chơi</h3>
-    <p>Bé chọn một trong hai bài học: <strong>Cộng & Trừ</strong> hoặc <strong>Bảng cửu chương</strong>. Mỗi lượt gồm 10 câu hỏi. Mỗi ngày mỗi bé chỉ làm tối đa 30 câu mỗi bài.</p>
-    <h3>⭐ Tính điểm</h3>
-    <p>Cộng trừ: đúng +1 điểm · sai -1 điểm (tối thiểu 0)</p>
-    <p>Nhân (thừa số &lt;6): đúng +2 · sai -1</p>
-    <p>Nhân (thừa số ≥6): đúng +4 · sai -1</p>
-    <h3>🏆 Bảng xếp hạng</h3>
-    <p>Điểm được cộng dồn trong vòng 1 tuần. Sau mỗi tuần, bảng xếp hạng được làm mới và người dẫn đầu tuần trước sẽ được vinh danh!</p>
-  </div>
-</div>
 
-<!-- ══ PAGE: PRIVACY ══ -->
-<div id="page-privacy" class="page-screen">
-  <button class="page-back-btn" onclick="hidePage()">← Quay lại</button>
-  <div class="page-content">
-    <h2>🔒 Chính Sách Bảo Mật</h2>
-    <p style="color:#9080b0;font-size:11px">Cập nhật: Tháng 4/2026</p>
-    <h3>1. Thông tin thu thập</h3>
-    <p>Chúng tôi chỉ thu thập tên hiển thị và điểm số mà bé tự nhập. Không thu thập email, số điện thoại hay thông tin cá nhân khác.</p>
-    <h3>2. Mục đích sử dụng</h3>
-    <p>Tên và điểm số được lưu vào bảng xếp hạng chung để bé có thể so sánh với các bạn khác.</p>
-    <h3>3. Quảng cáo</h3>
-    <p>Ứng dụng hiển thị quảng cáo qua Google AdSense. Các mạng quảng cáo có thể sử dụng cookie để hiển thị quảng cáo phù hợp. Bạn có thể từ chối quảng cáo cá nhân hóa tại <a href="https://www.youronlinechoices.com" target="_blank">youronlinechoices.com</a>.</p>
-    <h3>4. Cookie</h3>
-    <p>Ứng dụng dùng localStorage để lưu tên bé trên thiết bị. Mạng quảng cáo bên thứ ba có thể đặt cookie riêng.</p>
-    <h3>5. Trẻ em</h3>
-    <p>Ứng dụng này dành cho trẻ em dưới sự giám sát của phụ huynh. Chúng tôi không cố ý thu thập dữ liệu của trẻ em mà không có sự đồng ý của phụ huynh.</p>
-    <h3>6. Lưu trữ dữ liệu</h3>
-    <p>Dữ liệu bảng xếp hạng được lưu trữ trên Upstash Redis và được làm mới hàng tuần.</p>
-    <h3>7. Liên hệ</h3>
-    <p>Mọi thắc mắc về quyền riêng tư, vui lòng liên hệ qua kênh phân phối ứng dụng.</p>
-  </div>
-</div>
 
 <script>
 // ═══════════════════════════════════════════
