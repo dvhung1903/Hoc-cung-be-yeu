@@ -240,25 +240,10 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 <script>
 
 // ═══════════════════════════════════
-// AUDIO AN TOAN - khong bao gio crash
+// AUDIO - Mobile-safe (iOS + Android)
 // ═══════════════════════════════════
 var AC = null;
 try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
-
-var bgMusic = null;
-try {
-  bgMusic = new Audio('../bg-music.mp3');
-  bgMusic.loop = true;
-  bgMusic.preload = 'auto';
-  bgMusic.playsInline = true;
-  bgMusic.volume = 0.4;
-} catch(e) {}
-
-// Phat nhac khi nguoi dung tuong tac lan dau
-function tryPlayMusic() {
-  if(bgMusic) bgMusic.play().catch(function(){});
-  if(AC && AC.state === 'suspended') { try { AC.resume(); } catch(e) {} }
-}
 
 // ══════════════════════════════════
 // AUDIO
@@ -269,46 +254,73 @@ let melIdx = 0;
 const MELODY = [523,587,659,698,784,659,587,523,659,784,880,784,659,523,587,659];
 const BASS   = [262,262,349,349,392,392,349,349];
 
-// ── File nhạc nền bg-music.wav ──
+// Chỉ phát âm khi AC đã sẵn sàng
+function tone(f, type, dur, vol, delay=0){
+  if(!musicOn || !AC || AC.state !== 'running') return;
+  try {
+    const o = AC.createOscillator(), g = AC.createGain();
+    o.connect(g); g.connect(AC.destination);
+    o.type = type; o.frequency.value = f;
+    const t = AC.currentTime + delay;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol, t + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    o.start(t); o.stop(t + dur + 0.05);
+  } catch(e) {}
+}
 
-function tone(f,type,dur,vol,delay=0){
-  if(!musicOn)return;
-  if(AC && AC.state==='suspended') try{AC.resume();}catch(e){}
-  const o=AC.createOscillator(),g=AC.createGain();
-  o.connect(g);g.connect(AC.destination);
-  o.type=type;o.frequency.value=f;
-  const t=AC.currentTime+delay;
-  g.gain.setValueAtTime(0,t);
-  g.gain.linearRampToValueAtTime(vol,t+0.01);
-  g.gain.exponentialRampToValueAtTime(0.001,t+dur);
-  o.start(t);o.stop(t+dur+0.05);
-}
 function bgTick(){
-  const bpm=76,ms=60000/bpm*0.5;
-  tone(MELODY[melIdx%MELODY.length],'triangle',0.35,0.035);
-  if(melIdx%4===0) tone(BASS[Math.floor(melIdx/4)%BASS.length],'sine',0.55,0.022);
+  tone(MELODY[melIdx % MELODY.length], 'triangle', 0.35, 0.035);
+  if(melIdx % 4 === 0) tone(BASS[Math.floor(melIdx/4) % BASS.length], 'sine', 0.55, 0.022);
   melIdx++;
-  bgTimer=setTimeout(bgTick,ms);
+  const bpm = 76, ms = 60000 / bpm * 0.5;
+  bgTimer = setTimeout(bgTick, ms);
 }
+
 function startMusic(){
-  if(bgMusic.paused){ bgMusic.currentTime=0; bgMusic.play().catch(()=>{}); }
-  if(!bgTimer){melIdx=0;bgTick();}
+  if(!bgTimer){ melIdx = 0; bgTick(); }
 }
+
 function stopMusic(){
-  bgMusic.pause(); bgMusic.currentTime=0;
-  if(bgTimer){clearTimeout(bgTimer);bgTimer=null;}
+  if(bgTimer){ clearTimeout(bgTimer); bgTimer = null; }
 }
-function toggleMusic(){
-  musicOn=!musicOn;
-  document.getElementById('music-btn').textContent=musicOn?'🎵':'🔇';
-  musicOn?startMusic():stopMusic();
-}
-document.addEventListener('click',e=>{
-  if(e.target.matches('button,.lesson-btn,.cho-btn,.color-swatch,.shape-btn')){
-    if(AC && musicOn && AC.state==='suspended') try{AC.resume();}catch(e){}
-    tone(600,'sine',0.08,0.12);
+
+// Mở khóa AudioContext (iOS/Android bắt buộc phải trong gesture handler)
+function unlockAudio(callback){
+  if(!AC) return;
+  if(AC.state === 'running'){
+    if(callback) callback();
+    return;
   }
-},true);
+  // Tạo buffer rỗng — thủ thuật buộc iOS mở khóa AC ngay lập tức
+  try {
+    const buf = AC.createBuffer(1, 1, 22050);
+    const src = AC.createBufferSource();
+    src.buffer = buf;
+    src.connect(AC.destination);
+    src.start(0);
+  } catch(e) {}
+  AC.resume().then(function(){
+    if(callback) callback();
+  }).catch(function(){});
+}
+
+function toggleMusic(){
+  musicOn = !musicOn;
+  document.getElementById('music-btn').textContent = musicOn ? '🎵' : '🔇';
+  if(musicOn){
+    unlockAudio(startMusic);
+  } else {
+    stopMusic();
+  }
+}
+
+// Click/tap vào bất kỳ button nào cũng phát âm hiệu
+document.addEventListener('click', e=>{
+  if(e.target.matches('button,.lesson-btn,.cho-btn,.color-swatch,.shape-btn')){
+    tone(600, 'sine', 0.08, 0.12);
+  }
+}, true);
 const snd={
   correct:()=>{[523,659,784,1047].forEach((f,i)=>tone(f,'sine',0.18,0.18,i*0.07));},
   wrong:()=>{tone(200,'sawtooth',0.25,0.18);tone(160,'sawtooth',0.2,0.14,0.1);},
@@ -321,7 +333,7 @@ const snd={
 // SCREEN MANAGEMENT
 // ══════════════════════════════════
 function showScreen(id){
-  try{ if(AC && AC.state==='suspended') try{AC.resume();}catch(e){} if(bgMusic.paused&&musicOn)bgMusic.play().catch(()=>{}); }catch(e){}
+  if(AC && AC.state === 'suspended' && musicOn) AC.resume().then(function(){ if(!bgTimer) startMusic(); }).catch(function(){});
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
@@ -704,28 +716,30 @@ function launchConfetti(){
 // BOOT
 // ══════════════════════════════════
 
-// ── Mở khóa audio trên mobile (iOS/Android bắt buộc cần user gesture) ──
+// Lần chạm / click đầu tiên → mở khóa AudioContext rồi bật nhạc
+// Dùng {once:true} để chỉ chạy đúng 1 lần cho mỗi loại event
+['touchstart', 'touchend', 'click'].forEach(function(evt){
+  document.addEventListener(evt, function handler(){
+    if(!musicOn) return;
+    unlockAudio(function(){
+      startMusic();
+    });
+    // Xóa cả 3 listener sau khi 1 cái kích hoạt
+    ['touchstart','touchend','click'].forEach(function(e2){
+      document.removeEventListener(e2, handler);
+    });
+  }, { once: true, passive: true });
+});
 
-// ── Tự resume nhạc khi quay lại app ──
-document.addEventListener('visibilitychange', ()=>{
+// Tự resume khi người dùng quay lại app (chuyển tab, khoá màn hình...)
+document.addEventListener('visibilitychange', function(){
   if(document.hidden) return;
-  try{
-    if(AC && AC.state==='suspended') try{AC.resume();}catch(e){}
-    if(musicOn && bgMusic.paused) bgMusic.play().catch(()=>{});
-  }catch(e){}
-});
-
-
-// Bat nhac khi cham man hinh
-['touchstart', 'click'].forEach(function(evt) {
-  document.addEventListener(evt, function once() {
-    tryPlayMusic();
-    document.removeEventListener(evt, once);
-  }, {once: true});
-});
-
-document.addEventListener('visibilitychange', function() {
-  if (!document.hidden) tryPlayMusic();
+  if(!musicOn) return;
+  if(AC && AC.state === 'suspended'){
+    AC.resume().then(function(){
+      if(!bgTimer) startMusic();
+    }).catch(function(){});
+  }
 });
 
 </script>
