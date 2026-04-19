@@ -160,6 +160,29 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 </head>
 <body>
 
+<!-- ══ SPLASH — bắt buộc tap để iOS cấp quyền audio ══ -->
+<div id="ios-splash" style="
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,#b388ff,#7c4dff);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:20px;
+">
+  <div style="font-size:80px;animation:bounce 1.5s infinite;">🐣</div>
+  <div style="font-size:26px;font-weight:900;color:#fff;text-align:center;padding:0 24px;">Bé Vui Học Toán!</div>
+  <button id="splash-btn" onclick="splashStart()" style="
+    margin-top:12px;padding:22px 48px;border:none;border-radius:24px;
+    background:#fff;color:#7c4dff;font-size:20px;font-weight:900;
+    font-family:'Baloo 2',sans-serif;cursor:pointer;
+    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+    -webkit-tap-highlight-color:transparent;
+  ">
+    🔊 Bắt đầu!
+  </button>
+  <div style="font-size:13px;color:rgba(255,255,255,0.75);text-align:center;padding:0 32px;">
+    Nhấn để vào app và bật âm thanh
+  </div>
+</div>
+
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
 <div class="blob blob3"></div>
@@ -240,19 +263,17 @@ body{display:flex;flex-direction:column;align-items:center;padding-bottom:40px;}
 <script>
 
 // ══════════════════════════════════════════════════════
-// AUDIO — iOS Safari / Android / Desktop
-// Quy tắc vàng iOS: AC phải được tạo VÀ resume()
-// ngay trong call stack của gesture handler.
+// AUDIO — Hoạt động trên iOS Safari / Android / Desktop
+// Chiến lược: dùng splash screen → tap trực tiếp vào nút
+// → iOS chắc chắn cấp quyền audio ngay trong onclick
 // ══════════════════════════════════════════════════════
-var AC = null;        // tạo trong gesture, KHÔNG tạo ở đây
-var audioReady = false;
-
+var AC = null;
 var musicOn = true;
 var bgTimer  = null;
 var melIdx   = 0;
 var MELODY = [523,587,659,698,784,659,587,523,659,784,880,784,659,523,587,659];
 var BASS   = [262,262,349,349,392,392,349,349];
-var BG_MS  = Math.round(60000 / 76 * 0.5); // ~395ms mỗi nốt
+var BG_MS  = Math.round(60000 / 76 * 0.5);
 
 function tone(f, type, dur, vol, delay) {
   delay = delay || 0;
@@ -285,42 +306,40 @@ function stopMusic() {
   if (bgTimer) { clearTimeout(bgTimer); bgTimer = null; }
 }
 
-// ── Hàm cốt lõi: gọi ĐỒNG BỘ bên trong gesture handler ──
-function initAudioContext() {
-  if (audioReady) return;
+// ── Gọi từ onclick của nút splash (iOS ghi nhận là direct user gesture) ──
+function splashStart() {
+  // Bước 1: Tạo AudioContext ngay trong onclick handler
+  try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+  if (!AC) { hideSplash(); return; }
 
-  // Bước 1: tạo AudioContext ngay trong gesture (iOS bắt buộc)
-  if (!AC) {
-    try { AC = new (window.AudioContext || window.webkitAudioContext)(); }
-    catch(e) { return; }
-  }
-
-  // Bước 2: phát buffer 1-sample rỗng — "mật khẩu" mở khóa iOS
+  // Bước 2: Phát buffer 1-sample — "chìa khóa" buộc iOS mở khóa audio
   try {
     var buf = AC.createBuffer(1, 1, 22050);
     var src = AC.createBufferSource();
     src.buffer = buf;
     src.connect(AC.destination);
-    src.start(0);       // gọi đồng bộ — iOS ghi nhận gesture
+    src.start(0);
   } catch(e) {}
 
-  // Bước 3: resume và bắt đầu nhạc
-  function onReady() {
-    audioReady = true;
-    if (musicOn && !bgTimer) startMusic();
+  // Bước 3: Resume nếu cần, rồi bắt đầu nhạc
+  function go() {
+    hideSplash();
+    if (musicOn) startMusic();
   }
 
   if (AC.state === 'running') {
-    onReady();
+    go();
   } else {
-    // resume() cũng phải được gọi trong cùng call stack gesture
-    var p = AC.resume();
-    if (p && typeof p.then === 'function') {
-      p.then(onReady).catch(function(){});
-    } else {
-      // fallback trình duyệt cũ không trả Promise
-      setTimeout(onReady, 100);
-    }
+    AC.resume().then(go).catch(function() { hideSplash(); });
+  }
+}
+
+function hideSplash() {
+  var el = document.getElementById('ios-splash');
+  if (el) {
+    el.style.transition = 'opacity 0.4s';
+    el.style.opacity = '0';
+    setTimeout(function() { el.remove(); }, 400);
   }
 }
 
@@ -328,14 +347,13 @@ function toggleMusic() {
   musicOn = !musicOn;
   document.getElementById('music-btn').textContent = musicOn ? '🎵' : '🔇';
   if (musicOn) {
-    if (audioReady) { startMusic(); }
-    // Chưa unlock → lần tap kế tiếp sẽ tự khởi động
+    if (AC && AC.state === 'running') startMusic();
   } else {
     stopMusic();
   }
 }
 
-// Âm hiệu khi nhấn nút
+// Âm hiệu khi nhấn nút (chỉ có tác dụng sau khi AC đã running)
 document.addEventListener('click', function(e) {
   if (e.target.matches('button,.lesson-btn,.cho-btn,.color-swatch,.shape-btn')) {
     tone(600, 'sine', 0.08, 0.12, 0);
@@ -355,7 +373,7 @@ const snd={
 function showScreen(id){
   // Mỗi lần chuyển màn hình cũng là cơ hội resume AC nếu bị suspend
   if (AC && AC.state === 'suspended' && musicOn) {
-    AC.resume().then(function(){ audioReady = true; if(!bgTimer) startMusic(); }).catch(function(){});
+    AC.resume().then(function(){ if(!bgTimer) startMusic(); }).catch(function(){});
   }
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -738,25 +756,14 @@ function launchConfetti(){
 // ══════════════════════════════════
 // BOOT
 // ══════════════════════════════════
+// Audio được khởi động bởi splashStart() khi người dùng nhấn nút splash.
+// Không cần thêm listener ở đây.
 
-// ── Lần tương tác đầu tiên → khởi động audio ──
-// Dùng named function để removeEventListener hoạt động đúng
-function onFirstGesture() {
-  initAudioContext();
-  // Xóa cả hai listener sau khi một cái kích hoạt
-  document.removeEventListener('touchstart', onFirstGesture, true);
-  document.removeEventListener('click',      onFirstGesture, true);
-}
-// capture:true để bắt trước khi bất kỳ handler nào khác chặn
-document.addEventListener('touchstart', onFirstGesture, { capture: true, passive: true });
-document.addEventListener('click',      onFirstGesture, { capture: true });
-
-// ── Tự resume khi quay lại app (khóa màn hình, đổi tab, nghe điện thoại...) ──
+// ── Tự resume khi quay lại app (khóa màn hình, đổi tab...) ──
 document.addEventListener('visibilitychange', function() {
   if (document.hidden || !musicOn || !AC) return;
   if (AC.state === 'suspended') {
     AC.resume().then(function() {
-      audioReady = true;
       if (!bgTimer) startMusic();
     }).catch(function(){});
   }
